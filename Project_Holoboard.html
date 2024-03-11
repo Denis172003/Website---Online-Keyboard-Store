@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-
 <html lang="ro">
+
 <head>
-    <title>Holoboard 1</title>
+    <title>Holoboard</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +23,19 @@
     <link rel="manifest" href="Resurse/Favicon/site.webmanifest">
     <link rel="mask-icon" href="Resurse/Favicon/safari-pinned-tab.svg" color="#ff70bd">
     <link rel="shortcut icon" href="Resurse/Favicon/favicon.ico">
+    <link rel="stylesheet" href="Resurse/CSS/stil.css" type="text/css">
+    <link rel="stylesheet" href="Resurse/CSS/general.css" type="text/css">
+    <link rel="stylesheet" href="Resurse/CSS/layout.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <meta name="msapplication-TileColor" content="#ff70bd">
     <meta name="msapplication-config" content="Resurse/Favicon/browserconfig.xml">
     <meta name="theme-color" content="#ff0000">
+
 </head>
+    
 
 <body>
     <header>
@@ -36,120 +45,163 @@
                 <li><a href="#acasa">Acasă</a>
                     <ul>
                         <li><a href="#welcome">Welcome</a></li>
-                        
                     </ul>
                 </li>
                 <li><a href="#produse">Produse</a></li>
-                
             </ul>
         </nav>
     </header>
-    
+
     <main>
-
-        <style>
-            p {
-                color: green;
-            }
-        </style>    
-        <section id="welcome">
-            <h2>Bine ai venit!</h2>
-            <p class="intro" style="color: blue; font-variant: small-caps;">Mulțumim pentru vizită!</p>
-
-        <link rel="stylesheet" href="Resurse/CSS/stil.css" type="text/css">
-
-            
-            <a href="http://www.google.com" target="_blank">Link Exemplu</a>
-            <a href="#link-top">Mergi sus</a>
-            <figure>
-                <picture>
-                    <source srcset="Resurse/Imagini/keyboard.png" media="(max-width:700px)" />
-                    <source srcset="Resurse/Imagini/keyboard3.jpg" media="(max-width:1200px)" />
-                    <img src="Resurse/Imagini/keyboard2.jpg" alt="text" title="Tastaturi" />
-                </picture>
-                <figcaption>Tastaturi</figcaption>
-            </figure>
-
-            <p> Holoboard este un <strong>magazin</strong> localizat în <dfn title="Capitala României">București</dfn>, specializat în vânzarea de <b>tastaturi</b>, accesorii și servicii asociate acestora. 
-
-                Cu o gamă variată de <b>tastaturi</b>, incluzând modele <i>mecanice</i>, <i>wireless</i> și <i>ergonomice</i>, potrivite pentru <i>gaming</i> cu iluminare <abbr title="Red Green Blue">RGB</abbr>, birou sau uz general, clienții pot găsi tot ce au nevoie pentru a-și îmbunătăți experiența. În plus, sunt disponibile și accesorii diverse, precum <dfn>keycaps</dfn>-uri custom, artizane unice și switch-uri personalizabile, oferind posibilitatea de a-și personaliza tastatura conform preferințelor individuale. 
-                <strong>Promotiile vechi de <s>10%</s>  au ajuns la <ins>15%</ins></strong>
-            </p>
-                
-        </section>
-
-        <section>
-            <div class="taburi-iframe">
-                <a href="https://www.youtube.com/embed/pyyhsgIjlJI?si=bACC0Urud-Yp6Qz7" target="ifr-video">Tastatura1</a>
-                <a href="https://www.youtube.com/embed/VpkRiCpTXx0?si=kyYPP_w6g0ALY-y0" target="ifr-video">Tastatura2</a>
-            </div>
-            <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/pyyhsgIjlJI?si=bACC0Urud-Yp6Qz7" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </section>
-
-        <section>
-            <h2>titlu 2</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores necessitatibus ab, maxime odio modi magni quae vel! Dolor quae deserunt placeat reprehenderit a, quod mollitia ipsum, enim provident dolores excepturi?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores necessitatibus ab, maxime odio modi magni quae vel! Dolor quae deserunt placeat reprehenderit a, quod mollitia ipsum, enim provident dolores excepturi?</p>
-
-            <section>
-                <h3>titlu 2</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores necessitatibus ab, maxime odio modi magni quae vel! Dolor quae deserunt placeat reprehenderit a, quod mollitia ipsum, enim provident dolores excepturi?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores necessitatibus ab, maxime odio modi magni quae vel! Dolor quae deserunt placeat reprehenderit a, quod mollitia ipsum, enim provident dolores excepturi?</p>
+        <div id="grid-pagina">
+            <section id="bun-venit">
+                <h2>Bine ați venit la Holoboard!</h2>
+                <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
+                <div class="intro-oferte">
+                    <div>Tastaturi mecanice</div>
+                    <div>Seturi de taste</div>
+                    <div>Switch-uri</div>
+                    <div>Accesorii</div>
+                </div>
+                <p class="anunt intro">Vă puteți îmbunătăți experiența de tastare atât la biroul nostru, cât și acasă, cu ajutorul serviciului nostru de livrare prin curier pentru toate produsele de tastaturi.</p>
+                <div id="dv-prezentare-1">
+                    <div id="dv-prezentare">
+                        <figure>
+                            <picture>
+                                <source srcset="./resurse/imagini/keyboard.png" media="(max-width:700px)"/>
+                                <source srcset="./resurse/imagini/keyboard2.jpg" media="(max-width:1200px)"/>
+                                <img src="resurse/imagini/keyboard3.jpg" alt="Tastatură Mecanică" title="Tastaturi Mecanice" class="imagine"/>
+                            </picture>
+                            <figcaption>Tastaturi Mecanice</figcaption>
+                        </figure>
+                    </div>
+                </div>
             </section>
+    
+            <section id="promotii">
+                <h2>Promoții</h2>
+                <!-- Inserați articole promoționale aici -->
+            </section>
+    
+            <section id="produse">
+                <h2>Produsele Noastre</h2>
+                <!-- Inserați secțiuni de produse aici -->
+            </section>
+    
+            <figure id="fig1" class="fg-img">
+                <img src="resurse/imagini/tastatura1.jpg" alt="Tastatură 1">
+                <figcaption>Tastatură 1</figcaption>
+            </figure>
+    
+            <figure id="fig2" class="fg-img">
+                <img src="resurse/imagini/tastatura2.jpg" alt="Tastatură 2">
+                <figcaption>Tastatură 2</figcaption>
+            </figure>
+    
+            <figure id="fig3" class="fg-img">
+                <img src="resurse/imagini/tastatura3.jpg" alt="Tastatură 3">
+                <figcaption>Tastatură 3</figcaption>
+            </figure>
+    
+            <section id="anunturi">
+                <h2>Anunțuri</h2>
+                <!-- Inserați paragrafele de anunțuri aici -->
+            </section>
+    
+            <section id="orar">
+                    <h2>Orar</h2>
+                    <table>
+                        <tr>
+                            <th>Ziua</th>
+                            <th>Orele de Deschidere</th>
+                        </tr>
+                        <tr>
+                            <td>Luni</td>
+                            <td>09:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Marți</td>
+                            <td>09:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Miercuri</td>
+                            <td>09:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Joi</td>
+                            <td>09:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Vineri</td>
+                            <td>09:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>Sâmbătă</td>
+                            <td>10:00 - 14:00</td>
+                        </tr>
+                        <tr>
+                            <td>Duminică</td>
+                            <td>Închis</td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+    
+        <section id="intrebari">
+            <h2>Intrebari frecvente</h2>
+            <details>
+                <summary>Produsele sunt noi?</summary>
+                Da, toate produsele sunt noi și sigilate.
+                </details>
+                <details>
+                <summary>Care sunt modalitățile de plată acceptate?</summary>
+                Acceptăm plata cu cardul, transfer bancar și numerar la livrare.
+                </details>
+                <details>
+                <summary>Care sunt termenii și condițiile de retur?</summary>
+                Aveți dreptul la returnarea produselor în termen de 14 zile calendaristice de la primirea acestora, conform legislației în vigoare.
+                </details>
+                <details>
+                <summary>Cum pot verifica starea comenzii mele?</summary>
+                Puteți verifica starea comenzii accesând contul dvs. de pe site-ul nostru sau contactându-ne direct prin telefon sau e-mail.
+                </details>
+                <details>
+                <summary>Oferta specială: Tastatura mecanică RGB la preț redus!</summary>
+                Achiziționați acum tastatura mecanică RGB la un preț redus de doar 199 lei! Oferta valabilă în limita stocului disponibil.
+                </details>
+                <a href="#">Mergi sus</a>
         </section>
+    
+
     </main>
+    
+    
 
-    <footer>
-    <section>
-        <h2>Intrebari frecvente</h2>
-        <details>
-            <summary>Produsele sunt noi?</summary>
-            Da, toate produsele sunt noi și sigilate.
-        </details>
-        <details>
-            <summary>Care sunt modalitățile de plată acceptate?</summary>
-            Acceptăm plata cu cardul, transfer bancar și numerar la livrare.
-        </details>
-        <details>
-            <summary>Care sunt termenii și condițiile de retur?</summary>
-            Aveți dreptul la returnarea produselor în termen de 14 zile calendaristice de la primirea acestora, conform legislației în vigoare.
-        </details>
-        <details>
-            <summary>Cum pot verifica starea comenzii mele?</summary>
-            Puteți verifica starea comenzii accesând contul dvs. de pe site-ul nostru sau contactându-ne direct prin telefon sau e-mail.
-        </details>
-        <details>
-            <summary>Oferta specială: Tastatura mecanică RGB la preț redus!</summary>
-            Achiziționați acum tastatura mecanică RGB la un preț redus de doar 199 lei! Oferta valabilă în limita stocului disponibil.
-        </details>
-    </section>
+<footer>
+<a href="#" title="Înapoi sus" id="link-top"><div id="triunghi"></div></a>
+<address>
+<p><i class="fa fa-phone"></i>Telefon: <a href="tel:+40712345678">07xx xxx xxx</a></p>
+<p><i class="fa-solid fa-map-pin"></i>Adresă: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.798520000893!2d14.634013576133642!3d53.38265437229992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4700a7b09b763e87%3A0xa3de8be03e7437c3!2sHoloboard.Shop!5e0!3m2!1sro!2sro!4v1709551690568!5m2!1sro!2sro" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>Locatia fizica</a></p>
+<p><i class="fa fa-envelope"></i>E-mail: <a href="mailto:holoboard@gmail.com">holoboard@gmail.com</a><br></p>
+<p><i class="fa fa-skype"></i>Skype: <a href="skype:holoboard?chat">Chat prin Skype</a></p>
+<a href="Resurse/Imagini/keyboard.png" download><i class="fa fa-file"></i>Download poza</a>
+</address>
 
-    <address>
-        <p>Telefon: <a href="tel:+40712345678">07xx xxx xxx</a></p>
-        <p>Adresă: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.798520000893!2d14.634013576133642!3d53.38265437229992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4700a7b09b763e87%3A0xa3de8be03e7437c3!2sHoloboard.Shop!5e0!3m2!1sro!2sro!4v1709551690568!5m2!1sro!2sro" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>Locatia fizica</a></p>
-        <p>E-mail: <a href="mailto:holoboard@gmail.com">holoboard@gmail.com</a><br></p>
-        <p>Skype: <a href="skype:holoboard?chat">Chat prin Skype</a></p>
-        <a href="Resurse/Imagini/keyboard.png" download>Download poza</a>
-    </address>
+<section>
 
-    </section>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <section>  
-
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-            <mtext>Număr total de combinații de taste</mtext>
-            <mo>=</mo>
-            <msup>
-                <mi>&#x2113;</mi>
-                <mi>n</mi>
-            </msup>
-        </math>        
-    </section>        
-
-    <p>&copy; <time datetime="2023-10-18">18 oct 2023</time></p>
-
-
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+<mtext>Număr total de combinații de taste</mtext>
+<mo>=</mo>
+<msup>
+<mi>&#x2113;</mi>
+<mi>n</mi>
+</msup>
+</math>
+</section>
 </footer>
 
 </body>
