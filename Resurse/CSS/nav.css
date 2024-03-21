@@ -3,6 +3,7 @@ nav {
     --latime-buton: 150px;
     height: var(--inaltime-meniu);
     background-color: var(--culoare1);
+    opacity: 1; 
 }
 
 #hamburger,
