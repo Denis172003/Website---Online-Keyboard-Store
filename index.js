@@ -13,8 +13,8 @@ console.log("Director de lucru", process.cwd());
 
 app.set("view engine","ejs");
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname+"/index.html");
+app.get(["/","/index","/home"], function(req, res) {
+    res.render("Pagini/index.ejs");
 });    
 
 app.use("/resurse", express.static(__dirname+"/resurse"));
@@ -41,9 +41,15 @@ app.get("/suma/:a/:b", function(req,res){
 
 
 
+app.get("/*",function(req,res) {
 
+    res.render("pagini"+req.url, function(err, rezHTML){
+        console.log("Pagina", rezHTML)
+        console.log("Eroare", err)
+        res.send(rezHTML);
+    });
 
-
+ })
 
 
 

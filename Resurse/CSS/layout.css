@@ -62,7 +62,6 @@ html {
   grid-area: index-intrebari;
 }
 
-/* Media queries */
 @media screen and (max-width: 1200px) {
   html {
     font-size: 15px;
