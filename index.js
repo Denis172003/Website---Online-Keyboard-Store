@@ -1,10 +1,16 @@
 const express = require("express");
 const fs= require('fs');
+const path = require("path");
 // const path=require('path');
 // const sharp=require('sharp');
 // const sass=require('sass');
 // const ejs=require('ejs');
 
+obGlobal = {
+    titlu: "Pagina mea",
+    versiune: "0.0.1",
+    numeFisier: "index.js"
+}
 
 app= express();
 console.log("Folder proiect", __dirname);
@@ -52,8 +58,20 @@ app.get("/*",function(req,res) {
  })
 
 
+function initErori() {
+    var continut = fs.readFileSync(path.join(__dirname,"resurse/json/eroare.json")).toString("utf-8");
+    console.log(continut);
+    obGlobal.obErori = JSON.parse(continut);
+    for(let eroare of obGlobal.obErori.info.erori) {
+        eroare.imagine=path.join(obGlobal.obErori.cale_baza,eroare.imagine);
+    }
+    console.log(cobGlobal);
+}   
 
-
+function afisEroare(res, _idendificator,titlu,text,imagine) {
+    let eroare = obGlobal.obErori.info_erori.find(function(elem){
+        return elem.identificator==_identificator;
+    });}
 
 
 app.listen(8080);
