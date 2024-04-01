@@ -50,14 +50,15 @@
 <body>
 
     <header>
-        <h1>Holoboard</h1>
-        <p>Magazin de tastaturi</p>
+        <p class="Titlu">Holoboard</p>
     </header>
 
 
     <nav>
         <label id="hamburger" for="ch-menu">
-            <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">
+            <div class="hambur"></div>
+            <div class="hambur"></div>
+            <div class="hambur"></div>
         </label>
         <input id="ch-menu" type="checkbox">
         <ul class="meniu">
@@ -105,7 +106,8 @@
 
     <main>
         <div id="grid-pagina">
-            <section id="bun-venit">
+            <section id="prezentare">
+                <!-- Zona 1: Prezentare -->
                 <h2>Bine ați venit la Holoboard!</h2>
                 <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
                 <div class="intro-oferte">
@@ -129,183 +131,190 @@
                 </div>
             </section>
     
-            <section id="promotii">
-                <h2>Promoții</h2>
-                
-            </section>
-    
-            <section id="produse">
-                <h2>Produsele Noastre</h2>
-                
-            </section>
-    
-            <figure id="fig1" class="fg-img">
-                <img src="resurse/imagini/tastatura1.jpg" alt="Tastatură 1">
-                <figcaption>Tastatură 1</figcaption>
-            </figure>
-    
-            <figure id="fig2" class="fg-img">
-                <img src="resurse/imagini/tastatura2.jpg" alt="Tastatură 2">
-                <figcaption>Tastatură 2</figcaption>
-            </figure>
-    
-            <figure id="fig3" class="fg-img">
-                <img src="resurse/imagini/tastatura3.jpg" alt="Tastatură 3">
-                <figcaption>Tastatură 3</figcaption>
-            </figure>
-    
-            <section id="anunturi">
-                <h2>Anunțuri</h2>
-                
-            </section>
-    
-            <section id="orar">
-                    <h2>Orar</h2>
-                    <table id="tab-orar">
+            <section id="tabel">
+                <!-- Zona 2: Tabel -->
+                <div class="table-container">
+                    <table id="stilizare-tabel">
+                        <caption>Tabel cu oferte</caption>
                         <thead>
-    
                             <tr>
-                                <th>Cod</th>
-                                <th>Perioadă</th>
-                                <th>Zi</th>
-                                <th>Interval dimineata</th>
-                                <th>Pauza de masa</th>
-                                <th>Interval seară</th>
+                                <th>Nr. crt</th>
+                                <th>Produs</th>
+                                <th>Preț</th>
+                                <th>Disponibilitate</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td rowspan="5">Zile<br/>Lucrătoare</td>
-                                <td>Luni</td>
-                                <td>10-12</td>
-                                <td>12-14</td>
-                                <td>14-20</td>
+                                <td>1</td>
+                                <td>Keyboard</td>
+                                <td>200 RON</td>
+                                <td rowspan="2">În stoc</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                
-                                <td>Marti</td>
-                                <td>9-12</td>
-                                <td>12-14</td>
-                                <td>14-21</td>
+                                <td>2</td>
+                                <td>Mouse</td>
+                                <td>100 RON</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                
-                                <td>Miercuri</td>
-                                <td>9-11</td>
-                                <td>11-13</td>
-                                <td>14-21</td>
+                                <td>3</td>
+                                <td>Headphones</td>
+                                <td>150 RON</td>
+                                <td>Stoc epuizat</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                
-                                <td>Joi</td>
-                                <td>9-11</td>
-                                <td>11-13</td>
-                                <td>14-21</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                
-                                <td>Vineri</td>
-                                <td>9-12</td>
-                                <td>12-14</td>
-                                <td>14-19</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td rowspan="2">Weekend</td>
-                                <td>Sambata</td>
-                                <td>10-12</td>
-                                <td>12-13</td>
-                                <td>13-16</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Duminica</td>
-                                <td>10-14</td>
-                                <td>-</td>
-                                <td>inchis</td>
+                                <td>4</td>
+                                <td>Monitor</td>
+                                <td>500 RON</td>
+                                <td>În stoc</td>
                             </tr>
                         </tbody>
-                        <tfoot><tr><td colspan="6">Închis cu ocazia sărbătorilor legale sau când ne e mai lene așa.</td></tr></tfoot>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">Total:</td>
+                                <td colspan="2">950 RON</td>
+                            </tr>
+                        </tfoot>
                     </table>
-                    
-                </section>
+                </div>
             </section>
+    
+            <section id="calendar">
+                <!-- Zona 3: Calendar -->
+                <h2>Calendar de evenimente</h2>
+                <h2>Orar</h2>
+                <table id="tab-orar">
+                    <thead>
+
+                        <tr>
+                            <th>Cod</th>
+                            <th>Perioadă</th>
+                            <th>Zi</th>
+                            <th>Interval dimineata</th>
+                            <th>Pauza de masa</th>
+                            <th>Interval seară</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td rowspan="5">Zile<br/>Lucrătoare</td>
+                            <td>Luni</td>
+                            <td>10-12</td>
+                            <td>12-14</td>
+                            <td>14-20</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Marti</td>
+                            <td>9-12</td>
+                            <td>12-14</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Miercuri</td>
+                            <td>9-11</td>
+                            <td>11-13</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Joi</td>
+                            <td>9-11</td>
+                            <td>11-13</td>
+                            <td>14-21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            
+                            <td>Vineri</td>
+                            <td>9-12</td>
+                            <td>12-14</td>
+                            <td>14-19</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sambata</td>
+                            <td>10-12</td>
+                            <td>12-13</td>
+                            <td>13-16</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Duminica</td>
+                            <td>10-14</td>
+                            <td>-</td>
+                            <td>inchis</td>
+                        </tr>
+                    </tbody>
+                    <tfoot><tr><td colspan="6">Închis cu ocazia sărbătorilor legale sau când ne e mai lene așa.</td></tr></tfoot>
+                </table>
+               </section>
+            </section>
+    
+            <section id="anunturi">
+                <!-- Zona 4: Anunțuri -->
+                <h2>Anunțuri</h2>
+                <p>Descoperă cele mai noi oferte și promoții la tastaturi mecanice, seturi de taste și accesorii! Nu rata reducerile noastre exclusive și beneficiază de livrare gratuită pentru comenzile de peste 200 lei.</p>
+            </section>
+            
+            <section id="utilizatori">
+                <!-- Zona 5: Utilizatori -->
+                <h2>Utilizatori Online</h2>
+                <p>Alătură-te comunității noastre pasionate de tastaturi! Vezi cine este online acum și discută cu alți pasionați de tastaturi, schimbă experiențe și primește sfaturi de la experți.</p>
+            </section>
+            
+            <section id="date">
+                <!-- Zona 6: Date -->
+                <h2>Date despre utilizator și statistici</h2>
+                <p>Îți oferim date detaliate despre preferințele tale în materie de tastaturi, statistici despre produsele cele mai căutate și cele mai bine vândute. Află mai multe despre cum poți îmbunătăți experiența ta de tastare!</p>
+            </section>
+            
+            <section id="date-server">
+                <!-- Zona 7: Date despre site și server -->
+                <h2>Date despre site și server</h2>
+                <p>Placeholder pentru informații despre site-ul și serverul nostru.</p>
+            </section>
+
+            <section id="diverse">
+                <!-- Zona 7: Diverse -->
+                <h2>Conținut Divers</h2>
+                <p>Descoperă ultimele noutăți din lumea tastaturilor, articole și recenzii despre cele mai recente modele și tehnologii. Fii la curent cu tot ce este nou în domeniul tastaturilor mecanice și personalizează-ți experiența de tastare!</p>
+            </section>            
         </div>
     
         <section id="intrebari">
-            <h2>Intrebari frecvente</h2>
+            <!-- Zona 8: Întrebări frecvente -->
+            <h2>Întrebări frecvente</h2>
             <details>
                 <summary>Produsele sunt noi?</summary>
                 Da, toate produsele sunt noi și sigilate.
-                </details>
-                <details>
+            </details>
+            <details>
                 <summary>Care sunt modalitățile de plată acceptate?</summary>
                 Acceptăm plata cu cardul, transfer bancar și numerar la livrare.
-                </details>
-                <details>
+            </details>
+            <details>
                 <summary>Care sunt termenii și condițiile de retur?</summary>
                 Aveți dreptul la returnarea produselor în termen de 14 zile calendaristice de la primirea acestora, conform legislației în vigoare.
-                </details>
-                <details>
+            </details>
+            <details>
                 <summary>Cum pot verifica starea comenzii mele?</summary>
                 Puteți verifica starea comenzii accesând contul dvs. de pe site-ul nostru sau contactându-ne direct prin telefon sau e-mail.
-                </details>
-                <details>
+            </details>
+            <details>
                 <summary>Oferta specială: Tastatura mecanică RGB la preț redus!</summary>
                 Achiziționați acum tastatura mecanică RGB la un preț redus de doar 199 lei! Oferta valabilă în limita stocului disponibil.
                 </details>
                 <a href="#">Mergi sus</a>
         </section>
 
-        <div class="table-container">
-            <table id="stilizare-tabel">
-                <caption>Tabel cu oferte</caption>
-                <thead>
-                    <tr>
-                        <th>Nr. crt</th>
-                        <th>Produs</th>
-                        <th>Preț</th>
-                        <th>Disponibilitate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Keyboard</td>
-                        <td>200 RON</td>
-                        <td rowspan="2">În stoc</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mouse</td>
-                        <td>100 RON</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Headphones</td>
-                        <td>150 RON</td>
-                        <td>Stoc epuizat</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Monitor</td>
-                        <td>500 RON</td>
-                        <td>În stoc</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2">Total:</td>
-                        <td colspan="2">950 RON</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+    
 
         <div class="iframe">
           

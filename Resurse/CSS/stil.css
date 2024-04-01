@@ -28,7 +28,10 @@ h2{
 
 #stilizare-tabel {
     border-collapse: collapse;
-    width: 100%;
+    width: 50%;
+    position : relative;
+    left: 25%;
+    margin-top: 60px;
 }
 
 #stilizare-tabel caption {
@@ -74,7 +77,7 @@ h2{
     justify-content: flex-start;
 }
 .taburi-iframe a + a {
-    margin-left: 10px;
+    margin-left: 163px;
 }
 .taburi-iframe a{
     display: block;
@@ -107,10 +110,9 @@ h2{
     box-shadow: inset 0px -10px 20px rgba(255, 255, 255, 0.6); 
 }
 
-body,
 html {
-    margin: 0;
-    padding: 0;
+    margin: 10px;
+    padding: 10px;
     font-size: 18px;
     font-family: "EB Garamond", serif;
 }

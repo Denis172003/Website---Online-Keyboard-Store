@@ -1,95 +1,115 @@
 @media screen and (max-width: 1200px) {
-    
-    #hamburger {
-      display: block;
-    }
-  
-    #hamburger > img {
-      height: var(--inaltime-meniu);
-      display: block;
-    }
-  
-    
-    ul.meniu {
-      display: none;
-      position: absolute;
-      width: 100%;
-    }
-  
-    
-    #ch-menu:checked + ul.meniu {
-      display: block;
-      z-index: 2;
-      position: relative;
-  
-      animation-name: aparitie_meniu_p;
-      animation-iteration-count: 1;
-      animation-duration: 0.7s;
-      animation-fill-mode: forwards;
-      animation-timing-function: linear;
-    }
-  
-    
-    #ch-menu:checked + ul.meniu > li > div,
-    #ch-menu:checked + ul.meniu > li > a {
-      z-index: 2;
-      position: relative;
-      transform-origin: 50% 50%;
-      animation-name: aparitie_meniu_p_btn;
-      animation-iteration-count: 1;
-      animation-duration: 0.7s;
-      animation-fill-mode: forwards;
-      animation-timing-function: linear;
-    }
-  
-    
-    nav ul.meniu li {
-      width: 100%;
-    }
-  
-    
-    nav ul.meniu > li ul {
-      position: absolute;
-      width: 100%;
-      z-index: 200;
-      transform: scale(1, 1) !important;
-      opacity: 1 !important;
-    }
-  
-    
-    #ch-menu:checked + ul.meniu > li ul > * {
-      position: relative;
-      z-index: 200;
-    }
-  
-    
-    nav ul.meniu > li:hover > ul {
-      z-index: 200;
-      animation: none;
-    }
-  
-    
-    nav ul.meniu > li li a:before {
-      content: " \25B7\00A0 ";
-      color: white;
-    }
-  
-   
-    @keyframes aparitie_meniu_p {
-      0% {
+
+  /* Add padding to body */
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
         opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
     }
-  
-    @keyframes aparitie_meniu_p_btn {
-      0% {
-        transform: scale(0, 0);
-      }
-      100% {
-        transform: scale(1, 1);
-      }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hambur {
+  margin-left: 2px;
+  width: 25px;
+  height: 3px;
+  border-radius: 20px;
+  background: white;
+  margin-top:5px; /* Adjusted margin-top to move it 5 pixels down */
+  animation: slideInFromLeft 1s ease forwards;
+}
+
+  /* Styles for hamburger menu */
+  #hamburger {
+    display: block;
+  }
+
+  #hamburger > img {
+    height: var(--inaltime-meniu);
+    display: block;
+  }
+
+  /* Dropdown menu */
+  ul.meniu {
+    display: none;
+    position: absolute;
+    width: 100%;
+  }
+
+  #ch-menu:checked + ul.meniu {
+    display: block;
+    z-index: 2;
+    position: relative;
+    animation-name: appear_menu;
+    animation-iteration-count: 1;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  #ch-menu:checked + ul.meniu > li > div,
+  #ch-menu:checked + ul.meniu > li > a {
+    z-index: 2;
+    position: relative;
+    transform-origin: 50% 50%;
+    animation-name: appear_menu_btn;
+    animation-iteration-count: 1;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  nav ul.meniu li {
+    width: 100%;
+  }
+
+  nav ul.meniu > li ul {
+    position: absolute;
+    width: 100%;
+    z-index: 200;
+    transform: scale(1, 1) !important;
+    opacity: 1 !important;
+    transition-delay: 0.5s; /* Adjust the delay here */
+  }
+
+  #ch-menu:checked + ul.meniu > li ul > * {
+    position: relative;
+    z-index: 200;
+  }
+
+  nav ul.meniu > li:hover > ul {
+    z-index: 200;
+    animation: none;
+  }
+
+  /* Remove triangle content */
+  nav ul.meniu > li li a:before {
+    content: none;
+  }
+
+  @keyframes appear_menu {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
+
+  @keyframes appear_menu_btn {
+    0% {
+      transform: scale(0, 0);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+}
