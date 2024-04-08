@@ -145,3 +145,76 @@ p {
     margin-bottom: 20px;
 }
 
+/* CSS Variables for Colors */
+:root {
+    --link-visited-color: #8200ae; /* Color for visited links */
+    --external-link-hover-color: #000000; /* Color for hover effects */
+    --link-hover-background-color: #87CEFA; /* Color for the hover blob */
+  }
+  
+  /* Basic link styling */
+  .special-link {
+    position: relative;
+    text-decoration: none; /* Removes underline */
+    display: inline-block; /* Ensuring inline-block for proper size calculation */
+    color: inherit; /* Ensuring the link color is inherited */
+  }
+  
+  /* Visited link styling */
+  .special-link:visited {
+    color: var(--link-visited-color);
+  }
+  
+  .special-link {
+    position: relative;
+    text-decoration: none; /* Removes underline */
+    display: inline-block; /* Ensuring inline-block for proper size calculation */
+    color: inherit; /* Ensuring the link color is inherited */
+  }
+  
+  /* Hover effect with color blob */
+  .special-link::before {
+    content: ''; /* Adding a pseudo-element for the background */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the pseudo-element */
+    width: 0;
+    height: 0;
+    border-radius: 50%; /* Ensuring circular shape */
+    background-color: var(--link-hover-background-color);
+    transition: all 0.5s ease; /* Transition for smooth animation */
+    z-index: -1; /* Placing the pseudo-element behind the link content */
+  }
+  
+  /* Change scale to make the circle appear from center */
+  .special-link:hover::before {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Reset animation on link click */
+  .special-link:active::before {
+    width: 0;
+    height: 0;
+  }
+  
+  /* Adding a border on click (:active state) */
+  .special-link:active {
+    border: 1px solid var(--external-link-hover-color); /* Adjusting border color to be blue */
+    padding: -1px; /* Adjust padding to compensate for the border thickness without shifting content */
+  }
+
+  /* Textul VTT cu gradient */
+video::cue {
+    background-image: linear-gradient(to bottom, #333333, #666666);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: block;
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  
+  
