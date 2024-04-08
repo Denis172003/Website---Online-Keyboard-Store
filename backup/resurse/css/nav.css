@@ -1,0 +1,102 @@
+nav {
+    --inaltime-meniu: 2.5em;
+    --latime-buton: 150px;
+    height: var(--inaltime-meniu);
+    background-color: var(--culoare1);
+    opacity: 1; 
+}
+
+#hamburger,
+#ch-menu {
+    display: none;
+}
+#acasa-mediu {
+    display: none;
+}
+.meniu {
+    display: flex;
+}
+.meniu,
+.meniu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--culoare1);
+    color: white;
+    text-decoration: none;
+}
+
+.meniu a {
+    color: white;
+    text-decoration: none;
+    transition: color 1.0s ease; 
+}
+
+.meniu li:hover {
+    background: var(--culoare1); 
+}
+
+.meniu li {
+    border: 2px solid var(--culoare1);
+    width: var(--latime-buton);
+    height: var(--inaltime-meniu);
+    text-align: center;
+    position: relative; 
+}
+
+.meniu li div,
+.meniu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    line-height: var(--inaltime-meniu);
+    transition: all 0.5s ease; 
+}
+
+.meniu ul {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    padding: 0;
+    margin: 0;
+    transform-origin: top; 
+    transform: scaleY(0); 
+    transition: transform 0.5s ease; 
+}
+
+.meniu li:hover > ul {
+    display: block;
+    transform: scaleY(1); 
+}
+
+.meniu li:hover > * {
+    color: var(--culoare2); 
+}
+
+@keyframes growFromPoint {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.meniu ul {
+    animation: growFromPoint 0.5s ease; 
+}
+
+.meniu ul li {
+    animation: none; 
+}
+
+
+#acasa:hover .acasa-text {
+    display: inline; 
+}
+
+
+.acasa-text {
+    display: none;
+}

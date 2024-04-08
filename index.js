@@ -1,8 +1,8 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const sharp=require('sharp');
-// const sass=require('sass');
+const sharp = require("sharp");
+const sass = require("sass");
 // const ejs=require('ejs');
 
 obGlobal = {
@@ -16,22 +16,32 @@ console.log("Director de lucru", process.cwd());
 
 app.set("view engine", "ejs");
 
-vect_foldere = ["temp","temp1"]
+vect_foldere = ["temp", "temp1", "backup"];
 for (let folder of vect_foldere) {
-    let calefolder = path.join(__dirname, folder);
-    if (!fs.existsSync(calefolder)) {
-        fs.mkdirSync(calefolder);
-    }
+  let calefolder = path.join(__dirname, folder);
+  if (!fs.existsSync(calefolder)) {
+    fs.mkdirSync(calefolder);
+  }
 }
 
 app.use("/resurse", express.static(__dirname + "/resurse"));
+app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
 // app.get("/", function(req, res){
 //     res.sendFile(__dirname+"/index.html")
 // })
 
-app.get(["/","/home","/index"], function(req, res){
-  res.render("pagini/index", {ip: req.ip, imagini:obGlobal.obImagini.imagini});
+app.get(["/", "/home", "/index"], function (req, res) {
+  res.render("pagini/index", {
+    ip: req.ip,
+    imagini: obGlobal.obImagini.imagini,
+  });
+});
+
+app.get("/despre", function (req, res) {
+  res.render("pagini/despre", {
+    ip: req.ip,
+  });
 });
 
 // trimiterea unui mesaj fix
@@ -59,16 +69,16 @@ app.get("/suma/:a/:b", function (req, res) {
   res.send("" + suma);
 });
 
-app.get("/*.ejs", function (req,res) {
-    afiuareEroare(res, 400);
+app.get("/*.ejs", function (req, res) {
+  afiuareEroare(res, 400);
 });
 
-app.get(new RegExp("^\/resurse\/[A-Za-z0-9\/]*\/$/"), function (req, res) {
- afisareEroare(res, 403);   
+app.get(new RegExp("^/resurse/[A-Za-z0-9/]*/$/"), function (req, res) {
+  afisareEroare(res, 403);
 });
 
 app.get("/favicon.ico", function (req, res) {
-    res.sendFile(path.join(__dirname, "resurse/favicon/favicon.ico"));
+  res.sendFile(path.join(__dirname, "resurse/favicon/favicon.ico"));
 });
 
 app.get("/*", function (req, res) {
@@ -100,10 +110,13 @@ app.get("/*", function (req, res) {
   }
 });
 
-obGlobal ={
+obGlobal = {
   obErori: null,
-  obImagini: null
-}
+  obImagini: null,
+  folderScss: path.join(__dirname, "resurse/scss"),
+  folderCss: path.join(__dirname, "resurse/css"),
+  folderBackup: path.join(__dirname, "backup"),
+};
 
 function initErori() {
   var continut = fs
@@ -123,26 +136,35 @@ function initErori() {
 }
 initErori();
 
-function initImagini(){
-  var continut= fs.readFileSync(__dirname+"/resurse/json/galerie.json").toString("utf-8");
+function initImagini() {
+  var continut = fs
+    .readFileSync(__dirname + "/resurse/json/galerie.json")
+    .toString("utf-8");
 
-  obGlobal.obImagini=JSON.parse(continut);
-  let vImagini=obGlobal.obImagini.imagini;
+  obGlobal.obImagini = JSON.parse(continut);
+  let vImagini = obGlobal.obImagini.imagini;
 
-  let caleAbs=path.join(__dirname,obGlobal.obImagini.cale_galerie);
-  let caleAbsMediu=path.join(__dirname,obGlobal.obImagini.cale_galerie, "mediu");
-  if (!fs.existsSync(caleAbsMediu))
-      fs.mkdirSync(caleAbsMediu);
+  let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
+  let caleAbsMediu = path.join(
+    __dirname,
+    obGlobal.obImagini.cale_galerie,
+    "mediu"
+  );
+  if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
 
   //for (let i=0; i< vErori.length; i++ )
-  for (let imag of vImagini){
-      [numeFis, ext]=imag.fisier.split(".");
-      let caleFisAbs=path.join(caleAbs,imag.fisier);
-      let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
-      sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-      imag.fisier_mediu=path.join("/", obGlobal.obImagini.cale_galerie, "mediu",numeFis+".webp" )
-      imag.fisier=path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier )
-      
+  for (let imag of vImagini) {
+    [numeFis, ext] = imag.fisier.split(".");
+    let caleFisAbs = path.join(caleAbs, imag.fisier);
+    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+    imag.fisier_mediu = path.join(
+      "/",
+      obGlobal.obImagini.cale_galerie,
+      "mediu",
+      numeFis + ".webp"
+    );
+    imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
   }
 }
 initImagini();
@@ -170,6 +192,55 @@ function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
     }
   }
 }
+
+function compileazaScss(caleScss, caleCss) {
+  console.log("cale:", caleCss);
+  if (!caleCss) {
+    let numeFisExt = path.basename(caleScss);
+    let numeFis = numeFisExt.split(".")[0]; /// "a.scss"  -> ["a","scss"]
+    caleCss = numeFis + ".css";
+  }
+
+  if (!path.isAbsolute(caleScss))
+    caleScss = path.join(obGlobal.folderScss, caleScss);
+  if (!path.isAbsolute(caleCss))
+    caleCss = path.join(obGlobal.folderCss, caleCss);
+
+  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+  if (!fs.existsSync(caleBackup)) {
+    fs.mkdirSync(caleBackup, { recursive: true });
+  }
+
+  // la acest punct avem cai absolute in caleScss si  caleCss
+  //TO DO
+  let numeFisCss = path.basename(caleCss);
+  if (fs.existsSync(caleCss)) {
+    fs.copyFileSync(
+      caleCss,
+      path.join(obGlobal.folderBackup, "resurse/css", numeFisCss)
+    ); // +(new Date()).getTime()
+  }
+  rez = sass.compile(caleScss, { sourceMap: true });
+  fs.writeFileSync(caleCss, rez.css);
+  //console.log("Compilare SCSS",rez);
+}
+//compileazaScss("a.scss");
+vFisiere = fs.readdirSync(obGlobal.folderScss);
+for (let numeFis of vFisiere) {
+  if (path.extname(numeFis) == ".scss") {
+    compileazaScss(numeFis);
+  }
+}
+
+fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
+  console.log(eveniment, numeFis);
+  if (eveniment == "change" || eveniment == "rename") {
+    let caleCompleta = path.join(obGlobal.folderScss, numeFis);
+    if (fs.existsSync(caleCompleta)) {
+      compileazaScss(caleCompleta);
+    }
+  }
+});
 
 app.listen(8080);
 console.log("Serverul a pornit");

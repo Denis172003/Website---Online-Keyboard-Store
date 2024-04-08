@@ -29,6 +29,7 @@
 
   /* Styles for hamburger menu */
   #hamburger {
+    transform : translateY(5px);
     display: block;
   }
 
