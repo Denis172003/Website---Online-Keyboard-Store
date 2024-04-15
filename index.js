@@ -3,7 +3,23 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const sass = require("sass");
-// const ejs=require('ejs');
+const ejs=require('ejs');
+Client = require('pg').Client;
+
+var client= new Client({database:"cti_2024",
+        user:"denis",
+        password:"denis",
+        host:"localhost",
+        port:5432});
+      
+client.connect();
+
+
+client.query("SELECT * FROM prajitura", function(err,rez){
+  console.log(rez);
+});
+
+
 
 obGlobal = {
   obErori: null,
@@ -43,6 +59,29 @@ app.get("/despre", function (req, res) {
     ip: req.ip,
   });
 });
+
+app.get("/produse", function (req, res) {
+  client.query("select * from prajituri", function (err, rez) {
+    if (err) {
+      console.log(err);
+      afisareEroare(res, 2);
+    } else {
+      res.render("pagini/produse", { produse: rez.rows, optiuni: [] });
+    }
+  });
+});
+
+app.get("/produs/:id", function (req, res) {
+  client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
+    if (err) {
+      console.log(err);
+      afisareEroare(res, 2);
+    } else {
+      res.render("pagini/produse", { produse: rez.rows, optiuni: [] });
+    }
+  });
+});
+  
 
 // trimiterea unui mesaj fix
 app.get("/cerere", function (req, res) {
