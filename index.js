@@ -14,6 +14,12 @@ var client= new Client({database:"cti_2024",
       
 client.connect();
 
+client.query("SELECT * FROM unnest enum_range(null::categ_prajitura)", function(err,rez){
+  console.log(rez);
+
+})
+
+
 
 client.query("SELECT * FROM prajitura", function(err,rez){
   console.log(rez);
@@ -60,16 +66,25 @@ app.get("/despre", function (req, res) {
   });
 });
 
-app.get("/produse", function (req, res) {
-  client.query("select * from prajituri", function (err, rez) {
-    if (err) {
-      console.log(err);
-      afisareEroare(res, 2);
-    } else {
-      res.render("pagini/produse", { produse: rez.rows, optiuni: [] });
-    }
+app.get("/produse", function(req, res){
+  console.log(req.query)
+  var conditieQuery="";
+  if (req.query.tip){
+      conditieQuery=` where tip_produs='${req.query.tip}'`
+  }
+  client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+
+      client.query(`select * from prajituri ${conditieQuery}`, function(err, rez){
+          if (err){
+              console.log(err);
+              afisareEroare(res, 2);
+          }
+          else{
+              res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
+          }
+      })
   });
-});
+})
 
 app.get("/produs/:id", function (req, res) {
   client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
