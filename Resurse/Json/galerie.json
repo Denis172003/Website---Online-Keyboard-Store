@@ -37,3 +37,42 @@
 		}
 	]
 }
+
+// JSON cu detalii despre imagini
+const imagesJSON = {
+    "cale_galerie": "calea/pana/la/folderul_cu_imagini",
+    "imagini": [
+        {
+            "fisier_imagine": "imagine1.png",
+            "nume_poza": "Imagine 1",
+            "continut_alternativ": "Text alternativ imagine 1",
+            "descriere_poza": "Text descriere imagine 1",
+            "intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+        },
+        {
+            "fisier_imagine": "imagine2.png",
+            "nume_poza": "Imagine 2",
+            "continut_alternativ": "Text alternativ imagine 2",
+            "descriere_poza": "Text descriere imagine 2",
+            "intervale_zile": [["luni", "marti"], ["vineri", "vineri"]]
+        },
+        // Adaugă mai multe imagini aici
+    ]
+};
+
+// Funcție pentru afișarea imaginilor în galerie
+function showImages() {
+    const galleryDiv = document.querySelector('.gallery');
+
+    imagesJSON.imagini.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image.fisier_imagine;
+        img.alt = image.continut_alternativ;
+        img.title = image.descriere_poza;
+
+        galleryDiv.appendChild(img);
+    });
+}
+
+// Apelează funcția pentru afișarea imaginilor la încărcarea paginii
+document.addEventListener('DOMContentLoaded', showImages);
