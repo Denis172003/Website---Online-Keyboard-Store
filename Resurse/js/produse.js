@@ -81,4 +81,59 @@ window.addEventListener("load", function () {
       prod.style.display = "block";
     }
   };
+
+  function sorteaza(semn) {
+    var produse = document.getElementsByClassName("produs");
+    var v_produse = Array.from(produse);
+    v_produse.sort(function (a, b) {
+      let pret_a = parseInt(a.getElementsByClassName("val-pret")[0].innerHTML);
+      let pret_b = parseInt(b.getElementsByClassName("val-pret")[0].innerHTML);
+      if (pret_a == pret_b) {
+        let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
+        let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
+        return semn * nume_a.localeCompare(nume_b);
+      }
+      return semn * (pret_a - pret_b);
+    });
+    console.log(v_produse);
+    for (let prod of produse) {
+      prod.parentNode.appendChild(prod);
+    }
+  }
+
+  document.getElementById("sortCrescNume").onclick = function () {
+    sorteaza(1);
+  };
+
+  document.getElementById("sortDescrescNume").onclick = function () {
+    sorteaza(-1);
+  };
+
+  window.onkeydown = function (e) {
+    if (e.key == "c" && e.altKey) {
+      var suma = 0;
+      var produse = document.getElementsByClassName("produs");
+      for (let produs of produse) {
+        var stil = getComputedStyle(produs);
+        if (stil.display != "none") {
+          suma += parseInt(
+            produs.getElementsByClassName("val-pret")[0].innerHTML
+          );
+        }
+      }
+    }
+    if(!document.getElementById("par_suma")){
+    let p = document.createElement("p");
+    p.innerHTML =`<b>${suma}</b>`;
+    p.id = "par_suma";
+    container = document.getElementById("produse");
+    container.insertBefore(p, container.children[0]);
+    setTimeout(function(){
+     let par= document.getElementById("par_suma");
+     if(par){
+       par.remove();
+      };
+    },2000);
+    }
+  };
 });

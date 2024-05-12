@@ -25,6 +25,7 @@
     <link rel="mask-icon" href="Resurse/Favicon/safari-pinned-tab.svg" color="#ff70bd">
     <link rel="shortcut icon" href="Resurse/Favicon/favicon.ico">
     <link rel="stylesheet" href="Resurse/CSS/nav.css" type="text/css">
+    <link rel="stylesheet" href="Resurse/CSS/galerie-statica.css" type="text/css">
     <link rel="stylesheet" href="Resurse/CSS/nav.scss" type="text/css">
     <link rel="stylesheet" href="Resurse/CSS/nav700.css" type="text/css">
     <link rel="stylesheet" href="Resurse/CSS/nav1000.css" type="text/css">
@@ -296,6 +297,83 @@
             </section>            
         </div>
     
+        <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="Tastatura">
+                </div>
+                <figcaption> Tastatura mecanică RGB </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="capsator">
+                </div>
+                <figcaption> Tastatura compactă wireless </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică cu iluminare </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă cu touchpad integrat </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura multimedia retro iluminată </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică pentru gaming </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ultra-subțire cu taste iluminate </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă wireless cu touchpad </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică pentru programatori </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura mecanică cu iluminare RGB și tastatura numerică </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă pentru laptop-uri </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică cu suport pentru încheietura mâinii </figcaption>
+          
+</section>
+
         <section id="intrebari">
             <!-- Zona 8: Întrebări frecvente -->
             <h2>Întrebări frecvente</h2>
@@ -322,29 +400,8 @@
                 <a href="#">Mergi sus</a>
         </section>
 
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <% 
-                    var vLuni=["ianuarie", "februarie", "martie", "aprilie", "iunie", "iulie"];
-                    var d=new Date();
-                    var lunaCurenta=vLuni[d.getMonth()];
-                    for (let imag of locals.imagini) { 
-                        if (imag?.luni?.includes(lunaCurenta)) {
-                        %>
-                            <figure>
-                                <picture>
-                                    <source srcset="<%= imag.fisier_mediu %>" media="(max-width:1200px)"/>
-                                    <img src="<%= imag.fisier %>" alt="prajituri">
-                                </picture>
-                            
-                            <figcaption><%= imag.descriere%></figcaption>
-                            </figure>
-                    <% } %>
-                <% } %>
-                
-            </div>
-        </section>
+
+        
         <video id="video-vtt" controls preload="auto" poster="poster.jpg" style="width: 100%; min-width: 320px; max-width: 800px;">
   <source src="./resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
   <source src="./resurse/Video/Logitech_Wireless.mov" type="video/mov">

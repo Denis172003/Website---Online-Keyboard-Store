@@ -1,11 +1,19 @@
-html {
+/* CSS Variables */
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
 
+html {
   font-size: 18px;
   font-family: "EB Garamond", serif;
   font-optical-sizing: auto;
   font-style: normal;
   transition: font-size 0.5s ease;
 }
+
 .info-oferte {
   font-size: 1.5rem;
 }
@@ -14,59 +22,68 @@ html {
   width: 100%;
 }
 
+/* Grid Layout */
 #grid-pagina {
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; 
-  grid-template-areas:
-    "welcome welcome welcome"
-    "utilizatori date-server date "
-    "calendar tabel tabel " 
-    "anunturi tabel tabel"
-    "diverse diverse diverse"
-    ;
-} 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: auto auto auto auto auto; 
+  grid-gap: 10px;
+}
 
 #grid-pagina > * {
   outline: 2px solid skyblue;
   margin: 3px;
 }
 
+/* Grid Areas */
 #prezentare {
-  grid-area: welcome;
-}
-#tabel {
-  grid-area: tabel;
-}
-#anunturi {
-  grid-area: anunturi;
-}
-#calendar {
-  grid-area: calendar;
+  grid-column: 1 / span 3;
+  grid-row: 1;
 }
 
 #utilizatori {
-  grid-area: utilizatori;
-}
-#date {
-  grid-area: date;
-}
-#diverse {
-  grid-area: diverse;
-}
-#date-server {
-  grid-area: date-server;
-}
-#intrebari {
-  grid-area: index-intrebari;
+  grid-column: 1;
+  grid-row: 2;
 }
 
+#date-server {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#date {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#calendar {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+#tabel {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+}
+
+#anunturi {
+  grid-column: 1 / span 3;
+  grid-row: 4;
+}
+
+#diverse {
+  grid-column: 1 / span 3;
+  grid-row: 5;
+}
+
+/* Media Queries */
 @media screen and (max-width: 1200px) {
   html {
     font-size: 15px;
   }
   #grid-pagina {
-    display: block;
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
@@ -74,8 +91,4 @@ html {
   html {
     font-size: 12px;
   }
-  #grid-pagina {
-    display: block;
-  }
 }
-

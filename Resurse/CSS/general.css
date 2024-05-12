@@ -1,72 +1,68 @@
+/* Grid Layout Styling */
 #grid-pagina {
+  padding: 10px;
   display: grid;
+  grid-template-columns: 1fr 2fr 1fr; 
   grid-template-areas:
-      "prezentare prezentare prezentare"
-      "tabel calendar calendar"
-      "anunturi online statistici"
-      "diverse diverse diverse";
+    "welcome welcome welcome"
+    "utilizatori date-server date "
+    "calendar tabel tabel " 
+    "anunturi tabel tabel"
+    "diverse diverse diverse";
+} 
+
+#grid-pagina > * {
+  outline: 2px solid skyblue;
+  margin: 3px;
 }
 
-/* La dimensiuni medii */
-@media (max-width: 1024px) {
-  #grid-pagina {
-      grid-template-areas:
-          "prezentare prezentare prezentare"
-          "tabel tabel tabel"
-          "calendar calendar calendar"
-          "anunturi online statistici"
-          "diverse diverse diverse";
-  }
-}
-
-/* La dimensiuni mici */
-@media (max-width: 768px) {
-  #grid-pagina {
-      grid-template-areas:
-          "prezentare"
-          "tabel"
-          "calendar"
-          "anunturi"
-          "online"
-          "statistici"
-          "diverse";
-  }
-}
-
-/* Stilizări pentru fiecare secțiune */
 #prezentare {
-  grid-area: prezentare;
-  width: calc(100% - 20px); 
-  margin-right: 20px; 
+  grid-area: welcome;
 }
-
-#promotii {
-    grid-area: calendar;
+#tabel {
+  grid-area: tabel;
 }
-
-#produse {
-    grid-area: tabel;
-}
-
 #anunturi {
-    grid-area: anunturi;
+  grid-area: anunturi;
+}
+#calendar {
+  grid-area: calendar;
 }
 
-#orar {
-    grid-area: online;
+#utilizatori {
+  grid-area: utilizatori;
 }
-
+#date {
+  grid-area: date;
+}
+#diverse {
+  grid-area: diverse;
+}
+#date-server {
+  grid-area: date-server;
+}
 #intrebari {
-    grid-area: statistici;
+  grid-area: index-intrebari;
 }
 
-.table-container {
-    grid-area: diverse;
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+  #grid-pagina {
+    display: block;
+  }
 }
 
-/* Alte stilizări pentru secțiuni (să respecte principiile de design și ierarhia vizuală) */
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+  #grid-pagina {
+    display: block;
+  }
+}
 
-/* Adăugați stilurile tale CSS aici */
 
 #link-top {
   position: fixed;
@@ -347,7 +343,7 @@ hr {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 99%;
 }
 
 .duotone-image-container::before {

@@ -46,17 +46,22 @@ for (let folder of vect_foldere) {
   }
 }
 
-app.use("/resurse", express.static(__dirname + "/resurse"));
+app.use("/Resurse", express.static(__dirname + "/Resurse"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
-// app.get("/", function(req, res){
-//     res.sendFile(__dirname+"/index.html")
-// })
+app.use(function(req, res,next){
+  client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
+  res.locals.optiuniMeniu=rezOptiuni.rows;
+  next();
+  });
+});
+
+initImagini();
 
 app.get(["/", "/home", "/index"], function (req, res) {
   res.render("pagini/index", {
     ip: req.ip,
-    imagini: obGlobal.obImagini.imagini,
+    imagini: obGlobal.obImagini ? obGlobal.obImagini.imagini : [], // Check if obGlobal.obImagini is null
   });
 });
 
@@ -127,12 +132,12 @@ app.get("/*.ejs", function (req, res) {
   afiuareEroare(res, 400);
 });
 
-app.get(new RegExp("^/resurse/[A-Za-z0-9/]*/$/"), function (req, res) {
+app.get(new RegExp("^/Resurse/[A-Za-z0-9/]*/$/"), function (req, res) {
   afisareEroare(res, 403);
 });
 
 app.get("/favicon.ico", function (req, res) {
-  res.sendFile(path.join(__dirname, "resurse/favicon/favicon.ico"));
+  res.sendFile(path.join(__dirname, "Resurse/favicon/favicon.ico"));
 });
 
 app.get("/*", function (req, res) {
@@ -167,14 +172,14 @@ app.get("/*", function (req, res) {
 obGlobal = {
   obErori: null,
   obImagini: null,
-  folderScss: path.join(__dirname, "resurse/scss"),
-  folderCss: path.join(__dirname, "resurse/css"),
+  folderScss: path.join(__dirname, "Resurse/scss"),
+  folderCss: path.join(__dirname, "Resurse/css"),
   folderBackup: path.join(__dirname, "backup"),
 };
 
 function initErori() {
   var continut = fs
-    .readFileSync(path.join(__dirname, "resurse/json/erori.json"))
+    .readFileSync(path.join(__dirname, "Resurse/json/erori.json"))
     .toString("utf-8");
   console.log(continut);
 
@@ -191,37 +196,31 @@ function initErori() {
 initErori();
 
 function initImagini() {
-  var continut = fs
-    .readFileSync(__dirname + "/resurse/json/galerie.json")
-    .toString("utf-8");
+  try {
+    var continut = fs.readFileSync(__dirname + "/Resurse/json/galerie.json", "utf-8");
+    obGlobal.obImagini = JSON.parse(continut);
 
-  obGlobal.obImagini = JSON.parse(continut);
-  let vImagini = obGlobal.obImagini.imagini;
+    let vImagini = obGlobal.obImagini.imagini;
 
-  let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
-  let caleAbsMediu = path.join(
-    __dirname,
-    obGlobal.obImagini.cale_galerie,
-    "mediu"
-  );
-  if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
+    let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
+    let caleAbsMediu = path.join(__dirname, obGlobal.obImagini.cale_galerie, "mediu");
+    if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
 
-  //for (let i=0; i< vErori.length; i++ )
-  for (let imag of vImagini) {
-    [numeFis, ext] = imag.fisier.split(".");
-    let caleFisAbs = path.join(caleAbs, imag.fisier);
-    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-    imag.fisier_mediu = path.join(
-      "/",
-      obGlobal.obImagini.cale_galerie,
-      "mediu",
-      numeFis + ".webp"
-    );
-    imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
+    for (let imag of vImagini) {
+      [numeFis, ext] = imag.fisier.split(".");
+      let caleFisAbs = path.join(caleAbs, imag.fisier);
+      let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+      sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+      imag.fisier_mediu = path.join("/", obGlobal.obImagini.cale_galerie, "mediu", numeFis + ".webp");
+      imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
+    }
+  } catch (error) {
+    console.error("Error while parsing galerie.json:", error);
+    // Handle the error appropriately, e.g., log it or throw it further.
   }
 }
 initImagini();
+
 
 function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
   let eroare = obGlobal.obErori.info_erori.find(function (elem) {
@@ -260,7 +259,7 @@ function compileazaScss(caleScss, caleCss) {
   if (!path.isAbsolute(caleCss))
     caleCss = path.join(obGlobal.folderCss, caleCss);
 
-  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
+  let caleBackup = path.join(obGlobal.folderBackup, "Resurse/css");
   if (!fs.existsSync(caleBackup)) {
     fs.mkdirSync(caleBackup, { recursive: true });
   }
@@ -271,7 +270,7 @@ function compileazaScss(caleScss, caleCss) {
   if (fs.existsSync(caleCss)) {
     fs.copyFileSync(
       caleCss,
-      path.join(obGlobal.folderBackup, "resurse/css", numeFisCss)
+      path.join(obGlobal.folderBackup, "Resurse/css", numeFisCss)
     ); // +(new Date()).getTime()
   }
   rez = sass.compile(caleScss, { sourceMap: true });
