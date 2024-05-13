@@ -3,29 +3,32 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const sass = require("sass");
-const ejs=require('ejs');
-Client = require('pg').Client;
+const ejs = require("ejs");
+const AccesBD = require("./module_proprii/accesbd.js");
 
-var client= new Client({database:"cti_2024",
-        user:"denis",
-        password:"denis",
-        host:"localhost",
-        port:5432});
-      
+const formidable = require("formidable");
+const { Utilizator } = require("./module_proprii/utilizator.js");
+const session = require("express-session");
+const Drepturi = require("./module_proprii/drepturi.js");
+const Client = require("pg").Client;
+
+var client = new Client({
+  database: "cti_2024",
+  user: "denis",
+  password: "denis",
+  host: "localhost",
+  port: 5432,
+});
 client.connect();
 
-client.query("SELECT * FROM unnest enum_range(null::categ_prajitura)", function(err,rez){
-  console.log(rez);
+client.query(
+  "select * from unnest(enum_range(null::categ_prajitura))",
+  function (err, rez) {}
+);
 
-})
-
-
-
-client.query("SELECT * FROM prajitura", function(err,rez){
+client.query("select * from prajituri", function (err, rez) {
   console.log(rez);
 });
-
-
 
 obGlobal = {
   obErori: null,
@@ -36,9 +39,18 @@ console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Director de lucru", process.cwd());
 
+app.use(
+  session({
+    // aici se creeaza proprietatea session a requestului (pot folosi req.session)
+    secret: "abcdefg", //folosit de express session pentru criptarea id-ului de sesiune
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+
 app.set("view engine", "ejs");
 
-vect_foldere = ["temp", "temp1", "backup"];
+vect_foldere = ["temp", "temp1", "backup", "poze_uploadate"];
 for (let folder of vect_foldere) {
   let calefolder = path.join(__dirname, folder);
   if (!fs.existsSync(calefolder)) {
@@ -46,22 +58,166 @@ for (let folder of vect_foldere) {
   }
 }
 
-app.use("/Resurse", express.static(__dirname + "/Resurse"));
+app.use("/resurse", express.static(__dirname + "/resurse"));
+app.use("/poze_uploadate", express.static(__dirname + "/poze_uploadate"));
 app.use("/node_modules", express.static(__dirname + "/node_modules"));
 
-app.use(function(req, res,next){
-  client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
-  res.locals.optiuniMeniu=rezOptiuni.rows;
-  next();
-  });
-});
+// app.get("/", function(req, res){
+//     res.sendFile(__dirname+"/index.html")
+// })
 
-initImagini();
+app.use(function (req, res, next) {
+  client.query(
+    "select * from unnest(enum_range(null::categ_prajitura))",
+    function (err, rezOptiuni) {
+      res.locals.optiuniMeniu = rezOptiuni.rows;
+      next();
+    }
+  );
+});
 
 app.get(["/", "/home", "/index"], function (req, res) {
   res.render("pagini/index", {
     ip: req.ip,
-    imagini: obGlobal.obImagini ? obGlobal.obImagini.imagini : [], // Check if obGlobal.obImagini is null
+    imagini: obGlobal.obImagini.imagini,
+  });
+});
+
+// --------------------- Produse ----------------
+
+// app.get("/produse", function (req, res) {
+//   client.query("select * from prajituri", function (err, rez) {
+//     if (err) {
+//       console.log(err);
+//       afisareEroare(res, 2);
+//     } else {
+//       res.render("pagini/produse", { produse: rez.rows, optiuni: [] });
+//     }
+//   });
+// });
+
+app.get("/produse", function (req, res) {
+  console.log(req.query);
+  var conditieQuery = "";
+  if (req.query.tip) {
+    conditieQuery = ` where tip_produs='${req.query.tip}'`;
+  }
+  client.query(
+    "select * from unnest(enum_range(null::categ_prajitura))",
+    function (err, rezOptiuni) {
+      client.query(
+        `select * from prajituri ${conditieQuery}`,
+        function (err, rez) {
+          if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+          } else {
+            res.render("pagini/produse", {
+              produse: rez.rows,
+              optiuni: rezOptiuni.rows,
+            });
+          }
+        }
+      );
+    }
+  );
+});
+
+app.get("/produs/:id", function (req, res) {
+  client.query(
+    `select * from prajituri where id=${req.params.id}`,
+    function (err, rez) {
+      if (err) {
+        console.log(err);
+        afisareEroare(res, 2);
+      } else {
+        res.render("pagini/produs", { prod: rez.rows[0] });
+      }
+    }
+  );
+});
+
+// ----------- Utilizatori ------------------
+
+app.post("/inregistrare", function (req, res) {
+  var username;
+  var poza;
+  var formular = new formidable.IncomingForm();
+  formular.parse(req, function (err, campuriText, campuriFisier) {
+    //4
+    console.log("Inregistrare:", campuriText);
+
+    console.log(campuriFisier);
+    console.log(poza, username);
+    var eroare = "";
+
+    // TO DO var utilizNou = creare utilizator
+    var utilizNou = new Utilizator();
+    try {
+      utilizNou.setareNume = campuriText.nume[0];
+      utilizNou.setareUsername = campuriText.username[0];
+      utilizNou.email = campuriText.email[0];
+      utilizNou.prenume = campuriText.prenume[0];
+
+      utilizNou.parola = campuriText.parola[0];
+      utilizNou.culoare_chat = campuriText.culoare_chat[0];
+      utilizNou.poza = poza[0];
+      Utilizator.getUtilizDupaUsername(
+        campuriText.username[0],
+        {},
+        function (u, parametru, eroareUser) {
+          if (eroareUser == -1) {
+            //nu exista username-ul in BD
+            //TO DO salveaza utilizator
+            utilizNou.salvareUtilizator();
+          } else {
+            eroare += "Mai exista username-ul";
+          }
+
+          if (!eroare) {
+            res.render("pagini/inregistrare", {
+              raspuns: "Inregistrare cu succes!",
+            });
+          } else
+            res.render("pagini/inregistrare", { err: "Eroare: " + eroare });
+        }
+      );
+    } catch (e) {
+      console.log(e);
+      eroare += "Eroare site; reveniti mai tarziu";
+      console.log(eroare);
+      res.render("pagini/inregistrare", { err: "Eroare: " + eroare });
+    }
+  });
+  formular.on("field", function (nume, val) {
+    // 1
+
+    console.log(`--- ${nume}=${val}`);
+
+    if (nume == "username") username = val;
+  });
+  formular.on("fileBegin", function (nume, fisier) {
+    //2
+    console.log("fileBegin");
+
+    console.log(nume, fisier);
+    //TO DO adaugam folderul poze_uploadate ca static si sa fie creat de aplicatie
+    //TO DO in folderul poze_uploadate facem folder cu numele utilizatorului (variabila folderUser)
+    var folderUser = path.join(__dirname, "poze_uploadate", username);
+    if (!fs.existsSync(folderUser)) {
+      fs.mkdirSync(folderUser);
+    }
+
+    fisier.filepath = path.join(folderUser, fisier.originalFilename);
+    poza = fisier.originalFilename;
+    //fisier.filepath=folderUser+"/"+fisier.originalFilename
+    console.log("fileBegin:", poza);
+    console.log("fileBegin, fisier:", fisier);
+  });
+  formular.on("file", function (nume, fisier) {
+    //3
+    console.log("file");
+    console.log(nume, fisier);
   });
 });
 
@@ -71,37 +227,18 @@ app.get("/despre", function (req, res) {
   });
 });
 
-app.get("/produse", function(req, res){
-  console.log(req.query)
-  var conditieQuery="";
-  if (req.query.tip){
-      conditieQuery=` where tip_produs='${req.query.tip}'`
-  }
-  client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezOptiuni){
-
-      client.query(`select * from prajituri ${conditieQuery}`, function(err, rez){
-          if (err){
-              console.log(err);
-              afisareEroare(res, 2);
-          }
-          else{
-              res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
-          }
-      })
-  });
-})
-
-app.get("/produs/:id", function (req, res) {
-  client.query(`select * from prajituri where id=${req.params.id}`, function (err, rez) {
-    if (err) {
-      console.log(err);
-      afisareEroare(res, 2);
-    } else {
-      res.render("pagini/produse", { produse: rez.rows, optiuni: [] });
-    }
+app.get("/contact", function (req, res) {
+  res.render("pagini/contact", {
+    ip: req.ip,
   });
 });
-  
+
+app.get("/galerie", function (req, res) {
+  res.render("pagini/galerie", {
+    ip: req.ip,
+    imagini: obGlobal.obImagini.imagini,
+  });
+});
 
 // trimiterea unui mesaj fix
 app.get("/cerere", function (req, res) {
@@ -132,12 +269,12 @@ app.get("/*.ejs", function (req, res) {
   afiuareEroare(res, 400);
 });
 
-app.get(new RegExp("^/Resurse/[A-Za-z0-9/]*/$/"), function (req, res) {
+app.get(new RegExp("^/resurse/[A-Za-z0-9/]*/$/"), function (req, res) {
   afisareEroare(res, 403);
 });
 
 app.get("/favicon.ico", function (req, res) {
-  res.sendFile(path.join(__dirname, "Resurse/favicon/favicon.ico"));
+  res.sendFile(path.join(__dirname, "resurse/favicon/favicon.ico"));
 });
 
 app.get("/*", function (req, res) {
@@ -172,14 +309,14 @@ app.get("/*", function (req, res) {
 obGlobal = {
   obErori: null,
   obImagini: null,
-  folderScss: path.join(__dirname, "Resurse/scss"),
-  folderCss: path.join(__dirname, "Resurse/css"),
+  folderScss: path.join(__dirname, "resurse/scss"),
+  folderCss: path.join(__dirname, "resurse/css"),
   folderBackup: path.join(__dirname, "backup"),
 };
 
 function initErori() {
   var continut = fs
-    .readFileSync(path.join(__dirname, "Resurse/json/erori.json"))
+    .readFileSync(path.join(__dirname, "resurse/json/erori.json"))
     .toString("utf-8");
   console.log(continut);
 
@@ -196,31 +333,37 @@ function initErori() {
 initErori();
 
 function initImagini() {
-  try {
-    var continut = fs.readFileSync(__dirname + "/Resurse/json/galerie.json", "utf-8");
-    obGlobal.obImagini = JSON.parse(continut);
+  var continut = fs
+    .readFileSync(__dirname + "/resurse/json/galerie.json")
+    .toString("utf-8");
 
-    let vImagini = obGlobal.obImagini.imagini;
+  obGlobal.obImagini = JSON.parse(continut);
+  let vImagini = obGlobal.obImagini.imagini;
 
-    let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
-    let caleAbsMediu = path.join(__dirname, obGlobal.obImagini.cale_galerie, "mediu");
-    if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
+  let caleAbs = path.join(__dirname, obGlobal.obImagini.cale_galerie);
+  let caleAbsMediu = path.join(
+    __dirname,
+    obGlobal.obImagini.cale_galerie,
+    "mediu"
+  );
+  if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
 
-    for (let imag of vImagini) {
-      [numeFis, ext] = imag.fisier.split(".");
-      let caleFisAbs = path.join(caleAbs, imag.fisier);
-      let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-      sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-      imag.fisier_mediu = path.join("/", obGlobal.obImagini.cale_galerie, "mediu", numeFis + ".webp");
-      imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
-    }
-  } catch (error) {
-    console.error("Error while parsing galerie.json:", error);
-    // Handle the error appropriately, e.g., log it or throw it further.
+  //for (let i=0; i< vErori.length; i++ )
+  for (let imag of vImagini) {
+    [numeFis, ext] = imag.fisier.split(".");
+    let caleFisAbs = path.join(caleAbs, imag.fisier);
+    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+    imag.fisier_mediu = path.join(
+      "/",
+      obGlobal.obImagini.cale_galerie,
+      "mediu",
+      numeFis + ".webp"
+    );
+    imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
   }
 }
 initImagini();
-
 
 function afisareEroare(res, _identificator, _titlu, _text, _imagine) {
   let eroare = obGlobal.obErori.info_erori.find(function (elem) {
@@ -259,7 +402,7 @@ function compileazaScss(caleScss, caleCss) {
   if (!path.isAbsolute(caleCss))
     caleCss = path.join(obGlobal.folderCss, caleCss);
 
-  let caleBackup = path.join(obGlobal.folderBackup, "Resurse/css");
+  let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
   if (!fs.existsSync(caleBackup)) {
     fs.mkdirSync(caleBackup, { recursive: true });
   }
@@ -270,7 +413,7 @@ function compileazaScss(caleScss, caleCss) {
   if (fs.existsSync(caleCss)) {
     fs.copyFileSync(
       caleCss,
-      path.join(obGlobal.folderBackup, "Resurse/css", numeFisCss)
+      path.join(obGlobal.folderBackup, "resurse/css", numeFisCss)
     ); // +(new Date()).getTime()
   }
   rez = sass.compile(caleScss, { sourceMap: true });

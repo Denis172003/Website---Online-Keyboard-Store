@@ -1,68 +1,72 @@
-/* Grid Layout Styling */
 #grid-pagina {
-  padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; 
   grid-template-areas:
-    "welcome welcome welcome"
-    "utilizatori date-server date "
-    "calendar tabel tabel " 
-    "anunturi tabel tabel"
-    "diverse diverse diverse";
-} 
-
-#grid-pagina > * {
-  outline: 2px solid skyblue;
-  margin: 3px;
+      "prezentare prezentare prezentare"
+      "tabel calendar calendar"
+      "anunturi online statistici"
+      "diverse diverse diverse";
 }
 
+/* La dimensiuni medii */
+@media (max-width: 1024px) {
+  #grid-pagina {
+      grid-template-areas:
+          "prezentare prezentare prezentare"
+          "tabel tabel tabel"
+          "calendar calendar calendar"
+          "anunturi online statistici"
+          "diverse diverse diverse";
+  }
+}
+
+/* La dimensiuni mici */
+@media (max-width: 768px) {
+  #grid-pagina {
+      grid-template-areas:
+          "prezentare"
+          "tabel"
+          "calendar"
+          "anunturi"
+          "online"
+          "statistici"
+          "diverse";
+  }
+}
+
+/* Stilizări pentru fiecare secțiune */
 #prezentare {
-  grid-area: welcome;
+  grid-area: prezentare;
+  width: calc(100% - 20px); 
+  margin-right: 20px; 
 }
-#tabel {
-  grid-area: tabel;
+
+#promotii {
+    grid-area: calendar;
 }
+
+#produse {
+    grid-area: tabel;
+}
+
 #anunturi {
-  grid-area: anunturi;
-}
-#calendar {
-  grid-area: calendar;
+    grid-area: anunturi;
 }
 
-#utilizatori {
-  grid-area: utilizatori;
+#orar {
+    grid-area: online;
 }
-#date {
-  grid-area: date;
-}
-#diverse {
-  grid-area: diverse;
-}
-#date-server {
-  grid-area: date-server;
-}
+
 #intrebari {
-  grid-area: index-intrebari;
+    grid-area: statistici;
 }
 
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 15px;
-  }
-  #grid-pagina {
-    display: block;
-  }
+.table-container {
+    grid-area: diverse;
 }
 
-@media screen and (max-width: 800px) {
-  html {
-    font-size: 12px;
-  }
-  #grid-pagina {
-    display: block;
-  }
-}
+/* Alte stilizări pentru secțiuni (să respecte principiile de design și ierarhia vizuală) */
 
+/* Adăugați stilurile tale CSS aici */
 
 #link-top {
   position: fixed;
@@ -258,7 +262,7 @@
 
 .Titlu {
   font-size: 5em;
-  color: rgb(93, 57, 200);
+  color: #531064;
   font-weight: bold;
   text-align: center;
   font-family: 'Georgia', Times, serif;
