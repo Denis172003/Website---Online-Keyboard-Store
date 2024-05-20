@@ -1,5 +1,6 @@
 DROP TYPE IF EXISTS tipuri_tastaturi;
 DROP TYPE IF EXISTS categ_tastatura;
+DROP TYPE IF EXISTS tipuri_servicii;
 
 CREATE TYPE tipuri_tastaturi AS ENUM('mecanice', 'membrană', 'hibride');
 CREATE TYPE categ_tastatura AS ENUM('gaming', 'office', 'programare', 'ergonomice');
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS tastaturi (
    iluminare BOOLEAN NOT NULL DEFAULT FALSE,
    layout VARCHAR(50),
    numar_taste INT NOT NULL CHECK (numar_taste > 0),
-   tip_serviciu tipuri_servicii,
+   tip_serviciu tipuri_servicii DEFAULT 'lubrifiere',
    tip_tastatura tipuri_tastaturi DEFAULT 'mecanice',
    categorie categ_tastatura DEFAULT 'office',
    imagine VARCHAR(300),
@@ -32,7 +33,7 @@ INSERT INTO tastaturi (nume, descriere, pret, conectivitate, iluminare, layout, 
 ('Corsair K65 RGB Mini', 'Tastatură compactă mecanică 60%, iluminată RGB, ideală pentru gaming', 109.99, 'USB', TRUE, 'QWERTY', 61, 'reparatii', 'mecanice', 'gaming', 'corsair-k65-rgb-mini.jpg', '{"lungime=30cm", "greutate=0.7kg", "compatibilitate=Windows"}'),
 ('Roccat Vulcan 122 AIMO', 'Tastatură mecanică premium cu switch-uri Titan, iluminare RGB și design futurist', 179.99, 'USB', TRUE, 'QWERTY', 104, 'personalizari', 'mecanice', 'gaming', 'roccat-vulcan-122-aimo.jpg', '{"lungime=45cm", "greutate=1.2kg", "compatibilitate=Windows"}'),
 ('Microsoft Surface Ergonomic Keyboard', 'Tastatură ergonomică cu design curbat și conectivitate Bluetooth', 129.99, 'Bluetooth', FALSE, 'QWERTY', 108, 'lubrifiere', 'membrană', 'ergonomice', 'microsoft-surface-ergonomic-keyboard.jpg', '{"lungime=46cm", "greutate=1.1kg", "compatibilitate=Windows"}'),
-('Ducky Shine 7', 'Tastatură mecanică de calitate premium, iluminată RGB', 199.99, 'USB', TRUE, 'QWERTY', 108, 'curatare', 'mecanice', 'gaming', 'ducky-shine-7.jpg', '{"lungime=45cm", "greutate=1.3kg", "compatibilitate=Windows"}');
+('Ducky Shine 7', 'Tastatură mecanică de calitate premium, iluminată RGB', 199.99, 'USB', TRUE, 'QWERTY', 108, 'curatare', 'mecanice', 'gaming', 'ducky-shine-7.jpg', '{"lungime=45cm", "greutate=1.3kg", "compatibilitate=Windows"}'),
 ('ASUS ROG Strix Scope', 'Tastatură mecanică compactă, iluminată RGB, cu switch-uri Cherry MX Red', 119.99, 'USB', TRUE, 'QWERTY', 87, 'lubrifiere', 'mecanice', 'gaming', 'asus-rog-strix-scope.jpg', '{"lungime=35cm", "greutate=1.1kg", "compatibilitate=Windows"}'),
 ('SteelSeries Apex Pro', 'Tastatură mecanică premium cu switch-uri ajustabile, iluminare RGB și ecran OLED', 199.99, 'USB', TRUE, 'QWERTY', 104, 'curatare', 'mecanice', 'gaming', 'steelseries-apex-pro.jpg', '{"lungime=45cm", "greutate=1.4kg", "compatibilitate=Windows/Mac/Linux"}'),
 ('Cooler Master CK550', 'Tastatură mecanică minimalistă, iluminată RGB, cu switch-uri Gateron', 89.99, 'USB', TRUE, 'QWERTY', 104, 'reparatii', 'mecanice', 'gaming', 'cooler-master-ck550.jpg', '{"lungime=45cm", "greutate=1.2kg", "compatibilitate=Windows/Mac/Linux"}'),

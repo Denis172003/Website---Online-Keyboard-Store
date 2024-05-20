@@ -1,6 +1,7 @@
 <header>
-    <h1>Holoboard</h1>
-    <p>Magazin de tastaturi</p>
+    <header>
+        <p class="Titlu">Holoboard</p>
+    </header>
     <div class="toggle-container">
         <label id="schimba_tema" class="toggle">
             <input type="checkbox" id="tema_toggle">
@@ -37,8 +38,7 @@
                     <li><a href="/index#retete">Rețete</a></li>
                 </ul>
             </li>
-              
-            <li><a href="#">Inregistrare</a></li>
+             <li><a href = "/inregistrare">Înregistrare</a></li>
             <li><div>Despre</div>
                 <ul>                        
                     <li><a href="/despre#prezentare">Prezentare</a></li>
@@ -49,17 +49,16 @@
             </li>
             <li><div>Produse</div>
                 <ul>
-                    <li><a href="/produse?tip=cofetarie">cofetarie</a></li>
-                    <li><a href="/produse?tip=gelaterie">gelaterie</a></li>
-                    <li><a href="/produse?tip=patiserie">patiserie</a></li>
+                    <li><a href="/produse?tip=cofetarie">Tastaturi</a></li>
+                    <li><a href="/produse?tip=gelaterie">Keycaps</a></li>
+                    <li><a href="/produse?tip=patiserie">Artizane</a></li>
                     <li><a href="http://www.google.com">Toate</a></li>
-                    <li><a href="#">Tastaturi</a></li>
-                    <li><a href="#">Keycaps</a></li>
-                    <li><a href="#">Artizane</a></li>
                 </ul>
             
             </li>
             <li><a href="#">Contact</a></li>
+            <%-include("../Fragmente/submeniu-administrare") %> 
+            <%-include("../Fragmente/submeniu-utilizator-logat") %>
         </ul>
     </nav>
     

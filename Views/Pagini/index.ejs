@@ -6,6 +6,7 @@
 <head>
     <title>Holoboard</title>
 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Tastaturi, Tastaturi mecanice, Tastaturi wireless, 
@@ -17,95 +18,22 @@
 
     <meta name="description" content="Magazin Holoboard. Fie că ești un gamer pasionat sau un profesionist în căutare de performanță și confort, găsești aici tastatura perfectă pentru tine. Livrare rapidă și retur gratuit!">
 
-    <meta name="author" content="Denis Mitica">
-    <link rel="apple-touch-icon" sizes="180x180" href="Resurse/Favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Resurse/Favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Resurse/Favicon/favicon-16x16.png">
-    <link rel="manifest" href="Resurse/Favicon/site.webmanifest">
-    <link rel="mask-icon" href="Resurse/Favicon/safari-pinned-tab.svg" color="#ff70bd">
-    <link rel="shortcut icon" href="Resurse/Favicon/favicon.ico">
-    <link rel="stylesheet" href="Resurse/CSS/nav.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/galerie-statica.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav.scss" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav700.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav1000.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/stil.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/general.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/layout.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <meta name="msapplication-TileColor" content="#ff70bd">
-    <meta name="msapplication-config" content="Resurse/Favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ff0000">
+    <%- include("../fragmente/head") %>
 
 </head>
 
-<body>
-
-    <p id="watermark"></p>
-</body>
-
 
 <body>
 
+  <p id="watermark"></p>
     <header>
-        <p class="Titlu">Holoboard</p>
+      <%- include("../fragmente/header") %>
     </header>
 
 
-    <nav>
-        <label id="hamburger" for="ch-menu">
-            <div class="hambur"></div>
-            <div class="hambur"></div>
-            <div class="hambur"></div>
-        </label>
-        <input id="ch-menu" type="checkbox">
-        <ul class="meniu">
-            <li>
-                <div id="acasa">
-                    <i class="fa fa-home"></i> 
-                    <span class="acasa-text">Acasa</span> 
-                </div>
-                <div id="acasa-mediu">
-                    <span class="fa fa-home"></span> 
-                </div>
-                <ul>
-                    <li><a href="#welcome">Bine ati venit</a></li>
-                    <li><a href="#promotii">Promotii</a></li>
-                    <li><a href="#anunturi">Anunturi</a></li>
-                    <li><a href="#produse">Oferta</a></li>
-                    <li><a href="#orar">Orar</a></li>
-                    <li><a href="#index-intrebari">Întrebări</a></li>
-                    <li><a href="#retete">Rețete</a></li>
-                </ul>
-            </li>
-              
-            <li><a href="#">Inregistrare</a></li>
-            <li><div>Despre</div>
-                <ul>                        
-                    <li><a href="despre.html#prezentare">Prezentare</a></li>
-                    <li><a href="despre.html#istoric">Istoric</a></li>
-                    <li><a href="despre.html#motivatie">Motivatie</a></li>
-                    <li><a href="despre.html#galerie">Galerie</a></li>
-                </ul>
-            </li>
-            <li><div>Produse</div>
-                <ul>
-                    <li><a href="http://www.google.com">Toate</a></li>
-                    <li><a href="#">Tastaturi</a></li>
-                    <li><a href="#">Keycaps</a></li>
-                    <li><a href="#">Artizane</a></li>
-                </ul>
-            
-            </li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    
 
     <main>
+ 
         <div id="grid-pagina">
             <section id="prezentare">
                 <!-- Zona 1: Prezentare -->
@@ -116,7 +44,18 @@
                             Bine ați venit la Holoboard!<!-- poate fi setat prin Java Script sa fie acelasi text -->
                         </div>
                     </div>
-                <button type="buton" class="btn btn-primary btn-lg">Stil-l-mare</button>
+                    <br>
+                    
+                    <%- include("../fragmente/formular-login.ejs",
+
+                    {
+                      utilizator:locals.utilizator,
+                      mesajLogin:locals.mesajLogin,
+                    }
+                    ) 
+                    
+                    
+                    %>
                 <p>Ip: <%- locals.ip %></p>
                 <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
                 <div class="intro-oferte">

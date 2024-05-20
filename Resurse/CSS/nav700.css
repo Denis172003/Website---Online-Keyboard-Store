@@ -22,7 +22,7 @@
   width: 25px;
   height: 3px;
   border-radius: 20px;
-  background: white;
+  background: #f2f2f2;
   margin-top:5px; /* Adjusted margin-top to move it 5 pixels down */
   animation: slideInFromLeft 1s ease forwards;
 }

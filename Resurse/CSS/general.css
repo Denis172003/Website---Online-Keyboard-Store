@@ -110,7 +110,7 @@
 
 #tab-orar th,
 #tab-orar td {
-  border: 3px solid black;
+  border: 3px solid #be4cbc;
 }
 
 #tab-orar {
@@ -132,7 +132,7 @@
   font-size: 20px;
   box-sizing: border-box;
   page-break-before: always;
-  background-color: white;
+  background-color: #f2f2f2;
 }
 
 .black {
@@ -197,7 +197,7 @@
   width: 2cm; 
   height:0.5cm;
   display: block;
-  background: white;
+  background: #f2f2f2;
   font-weight: bold;
   border:3px solid black;
   border-top-left-radius:10px;
@@ -224,7 +224,7 @@
       width: 4cm;
       height:1cm;
 			display: block;
-			background: white;
+			background: #f2f2f2;
       font-weight: bold;
 			border:3px solid black;
 			border-top-left-radius:5px;
@@ -277,8 +277,8 @@ hr {
     to right, 
     #007bff 0%,  /* Solid blue at the beginning (0%) with sharp edge */
     #007bff 20%, 
-    white 10%,
-    white 20%, /* Solid blue until 20% (slightly shorter) */
+    #f2f2f2 10%,
+    #f2f2f2 20%, /* Solid blue until 20% (slightly shorter) */
     transparent,
     #007bff 50%,  /* Blue gradient starts at 50% */
     #007bff 70% /* Transparent section to fade out the blue (70%) */

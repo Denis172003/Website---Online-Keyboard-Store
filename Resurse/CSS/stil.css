@@ -41,13 +41,13 @@ h2{
 
 #stilizare-tabel th,
 #stilizare-tabel td {
-    border: 1px solid #000;
+    border: 1px solid #121212;
     padding: 8px;
 }
 
 #stilizare-tabel th {
     font-size: 16px;
-    background-color: #f2f2f2; 
+    background-color: #be4cbc; 
     border-bottom-width: 2px; 
 }
 
@@ -60,7 +60,7 @@ h2{
 }
 
 #stilizare-tabel tfoot td {
-    background-color: #f2f2f2; 
+    background-color: #be4cbc; 
     font-weight: bold;
     text-align: right;
 }
@@ -148,7 +148,7 @@ p {
 /* CSS Variables for Colors */
 :root {
     --link-visited-color: #8200ae; /* Color for visited links */
-    --external-link-hover-color: #000000; /* Color for hover effects */
+    --external-link-hover-color: #121212; /* Color for hover effects */
     --link-hover-background-color: #87CEFA; /* Color for the hover blob */
   }
   
@@ -218,8 +218,8 @@ video::cue {
   }
   
   body.dark {
-    background-color: black; /* Set the background color to black */
-    color: white; /* Set the text color to white */
+    background-color: #121212; /* Set the background color to black */
+    color: #f2f2f2; /* Set the text color to white */
     --culoare1: #940bb0; /* Adjust other colors as needed */
     --culoare2: #420d4f;
     --spatiere: 10px;
@@ -233,7 +233,7 @@ body.dark p,
 body.dark ul,
 body.dark li,
 body.dark a {
-    color: white; /* Set the text color to white for these elements */
+    color: #f2f2f2; /* Set the text color to white for these elements */
 }
 
 body.dark nav a {
@@ -276,7 +276,7 @@ body.dark nav a {
     width: 26px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: #f2f2f2;
     transition: .4s;
     border-radius: 50%;
 }
@@ -298,7 +298,7 @@ body.dark nav a {
 }
 
 .icons i {
-    color: white; /* Set icon color to white */
+    color: #f2f2f2; /* Set icon color to white */
     margin: 5px;
     transition: transform 0.4s ease;
 }
@@ -313,8 +313,8 @@ body.dark nav a {
 
 /* Dark Mode Styles */
 body.dark {
-    background-color: #090723; /* Change background color for dark mode */
-    color: white; /* Set the text color to white */
+    background-color: #121212; /* Change background color for dark mode */
+    color: #f2f2f2; /* Set the text color to white */
 }
 
 body.dark a {
@@ -322,7 +322,7 @@ body.dark a {
 }
 
 body.dark .toggle input:checked + .slider {
-    background-color: #777;
+    background-color: #121212;
 }
 
 body.dark .toggle input:checked + .slider:before {
@@ -331,4 +331,33 @@ body.dark .toggle input:checked + .slider:before {
 
 .val-nume a {
     color: purple;
+}
+
+body.dark #grid-pagina {
+    background-color: #121212;
+    border: 2px solid #f2f2f2;
+}
+
+body.dark header,
+body.dark nav,
+body.dark main,
+body.dark footer {
+    background-color: #121212;
+    color: #f2f2f2;
+}
+
+body.dark table,
+body.dark th,
+body.dark td {
+    border: 1px solid #f2f2f2;
+}
+
+body.dark .table-container {
+    background-color: #121212;
+}
+
+body.dark .taburi-iframe a {
+    border: 2px solid #f2f2f2;
+    background-color: #121212;
+    color: #f2f2f2;
 }
