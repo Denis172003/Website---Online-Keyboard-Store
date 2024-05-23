@@ -24,12 +24,12 @@ nav {
   padding: 0;
   margin: 0;
   background-color: var(--culoare1);
-  color: #f2f2f2;
+  color: white;
   text-decoration: none;
 }
 
 .meniu a {
-  color: #f2f2f2;
+  color: white;
   text-decoration: none;
   transition: color 1s ease;
 }
