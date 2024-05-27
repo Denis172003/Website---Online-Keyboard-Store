@@ -231,12 +231,58 @@ app.get("/cod/:username/:token",function(req,res){
   }
 })
 
+app.get("/useri", function(req, res){
+  
+  if(req?.utilizator?.areDreptul(Drepturi.vizualizareUtilizatori)){
+      var obiectComanda={
+        tabel:"utilizatori",
+        campuri:["*"],
+        conditiiAnd:[]
+       } ;
+      AccesBD.getInstanta().select(obiectComanda, function(err, rezQuery){
+          console.log(err);
+          res.render("pagini/useri", {useri: rezQuery.rows});
+      });
+      
+  }
+  else{
+      afisareEroare(res, 403);
+  }
+  
+});
+
+
+// async function f(){
+//   console.log("1");
+//   return 100;
+// }
+
+// rez = await f();
+
+app.post("/sterge_utiliz", function(req, res){
+ 
+  if(req?.utilizator?.areDreptul==Drepturi.stergereUtilizatori){
+      var formular= new formidable.IncomingForm();
+
+      formular.parse(req,function(err, campuriText, campuriFile){
+              var obiectComanda= {
+                tabel: "",
+                conditiiAnd:[`id=${campuriText.id_utiliz[0]}`]}; 
+              AccesBD.getInstanta().delete(obiectComanda, function(err, rezQuery){
+              console.log(err);
+              res.redirect("/useri");
+          });
+      });
+  }else{
+      afisareEroare(res,403);
+  }
+
+});
 
 app.post("/profil", function(req, res){
   console.log("profil");
   if (!req.session.utilizator){
       afisareEroare(res,403)
-      res.render("pagini/eroare_generala",{text:"Nu sunteti logat."});
       return;
   }
   var formular= new formidable.IncomingForm();
@@ -310,7 +356,7 @@ app.post("/inregistrare", function (req, res) {
 
       utilizNou.parola = campuriText.parola[0];
       utilizNou.culoare_chat = campuriText.culoare_chat[0];
-      utilizNou.poza = poza[0];
+      utilizNou.poza = poza;
       Utilizator.getUtilizDupaUsername(
         campuriText.username[0],
         {},

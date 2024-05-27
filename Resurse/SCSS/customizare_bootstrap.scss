@@ -1,5 +1,16 @@
-@use '../../node_modules/bootstrap/scss/bootstrap.scss' with 
-(
+// customizare_bootstrap.scss
+
+// Define custom variables
+$btn-padding-x: 1rem;
+$btn-padding-y: 0.5rem;
+
+// Use @use to import Bootstrap and customize variables
+@use '../../node_modules/bootstrap/scss/bootstrap' with (
     $primary: red,
-    $secondary:purple
-)
+    $secondary: purple,
+    $border-radius: 0.5rem, // Custom border radius
+    $border-width: 2px, // Custom border thickness
+    $btn-padding-x: $btn-padding-x,
+    $btn-padding-y: $btn-padding-y
+);
+
