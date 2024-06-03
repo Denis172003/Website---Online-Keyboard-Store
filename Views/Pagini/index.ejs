@@ -33,7 +33,8 @@
 
 
     <main>
- 
+      <%- include("../fragmente/useri-online.ejs") %>
+
         <div id="grid-pagina">
             <section id="prezentare">
                 <!-- Zona 1: Prezentare -->
@@ -45,7 +46,7 @@
                         </div>
                     </div>
                     <br>
-                    
+                    <% include("../fragmente/locatie.ejs") %>
                     <%- include("../fragmente/formular-login.ejs",
 
                     {
@@ -56,6 +57,10 @@
                     
                     
                     %>
+                    <div class="container-calendar">
+                      <% include("../fragmente/evenimente.ejs")%>
+                     /div>
+                    <% include("../fragmente/orar-server-client.ejs") %>
                 <p>Ip: <%- locals.ip %></p>
                 <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
                 <div class="intro-oferte">

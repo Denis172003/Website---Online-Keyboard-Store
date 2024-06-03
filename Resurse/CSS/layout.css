@@ -1,3 +1,79 @@
+#grid-pagina {
+  display: grid;
+  grid-template-areas:
+      "prezentare prezentare prezentare prezentare"
+      "tabel calendar calendar anunturi"
+      "online online statistici statistici"
+      "diverse diverse statistici statistici"
+      "diverse diverse diverse diverse";
+      
+}
+
+/* La dimensiuni medii */
+@media (max-width: 1024px) {
+  #grid-pagina {
+      grid-template-areas:
+          "prezentare prezentare prezentare"
+          "tabel tabel tabel"
+          "calendar calendar calendar"
+          "anunturi online statistici"
+          "diverse diverse diverse";
+  }
+}
+
+/* La dimensiuni mici */
+@media (max-width: 768px) {
+  #grid-pagina {
+      grid-template-areas:
+          "prezentare"
+          "tabel"
+          "calendar"
+          "anunturi"
+          "online"
+          "statistici"
+          "diverse";
+  }
+}
+
+/* Stilizări pentru fiecare secțiune */
+#prezentare {
+  grid-area: prezentare;
+  width: calc(100% - 20px); 
+  margin-right: 20px; 
+}
+
+#promotii {
+    grid-area: calendar;
+}
+
+#produse {
+    grid-area: tabel;
+}
+
+#anunturi {
+    grid-area: anunturi;
+}
+
+#orar {
+    grid-area: online;
+}
+
+#intrebari {
+    grid-area: statistici;
+}
+
+.table-container {
+    grid-area: diverse;
+}
+
+#grid-pagina {
+  display: block;
+  font-size: 20px;
+  box-sizing: border-box;
+  page-break-before: always;
+  background-color: #f2f2f2;
+}
+
 /* CSS Variables */
 :root {
   --primary: #ddd;
@@ -26,8 +102,8 @@ html {
 #grid-pagina {
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  grid-template-rows: auto auto auto auto auto; 
+  grid-template-columns: repeat(4, 1fr); 
+  /*grid-template-rows: auto auto auto auto auto;*/ 
   grid-gap: 10px;
 }
 
@@ -91,4 +167,67 @@ html {
   html {
     font-size: 12px;
   }
+}
+
+/*---------Taburi Iframe----------*/
+
+.container-iframe {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.taburi-iframe {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.taburi-iframe a + a {
+  margin-left: 163px;
+}
+.taburi-iframe a{
+  display: block;
+  border : 2px solid purple;
+  background-color: pink;
+  margin-bottom: 0.4em;
+  padding: 0.6em;
+  width: fit-content;
+  transition: box-shadow 0.3s ease-in-out; 
+  box-shadow: INSET 0px 0px 10px rgba(0, 0, 0, 0.6); 
+}
+
+.taburi-iframe a:hover {
+  box-shadow: INSET 0px 0px 10px rgba(255, 255, 255, 0.6); 
+}
+.taburi-iframe a{
+  display: block;
+  border : 2px solid purple;
+  background-color: pink;
+  margin-bottom: 0.4em;
+  padding: 0.6em;
+  width: fit-content;
+  transition: box-shadow 0.3s ease-in-out; 
+  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 20%;
+  box-shadow: inset 0px +10px 20px rgba(0, 0, 0, 0.6); 
+}
+
+.taburi-iframe a:hover {
+  box-shadow: inset 0px -10px 20px rgba(255, 255, 255, 0.6); 
+}
+
+/*---------Tabel Orar----------*/
+
+#tab-orar th,
+#tab-orar td {
+  border: 3px solid #be4cbc;
+}
+
+#tab-orar {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+#tab-orar th:nth-child(2n + 1) {
+  background-color: plum;
 }

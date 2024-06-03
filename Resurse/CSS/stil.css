@@ -65,50 +65,6 @@ h2{
     text-align: right;
 }
 
-.container-iframe {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.taburi-iframe {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-.taburi-iframe a + a {
-    margin-left: 163px;
-}
-.taburi-iframe a{
-    display: block;
-    border : 2px solid purple;
-    background-color: pink;
-    margin-bottom: 0.4em;
-    padding: 0.6em;
-    width: fit-content;
-    transition: box-shadow 0.3s ease-in-out; 
-    box-shadow: INSET 0px 0px 10px rgba(0, 0, 0, 0.6); 
-}
-
-.taburi-iframe a:hover {
-    box-shadow: INSET 0px 0px 10px rgba(255, 255, 255, 0.6); 
-}
-.taburi-iframe a{
-    display: block;
-    border : 2px solid purple;
-    background-color: pink;
-    margin-bottom: 0.4em;
-    padding: 0.6em;
-    width: fit-content;
-    transition: box-shadow 0.3s ease-in-out; 
-    border-bottom-left-radius: 20%;
-    border-bottom-right-radius: 20%;
-    box-shadow: inset 0px +10px 20px rgba(0, 0, 0, 0.6); 
-}
-
-.taburi-iframe a:hover {
-    box-shadow: inset 0px -10px 20px rgba(255, 255, 255, 0.6); 
-}
 
 html {
     margin: 10px;

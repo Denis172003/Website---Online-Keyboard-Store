@@ -1,68 +1,3 @@
-#grid-pagina {
-  display: grid;
-  grid-template-areas:
-      "prezentare prezentare prezentare"
-      "tabel calendar calendar"
-      "anunturi online statistici"
-      "diverse diverse diverse";
-}
-
-/* La dimensiuni medii */
-@media (max-width: 1024px) {
-  #grid-pagina {
-      grid-template-areas:
-          "prezentare prezentare prezentare"
-          "tabel tabel tabel"
-          "calendar calendar calendar"
-          "anunturi online statistici"
-          "diverse diverse diverse";
-  }
-}
-
-/* La dimensiuni mici */
-@media (max-width: 768px) {
-  #grid-pagina {
-      grid-template-areas:
-          "prezentare"
-          "tabel"
-          "calendar"
-          "anunturi"
-          "online"
-          "statistici"
-          "diverse";
-  }
-}
-
-/* Stilizări pentru fiecare secțiune */
-#prezentare {
-  grid-area: prezentare;
-  width: calc(100% - 20px); 
-  margin-right: 20px; 
-}
-
-#promotii {
-    grid-area: calendar;
-}
-
-#produse {
-    grid-area: tabel;
-}
-
-#anunturi {
-    grid-area: anunturi;
-}
-
-#orar {
-    grid-area: online;
-}
-
-#intrebari {
-    grid-area: statistici;
-}
-
-.table-container {
-    grid-area: diverse;
-}
 
 /* Alte stilizări pentru secțiuni (să respecte principiile de design și ierarhia vizuală) */
 
@@ -89,6 +24,10 @@
   border-color: rgb(147, 43, 176); 
 }
 
+img, video, iframe, audio, figcaption {
+  display: none;
+}
+
 #triunghi {
   height: 0px;
   width: 0;
@@ -105,34 +44,11 @@
   border-bottom: 1rem solid rgb(147, 43, 176);
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
-  transform: translateY(20%);
-}
-
-#tab-orar th,
-#tab-orar td {
-  border: 3px solid #be4cbc;
-}
-
-#tab-orar {
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-
-#tab-orar th:nth-child(2n + 1) {
-  background-color: plum;
+  transform: translateY(100%);
 }
 
 #watermark,#absolut{
   display:none;
-}
-
-
-#grid-pagina {
-  display: block;
-  font-size: 20px;
-  box-sizing: border-box;
-  page-break-before: always;
-  background-color: #f2f2f2;
 }
 
 .black {
@@ -141,7 +57,6 @@
 
 @media print {
   #absolut {
-    display: block;
     position: absolute;
     width: 70%;
     left: 15%;
@@ -152,11 +67,10 @@
     background-color: rgba(255, 255, 255, 0.8); 
   }
   
-  #absolut::after {
-    content: "Acesta este un proiect școlar!";
-    font-size: 10px;
-    font-weight: bold;
+  #grid-pagina {
+    display: block !important;
   }
+
 
   h1 {
     text-align: center;
@@ -191,21 +105,10 @@
   #grid-pagina {
     display: block;
   }
-#watermark::after{
-  opacity:0.4;
-  padding:5px;
-  width: 2cm; 
-  height:0.5cm;
-  display: block;
-  background: #f2f2f2;
-  font-weight: bold;
-  border:3px solid black;
-  border-top-left-radius:10px;
-  border-bottom-left-radius:10px;
-  border-top-right-radius:10px;
-  border-bottom-right-radius:10px;
-  content:"Mitica Bogdan-Denis";
-}
+
+
+/* Text-font */
+
 
 
   #watermark
@@ -221,7 +124,7 @@
 			
 			opacity:0.4;
 			padding:5px;
-      width: 4cm;
+      width: 4.5cm;
       height:1cm;
 			display: block;
 			background: #f2f2f2;
@@ -236,10 +139,6 @@
 
   #end {
     page-break-before: always;
-  }
-
-  img, video, iframe, audio, figcaption, a[id="link-top"] {
-    display: none;
   }
 
 
@@ -260,6 +159,7 @@
   }
 }
 
+
 .Titlu {
   font-size: 5em;
   color: #531064;
@@ -268,6 +168,23 @@
   font-family: 'Georgia', Times, serif;
   margin: 0;
   padding: 0;
+}
+
+#text-container {
+  position: relative;
+}
+
+#text {
+  position: relative;
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: bold;
+}
+
+#absolut::after {
+  content: "Acesta este un proiect școlar!";
+  font-size: 10px;
+  font-weight: bold;
 }
 
 hr {
@@ -285,16 +202,7 @@ hr {
   );
 }
 
-#text-container {
-  position: relative;
-}
 
-#text {
-  position: relative;
-  font-size: 50px;
-  line-height: 50px;
-  font-weight: bold;
-}
 
 #text-reflectat {
   position: absolute;

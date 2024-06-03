@@ -11,6 +11,8 @@ const { Utilizator } = require("./module_proprii/utilizator.js");
 const session = require("express-session");
 const Drepturi = require("./module_proprii/drepturi.js");
 const Client = require("pg").Client;
+const QRCode= require('qrcode');
+const puppeteer=require('puppeteer');
 
 var client = new Client({
   database: "cti_2024",
@@ -85,10 +87,39 @@ app.use(function (req, res, next) {
   );
 });
 
-app.get(["/", "/home", "/index"], function (req, res) {
+//--------------------------------------locatie---------------------------------------
+async function obtineLocatie() {
+  try {
+      const response = await fetch('https://secure.geobytes.com/GetCityDetails?key=7c756203dbb38590a66e01a5a3e1ad96&fqcn=109.99.96.15');
+      const obiectLocatie = await response.json();
+      console.log(obiectLocatie);
+      locatie=obiectLocatie.geobytescountry+" "+obiectLocatie.geobytesregion
+      return locatie
+  } catch(error) {
+      console.error(error);
+  }
+}
+
+function genereazaEvenimente(){
+  var evenimente=[]
+  var texteEvenimente=["Eveniment important", "Festivitate", "Prajituri gratis", "Zi cu soare", "Aniversare"];
+  var dataCurenta=new Date();
+  for(i=0;i<texteEvenimente.length;i++){
+      evenimente.push({
+          data: new Date(dataCurenta.getFullYear(), dataCurenta.getMonth(), Math.ceil(Math.random()*27) ), 
+          text:texteEvenimente[i]
+      });
+  }
+  return evenimente;
+}
+
+app.get(["/", "/home", "/index"], async function (req, res) {
   res.render("pagini/index", {
     ip: req.ip,
     imagini: obGlobal.obImagini.imagini,
+    useriOnline: await obtineUtilizatoriOnline(),
+    locatie:await obtineLocatie(),
+    evenimente: genereazaEvenimente()
   });
 });
 
@@ -145,6 +176,170 @@ app.get("/produs/:id", function (req, res) {
     }
   );
 });
+
+
+// ---------------------------------  cos virtual --------------------------------------
+
+app.use(["/produse_cos", "/cumpara"], express.json({ limit: "2mb" })); //obligatoriu de setat pt request body de tip json
+
+app.post("/produse_cos", function (req, res) {
+  console.log(req.body);
+  if (req.body.ids_prod.length != 0) {
+    //TO DO : cerere catre AccesBD astfel incat query-ul sa fie `select nume, descriere, pret, gramaj, imagine from tastaturi where id in (lista de id-uri)`
+    AccesBD.getInstanta().select(
+      {
+        tabel: "tastaturi",
+        campuri: "nume,descriere,pret,gramaj,imagine".split(","),
+        conditiiAnd: [`id in (${req.body.ids_prod})`],
+      },
+      function (err, rez) {
+        if (err) res.send([]);
+        else res.send(rez.rows);
+      }
+    );
+  } else {
+    res.send([]);
+  }
+});
+
+cale_qr = __dirname + "/resurse/imagini/qrcode";
+if (fs.existsSync(cale_qr))
+  fs.rmSync(cale_qr, { force: true, recursive: true });
+fs.mkdirSync(cale_qr);
+client.query("select id from tastaturi", function (err, rez) {
+  for (let prod of rez.rows) {
+    let cale_prod =
+      obGlobal.protocol + obGlobal.numeDomeniu + "/produs/" + prod.id;
+    //console.log(cale_prod);
+    QRCode.toFile(cale_qr + "/" + prod.id + ".png", cale_prod);
+  }
+});
+
+async function genereazaPdf(stringHTML, numeFis, callback) {
+  const chrome = await puppeteer.launch();
+  const document = await chrome.newPage();
+  console.log("inainte load");
+  //await document.setContent(stringHTML, {waitUntil:"load"});
+  await document.setContent(stringHTML, { waitUntil: "load" });
+
+  console.log("dupa load");
+  await document.pdf({ path: numeFis, format: "A4" });
+
+  console.log("dupa pdf");
+  await chrome.close();
+
+  console.log("dupa inchidere");
+  if (callback) callback(numeFis);
+}
+
+app.post("/cumpara", function (req, res) {
+  console.log(req.body);
+
+  if (req?.utilizator?.areDreptul?.(Drepturi.cumparareProduse)) {
+    AccesBD.getInstanta().select(
+      {
+        tabel: "tastaturi",
+        campuri: ["*"],
+        conditiiAnd: [`id in (${req.body.ids_prod})`],
+      },
+      function (err, rez) {
+        if (!err && rez.rowCount > 0) {
+          console.log("produse:", rez.rows);
+          let rezFactura = ejs.render(
+            fs.readFileSync("./views/pagini/factura.ejs").toString("utf-8"),
+            {
+              protocol: obGlobal.protocol,
+              domeniu: obGlobal.numeDomeniu,
+              utilizator: req.session.utilizator,
+              produse: rez.rows,
+            }
+          );
+          console.log(rezFactura);
+          let numeFis = `./temp/factura${new Date().getTime()}.pdf`;
+          genereazaPdf(rezFactura, numeFis, function (numeFis) {
+            mesajText = `Stimate ${req.session.utilizator.username} aveti mai jos factura.`;
+            mesajHTML = `<h2>Stimate ${req.session.utilizator.username},</h2> aveti mai jos factura.`;
+            req.utilizator.trimiteMail("Factura", mesajText, mesajHTML, [
+              {
+                filename: "factura.pdf",
+                content: fs.readFileSync(numeFis),
+              },
+            ]);
+            res.send("Totul e bine!");
+          });
+        }
+      }
+    );
+  } else {
+    res.send("Nu puteti cumpara daca nu sunteti logat sau nu aveti dreptul!");
+  }
+});
+
+// --------------------------utilizatori online ------------------------------------------
+
+
+function getIp(req){//pentru Heroku/Render
+  var ip = req.headers["x-forwarded-for"];//ip-ul userului pentru care este forwardat mesajul
+  if (ip){
+      let vect=ip.split(",");
+      return vect[vect.length-1];
+  }
+  else if (req.ip){
+      return req.ip;
+  }
+  else{
+   return req.connection.remoteAddress;
+  }
+}
+
+
+app.all("/*",function(req,res,next){
+  let ipReq=getIp(req);
+  if (ipReq){ 
+      var id_utiliz=req?.session?.utilizator?.id;
+      //id_utiliz=id_utiliz?id_utiliz:null;
+      //console.log("id_utiliz", id_utiliz);
+      // TO DO comanda insert (folosind AccesBD) cu  ip, user_id, pagina(url  din request)
+      var obiectInsert={
+        ip:ipReq,
+        pagina:req.url
+      }  
+      if (id_utiliz){
+          obiectInsert.user_id=id_utiliz;
+      }
+      AccesBD.getInstanta().insert({
+          tabel:"accesari",
+          campuri:obiectInsert
+      }
+    )
+  }
+  next(); 
+});
+
+
+
+function stergeAccesariVechi(){
+  AccesBD.getInstanta().delete({
+      tabel:"accesari",
+      conditiiAnd:["now() - data_accesare >= interval '10 minutes' "]}, 
+      function(err, rez){
+          console.log(err);
+      })
+}
+stergeAccesariVechi();
+setInterval(stergeAccesariVechi, 10*60*1000);
+
+
+async function obtineUtilizatoriOnline(){
+  try{
+      var rez = await client.query("select username, nume, prenume from utilizatori where id in (select distinct user_id from accesari where now()-data_accesare <= interval '5 minutes')");
+          console.log(rez.rows);
+          return rez.rows
+      } catch (err) {
+          console.error(err);
+          return []
+      }
+}
 
 // ----------- Utilizatori ------------------
 
@@ -518,6 +713,9 @@ obGlobal = {
   folderScss: path.join(__dirname, "resurse/scss"),
   folderCss: path.join(__dirname, "resurse/css"),
   folderBackup: path.join(__dirname, "backup"),
+  optiuniMeniu: [],
+  protocol: "http://",
+  numeDomeniu: "localhost:8080",
 };
 
 function initErori() {
