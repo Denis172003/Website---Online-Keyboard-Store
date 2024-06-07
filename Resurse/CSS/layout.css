@@ -1,11 +1,11 @@
 #grid-pagina {
   display: grid;
   grid-template-areas:
-      "prezentare prezentare prezentare prezentare"
-      "tabel calendar calendar anunturi"
-      "online online statistici statistici"
-      "diverse diverse statistici statistici"
-      "diverse diverse diverse diverse";
+      "prezentare prezentare prezentare "
+      "tabel calendar  anunturi"
+      "online online  statistici"
+      "diverse diverse  statistici"
+      "diverse diverse  diverse";
       
 }
 

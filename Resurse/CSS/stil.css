@@ -123,24 +123,24 @@ p {
   
   .special-link {
     position: relative;
-    text-decoration: none; /* Removes underline */
-    display: inline-block; /* Ensuring inline-block for proper size calculation */
-    color: inherit; /* Ensuring the link color is inherited */
+    text-decoration: none; 
+    display: inline-block; 
+    color: inherit; 
   }
   
   /* Hover effect with color blob */
   .special-link::before {
-    content: ''; /* Adding a pseudo-element for the background */
+    content: ''; 
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the pseudo-element */
+    transform: translate(-50%, -50%); 
     width: 0;
     height: 0;
-    border-radius: 50%; /* Ensuring circular shape */
+    border-radius: 50%; 
     background-color: var(--link-hover-background-color);
-    transition: all 0.5s ease; /* Transition for smooth animation */
-    z-index: -1; /* Placing the pseudo-element behind the link content */
+    transition: all 0.5s ease; 
+    z-index: -1; 
   }
   
   /* Change scale to make the circle appear from center */
@@ -157,8 +157,8 @@ p {
   
   /* Adding a border on click (:active state) */
   .special-link:active {
-    border: 1px solid var(--external-link-hover-color); /* Adjusting border color to be blue */
-    padding: -1px; /* Adjust padding to compensate for the border thickness without shifting content */
+    border: 1px solid var(--external-link-hover-color); 
+    padding: -1px; 
   }
 
   /* Textul VTT cu gradient */

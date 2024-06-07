@@ -13,6 +13,9 @@ const Drepturi = require("./module_proprii/drepturi.js");
 const Client = require("pg").Client;
 const QRCode= require('qrcode');
 const puppeteer=require('puppeteer');
+const xmljs=require('xml-js');
+const { MongoClient } = require("mongodb");
+``
 
 var client = new Client({
   database: "cti_2024",
@@ -35,6 +38,11 @@ client.query("select * from tastaturi", function (err, rez) {
 obGlobal = {
   obErori: null,
 };
+
+const uri = "mongodb://localhost:27017";
+obGlobal.clientMongo = new MongoClient(uri);
+obGlobal.bdMongo = obGlobal.clientMongo.db('magazin_tastaturi');
+
 
 app = express();
 console.log("Folder proiect", __dirname);
@@ -232,6 +240,28 @@ async function genereazaPdf(stringHTML, numeFis, callback) {
   if (callback) callback(numeFis);
 }
 
+function insereazaFactura(req,rezultatRanduri){
+  rezultatRanduri.rows.forEach(function (elem){ elem.cantitate=1});
+  let jsonFactura= {
+      data: new Date(),
+      username: req.session.utilizator.username,
+      produse:rezultatRanduri.rows
+  }
+  console.log("JSON factura", jsonFactura)
+  if(obGlobal.bdMongo){
+      obGlobal.bdMongo.collection("facturi").insertOne(jsonFactura, function (err, rezmongo){
+          if (err) console.log(err)
+          else console.log ("Am inserat factura in mongodb");
+
+          obGlobal.bdMongo.collection("facturi").find({}).toArray(
+              function (err, rezInserare){
+                  if (err) console.log(err)
+                  else console.log (rezInserare);
+          })
+      })
+  }
+}
+
 app.post("/cumpara", function (req, res) {
   console.log(req.body);
 
@@ -267,6 +297,7 @@ app.post("/cumpara", function (req, res) {
             ]);
             res.send("Totul e bine!");
           });
+          insereazaFactura(rez,res);
         }
       }
     );
@@ -381,6 +412,103 @@ app.post("/login", function (req, res) {
     );
   });
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////// Contact
+
+
+app.use(["/contact"], express.urlencoded({extended:true}));
+
+caleXMLMesaje="resurse/xml/contact.xml";
+headerXML=`<?xml version="1.0" encoding="utf-8"?>`;
+function creeazaXMlContactDacaNuExista(){
+    if (!fs.existsSync(caleXMLMesaje)){
+        let initXML={
+            "declaration":{
+                "attributes":{
+                    "version": "1.0",
+                    "encoding": "utf-8"
+                }
+            },
+            "elements": [
+                {
+                    "type": "element",
+                    "name":"contact",
+                    "elements": [
+                        {
+                            "type": "element",
+                            "name":"mesaje",
+                            "elements":[]                            
+                        }
+                    ]
+                }
+            ]
+        }
+        let sirXml=xmljs.js2xml(initXML,{compact:false, spaces:4});//obtin sirul xml (cu taguri)
+        console.log(sirXml);
+        fs.writeFileSync(caleXMLMesaje,sirXml);
+        return false; //l-a creat
+    }
+    return true; //nu l-a creat acum
+}
+
+
+function parseazaMesaje(){
+    let existaInainte=creeazaXMlContactDacaNuExista();
+    let mesajeXml=[];
+    let obJson;
+    if (existaInainte){
+        let sirXML=fs.readFileSync(caleXMLMesaje, 'utf8');
+        obJson=xmljs.xml2js(sirXML,{compact:false, spaces:4});
+        
+
+        let elementMesaje=obJson.elements[0].elements.find(function(el){
+                return el.name=="mesaje"
+            });
+        let vectElementeMesaj=elementMesaje.elements?elementMesaje.elements:[];// conditie ? val_true: val_false
+        console.log("Mesaje: ",obJson.elements[0].elements.find(function(el){
+            return el.name=="mesaje"
+        }))
+        let mesajeXml=vectElementeMesaj.filter(function(el){return el.name=="mesaj"});
+        return [obJson, elementMesaje,mesajeXml];
+    }
+    return [obJson,[],[]];
+}
+
+
+app.get("/contact", function(req, res){
+    let obJson, elementMesaje, mesajeXml;
+    [obJson, elementMesaje, mesajeXml] =parseazaMesaje();
+
+    res.render("pagini/contact",{ utilizator:req.session.utilizator, mesaje:mesajeXml})
+});
+
+app.post("/contact", function(req, res){
+    let obJson, elementMesaje, mesajeXml;
+    [obJson, elementMesaje, mesajeXml] =parseazaMesaje();
+        
+    let u= req.session.utilizator?req.session.utilizator.username:"anonim";
+    let mesajNou={
+        type:"element", 
+        name:"mesaj", 
+        attributes:{
+            username:u, 
+            data:new Date()
+        },
+        elements:[{type:"text", "text":req.body.mesaj}]
+    };
+    if(elementMesaje.elements)
+        elementMesaje.elements.push(mesajNou);
+    else 
+        elementMesaje.elements=[mesajNou];
+    console.log(elementMesaje.elements);
+    let sirXml=xmljs.js2xml(obJson,{compact:false, spaces:4});
+    console.log("XML: ",sirXml);
+    fs.writeFileSync("resurse/xml/contact.xml",sirXml);
+    
+    res.render("pagini/contact",{ utilizator:req.session.utilizator, mesaje:elementMesaje.elements})
+});
+///////////////////////////////////////////////////////
 
 app.get("/logout", function(req, res)
 {

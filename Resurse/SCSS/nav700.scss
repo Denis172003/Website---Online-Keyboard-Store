@@ -1,0 +1,150 @@
+@media screen and (max-width: 1200px) {
+    /* Add padding to body */
+  
+    body {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    @keyframes slideInFromLeft {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+  
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  
+    .hambur {
+      margin-left: 2px;
+      width: 25px;
+      height: 3px;
+      border-radius: 20px;
+      background: #f2f2f2;
+      margin-top: 5px;
+  
+      /* Adjusted margin-top to move it 5 pixels down */
+      animation: slideInFromLeft 1s ease forwards;
+    }
+  
+    /* Styles for hamburger menu */
+  
+    #hamburger {
+      transform: translateY(5px);
+      display: block;
+  
+      > img {
+        height: var(--inaltime-meniu);
+        display: block;
+      }
+    }
+  
+    /* Dropdown menu */
+  
+    ul.meniu {
+      display: none;
+      position: absolute;
+      width: 100%;
+      transform-origin: top;
+  
+      /* Ensure the transform origin is set to the top */
+      background: transparent;
+      border: none;
+      border-color: transparent;
+  
+      /* Initial transparent border */
+      transition: background 2s linear, border-color 2s linear;
+  
+      /* Transition for background and border-color */
+      /* Remove margins and padding */
+      margin: 0;
+      padding: 0;
+    }
+  
+    #ch-menu:checked + ul.meniu {
+      display: block;
+      z-index: 2;
+      position: relative;
+      animation: appear_background 2s forwards;
+  
+      > li > {
+        div, a {
+          z-index: 2;
+          position: relative;
+          transform-origin: top;
+  
+          /* Ensure the transform origin is set to the top */
+          animation: appear_menu_btn 2s linear forwards;
+        }
+      }
+    }
+  
+    nav ul.meniu {
+      li {
+        width: 100%;
+      }
+  
+      > li ul {
+        position: absolute;
+        width: 100%;
+        z-index: 200;
+        transform: scale(1, 1) !important;
+        opacity: 1 !important;
+        transition-delay: 0.5s;
+  
+        /* Adjust the delay here */
+      }
+    }
+  
+    #ch-menu:checked + ul.meniu > li ul > * {
+      position: relative;
+      z-index: 200;
+    }
+  
+    nav ul.meniu > li {
+      &:hover > ul {
+        z-index: 200;
+        animation: none;
+      }
+  
+      li a:before {
+        content: none;
+      }
+    }
+  
+    /* Remove triangle content */
+  
+    @keyframes appear_background {
+      0% {
+        background: linear-gradient(to bottom, #531064, transparent);
+        border-color: transparent;
+      }
+  
+      100% {
+        background: #531064;
+        border-color: #531064;
+  
+        /* Match the solid background color */
+      }
+    }
+  
+    @keyframes appear_menu_btn {
+      0% {
+        transform: scale(1, 0);
+  
+        /* Start from scaleY 0 */
+        opacity: 0;
+      }
+  
+      100% {
+        transform: scale(1, 1);
+  
+        /* End at scaleY 1 */
+        opacity: 1;
+      }
+    }
+  }
+  

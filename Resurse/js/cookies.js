@@ -1,34 +1,31 @@
-
-
-//setCookie("a",10, 1000)
-function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
-    d=new Date();
-    d.setTime(d.getTime()+timpExpirare)
-    document.cookie=`${nume}=${val}; expires=${d.toUTCString()}`;
+function setCookie(name, value, expireTime){ // expireTime in milliseconds
+    let date = new Date();
+    date.setTime(date.getTime() + expireTime);
+    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
 }
 
-function getCookie(nume){
-    vectorParametri=document.cookie.split(";") // ["a=10","b=ceva"]
-    for(let param of vectorParametri){
-        if (param.trim().startsWith(nume+"="))
-            return param.split("=")[1]
+function getCookie(name){
+    let cookieArray = document.cookie.split(";"); // ["name=value", "name2=value2"]
+    for(let cookie of cookieArray){
+        let [cookieName, cookieValue] = cookie.trim().split("=");
+        if (cookieName === name) {
+            return cookieValue;
+        }
     }
     return null;
 }
 
-function deleteCookie(nume){
-    console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
-    document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
+function deleteCookie(name){
+    document.cookie = `${name}=; expires=${(new Date(0)).toUTCString()}; path=/`;
 }
 
-
 window.addEventListener("load", function(){
-    if (getCookie("acceptat_banner")){
-        document.getElementById("banner").style.display="none";
+    if (getCookie("acceptat_banner")) {
+        document.getElementById("banner").style.display = "none";
     }
 
-    this.document.getElementById("ok_cookies").onclick=function(){
-        setCookie("acceptat_banner",true,60000);
-        document.getElementById("banner").style.display="none"
+    document.getElementById("ok_cookies").onclick = function(){
+        setCookie("acceptat_banner", true, 60000); // Cookie expires in 60 seconds
+        document.getElementById("banner").style.display = "none";
     }
-})
+});

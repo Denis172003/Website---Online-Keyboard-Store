@@ -36,7 +36,7 @@ img, video, iframe, audio, figcaption {
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
   vertical-align: top;
-  transform: translateY(90%);
+  transform: translateY(20%);
   transition: border-bottom 400ms, transform 500ms;
 }
 

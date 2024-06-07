@@ -18,7 +18,7 @@
 
     <meta name="description" content="Magazin Holoboard. Fie că ești un gamer pasionat sau un profesionist în căutare de performanță și confort, găsești aici tastatura perfectă pentru tine. Livrare rapidă și retur gratuit!">
 
-    <%- include("../fragmente/head") %>
+    <%- include("../Fragmente/head") %>
 
 </head>
 
@@ -27,13 +27,13 @@
 
   <p id="watermark"></p>
     <header>
-      <%- include("../fragmente/header") %>
+      <%- include("../Fragmente/header") %>
     </header>
 
 
 
     <main>
-      <%- include("../fragmente/useri-online.ejs") %>
+      <%- include("../Fragmente/useri-online.ejs") %>
 
         <div id="grid-pagina">
             <section id="prezentare">
@@ -46,8 +46,8 @@
                         </div>
                     </div>
                     <br>
-                    <% include("../fragmente/locatie.ejs") %>
-                    <%- include("../fragmente/formular-login.ejs",
+                    <% include("../Fragmente/locatie.ejs") %>
+                    <%- include("../Fragmente/formular-login.ejs",
 
                     {
                       utilizator:locals.utilizator,
@@ -58,9 +58,9 @@
                     
                     %>
                     <div class="container-calendar">
-                      <% include("../fragmente/evenimente.ejs")%>
-                     /div>
-                    <% include("../fragmente/orar-server-client.ejs") %>
+                      <% include("../Fragmente/evenimente.ejs")%>
+                    </div>
+                    <% include("../Fragmente/ora-server-client.ejs") %>
                 <p>Ip: <%- locals.ip %></p>
                 <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
                 <div class="intro-oferte">
@@ -347,10 +347,10 @@
 
         
         <video id="video-vtt" controls preload="auto" poster="poster.jpg" style="width: 100%; min-width: 320px; max-width: 800px;">
-  <source src="./resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
-  <source src="./resurse/Video/Logitech_Wireless.mov" type="video/mov">
-  <track src="./resurse/Video/my_captions.vtt" kind="subtitles" srclang="ro" label="Română" default>
-  <track src="./resurse/Video/my_captions2.vtt" kind="subtitles" srclang="en" label="English">
+  <source src="/resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
+  <source src="/resurse/Video/Logitech_Wireless.mov" type="video/mov">
+  <track src="/resurse/Video/my_captions.vtt" kind="subtitles" srclang="ro" label="Română" default>
+  <track src="/resurse/Video/my_captions2.vtt" kind="subtitles" srclang="en" label="English">
 </video>
         <div class="iframe">
           
