@@ -6,6 +6,7 @@
 <head>
     <title>Holoboard</title>
 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Tastaturi, Tastaturi mecanice, Tastaturi wireless, 
@@ -17,109 +18,50 @@
 
     <meta name="description" content="Magazin Holoboard. Fie că ești un gamer pasionat sau un profesionist în căutare de performanță și confort, găsești aici tastatura perfectă pentru tine. Livrare rapidă și retur gratuit!">
 
-    <meta name="author" content="Denis Mitica">
-    <link rel="apple-touch-icon" sizes="180x180" href="Resurse/Favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Resurse/Favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Resurse/Favicon/favicon-16x16.png">
-    <link rel="manifest" href="Resurse/Favicon/site.webmanifest">
-    <link rel="mask-icon" href="Resurse/Favicon/safari-pinned-tab.svg" color="#ff70bd">
-    <link rel="shortcut icon" href="Resurse/Favicon/favicon.ico">
-    <link rel="stylesheet" href="Resurse/CSS/nav.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav.scss" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav700.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/nav1000.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/stil.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/general.css" type="text/css">
-    <link rel="stylesheet" href="Resurse/CSS/layout.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-    <meta name="msapplication-TileColor" content="#ff70bd">
-    <meta name="msapplication-config" content="Resurse/Favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ff0000">
+    <%- include("../Fragmente/head") %>
 
 </head>
 
-<body>
-
-    <p id="watermark"></p>
-</body>
-
 
 <body>
 
+  <p id="watermark"></p>
     <header>
-        <p class="Titlu">Holoboard</p>
-
-        <div class="toggle-container">
-            <label id="schimba_tema" class="toggle">
-                <input type="checkbox" id="tema_toggle">
-                <div class="slider"></div>
-                <div class="icons">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                </div>
-            </label>
-        </div>
+      <%- include("../Fragmente/header") %>
     </header>
 
 
-    <nav>
-        <label id="hamburger" for="ch-menu">
-            <div class="hambur"></div>
-            <div class="hambur"></div>
-            <div class="hambur"></div>
-        </label>
-        <input id="ch-menu" type="checkbox">
-        <ul class="meniu">
-            <li>
-                <div id="acasa">
-                    <i class="fa fa-home"></i> 
-                    <span class="acasa-text">Acasa</span> 
-                </div>
-                <div id="acasa-mediu">
-                    <span class="fa fa-home"></span> 
-                </div>
-                <ul>
-                    <li><a href="#welcome">Bine ati venit</a></li>
-                    <li><a href="#promotii">Promotii</a></li>
-                    <li><a href="#anunturi">Anunturi</a></li>
-                    <li><a href="#produse">Oferta</a></li>
-                    <li><a href="#orar">Orar</a></li>
-                    <li><a href="#index-intrebari">Întrebări</a></li>
-                    <li><a href="#retete">Rețete</a></li>
-                </ul>
-            </li>
-              
-            <li><a href="#">Inregistrare</a></li>
-            <li><div>Despre</div>
-                <ul>                        
-                    <li><a href="despre.html#prezentare">Prezentare</a></li>
-                    <li><a href="despre.html#istoric">Istoric</a></li>
-                    <li><a href="despre.html#motivatie">Motivatie</a></li>
-                    <li><a href="despre.html#galerie">Galerie</a></li>
-                </ul>
-            </li>
-            <li><div>Produse</div>
-                <ul>
-                    <li><a href="http://www.google.com">Toate</a></li>
-                    <li><a href="#">Tastaturi</a></li>
-                    <li><a href="#">Keycaps</a></li>
-                    <li><a href="#">Artizane</a></li>
-                </ul>
-            
-            </li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    
 
     <main>
+      <%- include("../Fragmente/useri-online.ejs") %>
+
         <div id="grid-pagina">
             <section id="prezentare">
                 <!-- Zona 1: Prezentare -->
-                <h2>Bine ați venit la Holoboard!</h2>
+                
+                    <div id="text">
+                        Bine ați venit la Holoboard!
+                        <div id="text-reflectat">
+                            Bine ați venit la Holoboard!<!-- poate fi setat prin Java Script sa fie acelasi text -->
+                        </div>
+                    </div>
+                    <br>
+                    <% include("../Fragmente/locatie.ejs") %>
+                    <%- include("../Fragmente/formular-login.ejs",
+
+                    {
+                      utilizator:locals.utilizator,
+                      mesajLogin:locals.mesajLogin,
+                    }
+                    ) 
+                    
+                    
+                    %>
+                    <div class="container-calendar">
+                      <% include("../Fragmente/evenimente.ejs")%>
+                    </div>
+                    <% include("../Fragmente/ora-server-client.ejs") %>
+                <p>Ip: <%- locals.ip %></p>
                 <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
                 <div class="intro-oferte">
                     <div>Tastaturi mecanice</div>
@@ -299,6 +241,83 @@
             </section>            
         </div>
     
+        <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="Tastatura">
+                </div>
+                <figcaption> Tastatura mecanică RGB </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="capsator">
+                </div>
+                <figcaption> Tastatura compactă wireless </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică cu iluminare </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă cu touchpad integrat </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura multimedia retro iluminată </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică pentru gaming </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ultra-subțire cu taste iluminate </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă wireless cu touchpad </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică pentru programatori </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura mecanică cu iluminare RGB și tastatura numerică </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura compactă pentru laptop-uri </figcaption>
+              </figure>
+              <figure>
+                <div class="foto-frame">
+                  <img src="./resurse/imagini/keyboard.png" alt="pilot">
+                </div>
+                <figcaption> Tastatura ergonomică cu suport pentru încheietura mâinii </figcaption>
+          
+</section>
+
         <section id="intrebari">
             <!-- Zona 8: Întrebări frecvente -->
             <h2>Întrebări frecvente</h2>
@@ -325,8 +344,15 @@
                 <a href="#">Mergi sus</a>
         </section>
 
-    
 
+        
+        <video id="video-vtt" controls preload="auto" poster="Resurse/Imagini/poster.png" style="width: 100%; min-width: 320px; max-width: 800px;">
+          <source src="Resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
+          <source src="Resurse/Video/Logitech_Wireless.mov" type="video/quicktime">
+          <track src="Resurse/Video/my_captions.vtt" kind="subtitles" srclang="ro" label="Română" default>
+          <track src="Resurse/Video/my_captions2.vtt" kind="subtitles" srclang="en" label="English">
+        </video>
+        
         <div class="iframe">
           
             <iframe width="560" height="315" src="https://www.youtube.com/embed/pyyhsgIjlJI?si=QE5JKBTHikebj0yd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -352,38 +378,25 @@
             </div>
           </div>
 
+          <ul>
+
+        <hr class="effect-css-stilizare-hr">
+        </ul>
+
     </main>
     
     
 
 <footer>
 <a href="#" title="Înapoi sus" id="link-top"><div id="triunghi"></div></a>
+<div class="duotone-image-container">
+  <img src="./resurse/Imagini/keyboard.png" width="400" height="500" alt="Imagine">
+</div>
+
+
 <p>Check out this video: <a href="https://www.youtube.com/watch?v=xa17zHJhNhA" target="_blank" class="special-link">un_link_frumos</a></p>
 
-<address>
-<p><i class="fa fa-phone"></i>Telefon: <a href="tel:+40712345678">07xx xxx xxx</a></p>
-<p><i class="fa fa-map-pin"></i>Adresă: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.798520000893!2d14.634013576133642!3d53.38265437229992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4700a7b09b763e87%3A0xa3de8be03e7437c3!2sHoloboard.Shop!5e0!3m2!1sro!2sro!4v1709551690568!5m2!1sro!2sro" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>Locatia fizica</a></p>
-<p><i class="fa fa-envelope"></i>E-mail: <a href="mailto:holoboard@gmail.com">holoboard@gmail.com</a><br></p>
-<p><i class="fa fa-skype"></i>Skype: <a href="skype:holoboard?chat">Chat prin Skype</a></p>
-<a href="Resurse/Imagini/keyboard.png" download><i class="fa fa-file"></i>Download poza</a>
-</address>
-
-<section>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-<mtext>Număr total de combinații de taste</mtext>
-<mo>=</mo>
-<msup>
-<mi>&#x2113;</mi>
-<mi>n</mi>
-</msup>
-</math>
-</section>
-
-<p id="absolut"></p>
+<%- include("../Fragmente/footer") %>
 </footer>
 
 </body>

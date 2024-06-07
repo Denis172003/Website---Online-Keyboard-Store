@@ -346,12 +346,13 @@
 
 
         
-        <video id="video-vtt" controls preload="auto" poster="poster.jpg" style="width: 100%; min-width: 320px; max-width: 800px;">
-  <source src="/resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
-  <source src="/resurse/Video/Logitech_Wireless.mov" type="video/mov">
-  <track src="/resurse/Video/my_captions.vtt" kind="subtitles" srclang="ro" label="Română" default>
-  <track src="/resurse/Video/my_captions2.vtt" kind="subtitles" srclang="en" label="English">
-</video>
+        <video id="video-vtt" controls preload="auto" poster="Resurse/Imagini/poster.png" style="width: 100%; min-width: 320px; max-width: 800px;">
+          <source src="Resurse/Video/Logitech_Wireless.mp4" type="video/mp4">
+          <source src="Resurse/Video/Logitech_Wireless.mov" type="video/quicktime">
+          <track src="Resurse/Video/my_captions.vtt" kind="subtitles" srclang="ro" label="Română" default>
+          <track src="Resurse/Video/my_captions2.vtt" kind="subtitles" srclang="en" label="English">
+        </video>
+        
         <div class="iframe">
           
             <iframe width="560" height="315" src="https://www.youtube.com/embed/pyyhsgIjlJI?si=QE5JKBTHikebj0yd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -395,30 +396,7 @@
 
 <p>Check out this video: <a href="https://www.youtube.com/watch?v=xa17zHJhNhA" target="_blank" class="special-link">un_link_frumos</a></p>
 
-<address>
-<p><i class="fa fa-phone"></i>Telefon: <a href="tel:+40712345678">07xx xxx xxx</a></p>
-<p><i class="fa fa-map-pin"></i>Adresă: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.798520000893!2d14.634013576133642!3d53.38265437229992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4700a7b09b763e87%3A0xa3de8be03e7437c3!2sHoloboard.Shop!5e0!3m2!1sro!2sro!4v1709551690568!5m2!1sro!2sro" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>Locatia fizica</a></p>
-<p><i class="fa fa-envelope"></i>E-mail: <a href="mailto:holoboard@gmail.com">holoboard@gmail.com</a><br></p>
-<p><i class="fa fa-skype"></i>Skype: <a href="skype:holoboard?chat">Chat prin Skype</a></p>
-<a href="Resurse/Imagini/keyboard.png" download><i class="fa fa-file"></i>Download poza</a>
-</address>
-
-<section>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-<mtext>Număr total de combinații de taste</mtext>
-<mo>=</mo>
-<msup>
-<mi>&#x2113;</mi>
-<mi>n</mi>
-</msup>
-</math>
-</section>
-
-<p id="absolut"></p>
+<%- include("../Fragmente/footer") %>
 </footer>
 
 </body>
