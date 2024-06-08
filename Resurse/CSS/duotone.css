@@ -1,0 +1,82 @@
+/* Duotone image styling */
+
+.duotone-image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  
+  .duotone-image-container::before,
+  .duotone-image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 99%;
+  }
+  
+  .duotone-image-container::before {
+    background: linear-gradient(to right, blue, blue);
+    mix-blend-mode: screen;
+  }
+  
+  .duotone-image-container::after {
+    background: linear-gradient(to right, red, red);
+    mix-blend-mode: screen;
+  }
+  
+  /* Duotone image reveal animations */
+  
+  .duotone-image-container:hover::before {
+    animation: revealBlueFilterFromLeft 1s forwards;
+  }
+  
+  .duotone-image-container:hover::after {
+    animation: revealRedFilterFromRight 1s forwards;
+  }
+  
+  .duotone-image-container:not(:hover)::before {
+    animation: hideDuotoneToLeft 1s forwards;
+  }
+  
+  .duotone-image-container:not(:hover)::after {
+    animation: hideDuotoneToRight 1s forwards;
+  }
+  
+  @keyframes revealBlueFilterFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes revealRedFilterFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes hideDuotoneToLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes hideDuotoneToRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

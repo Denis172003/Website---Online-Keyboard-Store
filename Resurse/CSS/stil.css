@@ -1,99 +1,84 @@
+/* Global styles */
 body {
-    --culoare1:#531064;
-    --culoare2:#ff29fb;
-    --spatiere: 10px;
+    --culoare1: #531064; /* Custom color 1 */
+    --culoare2: #ff29fb; /* Custom color 2 */
+    --spatiere: 10px; /* Custom spacing */
     padding-left: var(--spatiere);
     padding-right: var(--spatiere);
 }
-
 p {
-    color:var(--culoare1);
+    color: var(--culoare1); /* Set paragraph text color */
 }
-
-h2{
-    border:2px solid var(--culoare1);
+h2 {
+    border: 2px solid var(--culoare1); /* Style h2 elements with border */
 }
-
-
 * {
     margin: 0;
     padding: 0;
 }
 
-
+/* Table styles */
 .table-container {
     max-width: 100%;
-    overflow-x: auto; 
+    overflow-x: auto;
 }
-
 #stilizare-tabel {
     border-collapse: collapse;
     width: 50%;
-    position : relative;
+    position: relative;
     left: 25%;
     margin-top: 60px;
 }
-
 #stilizare-tabel caption {
     font-weight: bold;
     margin-bottom: 10px;
 }
-
 #stilizare-tabel th,
 #stilizare-tabel td {
     border: 1px solid #121212;
     padding: 8px;
 }
-
 #stilizare-tabel th {
     font-size: 16px;
-    background-color: #be4cbc; 
-    border-bottom-width: 2px; 
+    background-color: #be4cbc;
+    border-bottom-width: 2px;
 }
-
 #stilizare-tabel tbody tr:nth-child(odd) {
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 #stilizare-tabel tbody tr:nth-child(even) {
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
 }
-
 #stilizare-tabel tfoot td {
-    background-color: #be4cbc; 
+    background-color: #be4cbc;
     font-weight: bold;
     text-align: right;
 }
 
-
+/* Font and general styling */
 html {
     margin: 10px;
     padding: 10px;
     font-size: 18px;
     font-family: "EB Garamond", serif;
 }
-
 math {
     font-family: Arial, sans-serif;
     font-size: 16px;
 }
-
 mi {
     font-style: italic;
     color: blue;
 }
-
 mo {
     font-weight: bold;
     color: green;
 }
-
 msup {
     font-weight: bold;
     font-style: italic;
     color: red;
 }
-
 p {
     font-family: Arial, sans-serif;
     font-size: 14px;
@@ -101,67 +86,48 @@ p {
     margin-bottom: 20px;
 }
 
-/* CSS Variables for Colors */
+/* Link styles and effects */
 :root {
     --link-visited-color: #8200ae; /* Color for visited links */
     --external-link-hover-color: #121212; /* Color for hover effects */
     --link-hover-background-color: #87CEFA; /* Color for the hover blob */
-  }
-  
-  /* Basic link styling */
-  .special-link {
+}
+.special-link {
     position: relative;
-    text-decoration: none; /* Removes underline */
-    display: inline-block; /* Ensuring inline-block for proper size calculation */
-    color: inherit; /* Ensuring the link color is inherited */
-  }
-  
-  /* Visited link styling */
-  .special-link:visited {
+    text-decoration: none;
+    display: inline-block;
+    color: inherit;
+}
+.special-link:visited {
     color: var(--link-visited-color);
-  }
-  
-  .special-link {
-    position: relative;
-    text-decoration: none; 
-    display: inline-block; 
-    color: inherit; 
-  }
-  
-  /* Hover effect with color blob */
-  .special-link::before {
-    content: ''; 
+}
+.special-link::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
     width: 0;
     height: 0;
-    border-radius: 50%; 
+    border-radius: 50%;
     background-color: var(--link-hover-background-color);
-    transition: all 0.5s ease; 
-    z-index: -1; 
-  }
-  
-  /* Change scale to make the circle appear from center */
-  .special-link:hover::before {
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+.special-link:hover::before {
     width: 100%;
     height: 100%;
-  }
-  
-  /* Reset animation on link click */
-  .special-link:active::before {
+}
+.special-link:active::before {
     width: 0;
     height: 0;
-  }
-  
-  /* Adding a border on click (:active state) */
-  .special-link:active {
-    border: 1px solid var(--external-link-hover-color); 
-    padding: -1px; 
-  }
+}
+.special-link:active {
+    border: 1px solid var(--external-link-hover-color);
+    padding: -1px;
+}
 
-  /* Textul VTT cu gradient */
+/* Video caption styling */
 video::cue {
     background-image: linear-gradient(to bottom, #333333, #666666);
     color: transparent;
@@ -171,19 +137,18 @@ video::cue {
     max-width: 100%;
     white-space: pre-wrap;
     line-height: 1.6;
-  }
-  
-  body.dark {
-    background-color: #121212; /* Set the background color to black */
-    color: #f2f2f2; /* Set the text color to white */
+}
+
+/* Dark mode styles */
+body.dark {
+    background-color: #121212;
+    color: #f2f2f2;
     --culoare1: #940bb0; /* Adjust other colors as needed */
     --culoare2: #420d4f;
     --spatiere: 10px;
     padding-left: var(--spatiere);
     padding-right: var(--spatiere);
 }
-
-/* You might also need to style specific elements */
 body.dark h1,
 body.dark p,
 body.dark ul,
@@ -191,16 +156,38 @@ body.dark li,
 body.dark a {
     color: #f2f2f2; /* Set the text color to white for these elements */
 }
-
 body.dark nav a {
     color: rgb(255, 255, 255); /* Set link color to purple */
 }
+body.dark #grid-pagina {
+    background-color: #121212;
+    border: 2px solid #f2f2f2;
+}
+body.dark header,
+body.dark nav,
+body.dark main,
+body.dark footer {
+    background-color: #121212;
+    color: #f2f2f2;
+}
+body.dark table,
+body.dark th,
+body.dark td {
+    border: 1px solid #f2f2f2;
+}
+body.dark .table-container {
+    background-color: #121212;
+}
+body.dark .taburi-iframe a {
+    border: 2px solid #f2f2f2;
+    background-color: #121212;
+    color: #f2f2f2;
+}
 
-/* Toggle Button Styles */
+/* Toggle button and icon styles */
 .toggle-container {
     display: inline-block;
 }
-
 .toggle {
     position: relative;
     display: inline-block;
@@ -208,11 +195,9 @@ body.dark nav a {
     height: 30px;
     margin: 10px;
 }
-
 .toggle input[type="checkbox"] {
     display: none;
 }
-
 .slider {
     position: absolute;
     cursor: pointer;
@@ -224,7 +209,6 @@ body.dark nav a {
     transition: .4s;
     border-radius: 30px;
 }
-
 .slider:before {
     position: absolute;
     content: "";
@@ -236,84 +220,38 @@ body.dark nav a {
     transition: .4s;
     border-radius: 50%;
 }
-
 .toggle input:checked + .slider {
     background-color: #940bb0; /* Change background color for checked state */
 }
-
 .toggle input:checked + .slider:before {
     transform: translateX(30px);
 }
-
-/* Icon Styles */
+.toggle input:checked + .slider .fa-sun {
+    transform: translateY(3px);
+}
+.toggle input:checked + .slider .fa-moon {
+    transform: translateY(-3px);
+}
 .icons {
     display: flex;
     justify-content: space-between;
     position: absolute;
     width: 100%;
 }
-
 .icons i {
-    color: #f2f2f2; /* Set icon color to white */
+    color: #f2f2f2; /* Set
+    icon color to white */
     margin: 5px;
     transition: transform 0.4s ease;
 }
 
-.toggle input:checked + .slider .fa-sun {
-    transform: translateY(3px);
-}
-
-.toggle input:checked + .slider .fa-moon {
-    transform: translateY(-3px);
-}
-
-/* Dark Mode Styles */
-body.dark {
-    background-color: #121212; /* Change background color for dark mode */
-    color: #f2f2f2; /* Set the text color to white */
-}
-
+/* Dark mode icon styles */
 body.dark a {
     color: rgb(215, 38, 215); /* Set link color to purple */
 }
-
 body.dark .toggle input:checked + .slider {
     background-color: #121212;
 }
-
 body.dark .toggle input:checked + .slider:before {
     background-color: #ccc;
-}
-
-.val-nume a {
-    color: purple;
-}
-
-body.dark #grid-pagina {
-    background-color: #121212;
-    border: 2px solid #f2f2f2;
-}
-
-body.dark header,
-body.dark nav,
-body.dark main,
-body.dark footer {
-    background-color: #121212;
-    color: #f2f2f2;
-}
-
-body.dark table,
-body.dark th,
-body.dark td {
-    border: 1px solid #f2f2f2;
-}
-
-body.dark .table-container {
-    background-color: #121212;
-}
-
-body.dark .taburi-iframe a {
-    border: 2px solid #f2f2f2;
-    background-color: #121212;
-    color: #f2f2f2;
 }
