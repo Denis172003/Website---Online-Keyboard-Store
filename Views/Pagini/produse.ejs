@@ -25,7 +25,7 @@
             <label for="i_rad1" class="form-check-label">Mecanice</label>
         </div>
         <div class="form-check">
-            <input id="i_rad2" name="gr_rad" value="membrana" type="radio" class="form-check-input"/>
+            <input id="i_rad2" name="gr_rad" value="membrană" type="radio" class="form-check-input"/>
             <label for="i_rad2" class="form-check-label">Membrană</label>
         </div>
         <div class="form-check">
@@ -73,27 +73,30 @@
         <h2>Produse</h2>
         <div class="row">
             <% for( let prod of locals.produse) { %>
+
                 <article class="col-md-4 mb-4 produs">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume %></span></a></h3>
-                            <p class="card-text">Pret: <span class="val-pret"><%- prod.pret %></span></p>
-                            <p class="card-text">Conectivitate: <span class="val-calorii"><%- prod.conectivitate %></span></p>
-                            <p class="card-text">Numar taste: <span class="val-gramaj"><%- prod.numar_taste %></span></p>
-                            <p class="card-text">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
-                        </div>
-                        <figure class="card-img-bottom">
-                            <a href="/produs/<%-prod.id %>">
-                                <img src="/Resurse/Imagini/<%- prod.imagine %>" class="img-fluid" alt="[imagine <%- prod.nume %>]"/>
-                            </a>
-                        </figure>
-                        <div class="card-footer">
-                            <label class="form-check-label">Selectează:
-                                <input type="checkbox" class="form-check-input select-cos" value="<%- prod.id %>" autocomplete="off">
-                            </label>
-                        </div>
+                      <div class="card-body">
+                        <h3 class="card-title">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume %></span></a></h3>
+                        <p class="card-text">Pret: <span class="val-pret"><%- prod.pret %></span></p>
+                        <p class="card-text">Conectivitate: <span class="val-conectivitate"><%- prod.conectivitate %></span></p>
+                        <p class="card-text">Numar taste: <span class="val-numar-taste"><%- prod.numar_taste %></span></p>
+                        <p class="card-text">Tip tastatura: <span class="val-tip-tastatura"><%- prod.tip_tastatura %></span></p>
+                        <p class="card-text">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
+                      </div>
+                      <figure class="card-img-bottom">
+                        <a href="/produs/<%-prod.id %>">
+                          <img src="/Resurse/Imagini/<%- prod.imagine %>" class="img-fluid" alt="[imagine <%- prod.nume %>]"/>
+                        </a>
+                      </figure>
+                      <div class="card-footer">
+                        <label class="form-check-label">Selectează:
+                          <input type="checkbox" class="form-check-input select-cos" value="<%- prod.id %>" autocomplete="off">
+                        </label>
+                      </div>
                     </div>
-                </article>
+                  </article>
+                        
             <% } %>
         </div>
     </section>
