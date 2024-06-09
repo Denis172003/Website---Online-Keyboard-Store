@@ -192,21 +192,25 @@ app.use(["/produse_cos", "/cumpara"], express.json({ limit: "2mb" })); //obligat
 
 app.post("/produse_cos", function (req, res) {
   console.log(req.body);
-  if (req.body.ids_prod.length != 0) {
-    //TO DO : cerere catre AccesBD astfel incat query-ul sa fie `select nume, descriere, pret, gramaj, imagine from tastaturi where id in (lista de id-uri)`
+  if (req.body.ids_prod && req.body.ids_prod.length > 0) {
+    // Prepare the query to select products by IDs
     AccesBD.getInstanta().select(
       {
         tabel: "tastaturi",
-        campuri: "nume,descriere,pret,gramaj,imagine".split(","),
-        conditiiAnd: [`id in (${req.body.ids_prod})`],
+        campuri: "nume,descriere,pret,imagine".split(","),
+        conditiiAnd: [`id in (${req.body.ids_prod.join(',')})`],
       },
       function (err, rez) {
-        if (err) res.send([]);
-        else res.send(rez.rows);
+        if (err) {
+          console.error('Database error:', err);
+          res.status(500).send([]);
+        } else {
+          res.send(rez.rows);
+        }
       }
     );
   } else {
-    res.send([]);
+    res.status(400).send([]);
   }
 });
 
@@ -226,39 +230,36 @@ client.query("select id from tastaturi", function (err, rez) {
 async function genereazaPdf(stringHTML, numeFis, callback) {
   const chrome = await puppeteer.launch();
   const document = await chrome.newPage();
-  console.log("inainte load");
-  //await document.setContent(stringHTML, {waitUntil:"load"});
+  console.log("înainte de load");
   await document.setContent(stringHTML, { waitUntil: "load" });
-
-  console.log("dupa load");
+  console.log("după load");
   await document.pdf({ path: numeFis, format: "A4" });
-
-  console.log("dupa pdf");
+  console.log("după pdf");
   await chrome.close();
-
-  console.log("dupa inchidere");
+  console.log("după închidere");
   if (callback) callback(numeFis);
 }
 
-function insereazaFactura(req,rezultatRanduri){
-  rezultatRanduri.rows.forEach(function (elem){ elem.cantitate=1});
-  let jsonFactura= {
-      data: new Date(),
-      username: req.session.utilizator.username,
-      produse:rezultatRanduri.rows
-  }
-  console.log("JSON factura", jsonFactura)
-  if(obGlobal.bdMongo){
-      obGlobal.bdMongo.collection("facturi").insertOne(jsonFactura, function (err, rezmongo){
-          if (err) console.log(err)
-          else console.log ("Am inserat factura in mongodb");
+function insereazaFactura(req, rezultatRanduri) {
+  rezultatRanduri.rows.forEach(function (elem) {
+    elem.cantitate = 1;
+  });
+  let jsonFactura = {
+    data: new Date(),
+    username: req.session.utilizator.username,
+    produse: rezultatRanduri.rows,
+  };
+  console.log("JSON factura", jsonFactura);
+  if (obGlobal.bdMongo) {
+    obGlobal.bdMongo.collection("facturi").insertOne(jsonFactura, function (err, rezmongo) {
+      if (err) console.log(err);
+      else console.log("Am inserat factura în MongoDB.");
 
-          obGlobal.bdMongo.collection("facturi").find({}).toArray(
-              function (err, rezInserare){
-                  if (err) console.log(err)
-                  else console.log (rezInserare);
-          })
-      })
+      obGlobal.bdMongo.collection("facturi").find({}).toArray(function (err, rezInserare) {
+        if (err) console.log(err);
+        else console.log(rezInserare);
+      });
+    });
   }
 }
 
@@ -287,8 +288,8 @@ app.post("/cumpara", function (req, res) {
           console.log(rezFactura);
           let numeFis = `./temp/factura${new Date().getTime()}.pdf`;
           genereazaPdf(rezFactura, numeFis, function (numeFis) {
-            mesajText = `Stimate ${req.session.utilizator.username} aveti mai jos factura.`;
-            mesajHTML = `<h2>Stimate ${req.session.utilizator.username},</h2> aveti mai jos factura.`;
+            mesajText = `Stimate ${req.session.utilizator.username}, aveți mai jos factura.`;
+            mesajHTML = `<h2>Stimate ${req.session.utilizator.username},</h2> aveți mai jos factura.`;
             req.utilizator.trimiteMail("Factura", mesajText, mesajHTML, [
               {
                 filename: "factura.pdf",
@@ -297,12 +298,16 @@ app.post("/cumpara", function (req, res) {
             ]);
             res.send("Totul e bine!");
           });
-          insereazaFactura(rez,res);
+
+          insereazaFactura(req, rez);
+        } else {
+          console.log(err);
+          afisareEroare(res, 2, "Eroare la obtinerea produselor din baza de date.");
         }
       }
     );
   } else {
-    res.send("Nu puteti cumpara daca nu sunteti logat sau nu aveti dreptul!");
+    afisareEroare(res, 403, "Nu puteți cumpăra dacă nu sunteți logat sau nu aveți dreptul!");
   }
 });
 
