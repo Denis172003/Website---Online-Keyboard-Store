@@ -24,9 +24,9 @@
   border-color: rgb(147, 43, 176); 
 }
 
-img, video, iframe, audio, figcaption {
+/* img, video, iframe, audio, figcaption {
   display: none;
-}
+} */
 
 #triunghi {
   height: 0px;
