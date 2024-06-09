@@ -1,3 +1,19 @@
+#grid-pagina {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-gap: 10px;
+  font-size: 20px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  grid-template-areas:
+      "prezentare prezentare prezentare prezentare"
+      "calendar anunturi anunturi tabel"
+      "utilizatori utilizatori date-server date-server"
+      "date date date-server date-server"
+      "diverse diverse diverse diverse";/*date-server date utilizatori */
+}
+
 /* CSS Variables */
 :root {
   --primary: #ddd;
@@ -22,19 +38,6 @@ html {
   width: 100%;
 }
 
-/* Grid Layout */
-#grid-pagina {
-  padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  grid-gap: 10px;
-}
-
-#grid-pagina > * {
-  outline: 2px solid #531064;
-  margin: 3px;
-}
-
 /* Grid Areas */
 #prezentare {
   grid-area: prezentare;
@@ -52,39 +55,47 @@ html {
   grid-area: anunturi;
 }
 
-#orar {
-  grid-area: online;
+#utilizatori {
+  grid-area: utilizatori;
 }
 
-#intrebari {
-  grid-area: statistici;
-}
-
-.table-container {
+#diverse {
   grid-area: diverse;
 }
 
-#grid-pagina {
-  display: block;
-  font-size: 20px;
-  box-sizing: border-box;
-  page-break-before: always;
-  background-color: #f2f2f2;
+#date-server {
+  grid-area: date-server;
 }
 
-/* Media Queries */
-@media screen and (max-width: 1200px) {
+#date{
+  grid-area: date;
+}
+
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
   html {
-    font-size: 15px;
+    font-size: 18px;
+    font-style: 7em;
   }
   #grid-pagina {
-    grid-template-columns: repeat(2, 1fr); 
+    gap: 6px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+    "prezentare prezentare prezentare" 
+    "calendar tabel tabel" 
+    "utilizatori date date" 
+    "anunturi date-server date-server"
+    "diverse diverse diverse";
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
   html {
-    font-size: 12px;
+    font-size: 16px;
+    font-style: 4em;
+  }
+  #grid-pagina {
+    display: block;
   }
 }
 
@@ -96,39 +107,9 @@ html {
 }
 
 
-#grid-pagina {
-  grid-template-areas:
-      "prezentare prezentare prezentare prezentare"
-      "tabel calendar calendar  anunturi"
-      "online online  statistici statistici"
-      "diverse diverse  statistici statistici"
-      "diverse diverse  diverse diverse";
-}
 
 /* La dimensiuni medii */
-@media (max-width: 1024px) {
-  #grid-pagina {
-    grid-template-areas:
-        "prezentare prezentare prezentare ."
-        "tabel tabel tabel ."
-        "calendar calendar calendar ."
-        "anunturi online statistici diverse";
-  }
-}
 
-/* La dimensiuni mici */
-@media (max-width: 768px) {
-  #grid-pagina {
-    grid-template-areas:
-        "prezentare"
-        "tabel"
-        "calendar"
-        "anunturi"
-        "online"
-        "statistici"
-        "diverse";
-  }
-}
 
 /*---------Taburi Iframe----------*/
 
@@ -144,7 +125,7 @@ html {
   justify-content: flex-start;
 }
 .taburi-iframe a + a {
-  margin-left: 163px;
+  margin-left: 152px;
 }
 .taburi-iframe a{
   display: block;
@@ -179,17 +160,36 @@ html {
 
 /*---------Tabel Orar----------*/
 
-#tab-orar th,
-#tab-orar td {
-  border: 3px solid #be4cbc;
-}
-
-#tab-orar {
-  border-spacing: 0px;
+ 
+ #tab-orar {
+  width: 100%;
+  border-spacing: 3px;
   border-collapse: collapse;
 }
 
-#tab-orar th:nth-child(2n + 1) {
-  background-color: plum;
+#tab-orar th {
+  border: 3px solid #be4cbc;
 }
 
+#tab-orar td {
+  border: 1px solid #692b68;
+  cursor: pointer;
+  background-color: none;
+  transition: all 0, 75s linear;
+  text-align: center;
+}
+
+#tab-orar tbody tr:nth-child(even) {
+  box-shadow: 2px 2px 2px 2px #a200dd;
+  font-size: 100%;
+}
+
+#tab-orar tbody tr:nth-child(odd) {
+  box-shadow: 2px 2px 2px 2px #be4cbc;
+}
+
+#tab-orar tr:nth-child(even):hover,
+#tab-orar tr:nth-child(odd):hover {
+  background-color: #f3c3f9;
+  font-size: 120%;
+}

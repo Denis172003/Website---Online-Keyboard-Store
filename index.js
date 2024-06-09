@@ -885,21 +885,31 @@ function initImagini() {
   );
   if (!fs.existsSync(caleAbsMediu)) fs.mkdirSync(caleAbsMediu);
 
-  //for (let i=0; i< vErori.length; i++ )
   for (let imag of vImagini) {
-    [numeFis, ext] = imag.fisier.split(".");
-    let caleFisAbs = path.join(caleAbs, imag.fisier);
-    let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
-    sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
-    imag.fisier_mediu = path.join(
-      "/",
-      obGlobal.obImagini.cale_galerie,
-      "mediu",
-      numeFis + ".webp"
-    );
-    imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
+    if (imag.fisier) {
+      let [numeFis, ext] = imag.fisier.split(".");
+      let caleFisAbs = path.join(caleAbs, imag.fisier);
+      let caleFisMediuAbs = path.join(caleAbsMediu, numeFis + ".webp");
+
+      sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs)
+        .then(() => {
+          imag.fisier_mediu = path.join(
+            "/",
+            obGlobal.obImagini.cale_galerie,
+            "mediu",
+            numeFis + ".webp"
+          );
+          imag.fisier = path.join("/", obGlobal.obImagini.cale_galerie, imag.fisier);
+        })
+        .catch(err => {
+          console.error("Error processing image:", err);
+        });
+    } else {
+      console.warn("Image file is missing for an entry:", imag);
+    }
   }
 }
+
 initImagini();
 
 function afisareEroare(res, _identificator, _titlu, _text, _imagine) {

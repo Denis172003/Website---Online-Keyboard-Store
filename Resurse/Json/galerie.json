@@ -1,38 +1,285 @@
 {
-	"cale_galerie": "resurse/imagini/galerie",
-	"imagini": [
-	  {
-		"fisier": "briose-frisca.png",
-		"descriere": "Brioșe",
-		"luni": ["martie", "februarie", "noiembrie", "aprilie"]
-	  },
-	  {
-		"fisier": "clatite.png",
-		"descriere": "Clătite cu dulceață",
-		"luni": ["ianuarie", "februarie", "iunie"]
-	  },
-	  {
-		"fisier": "gogosi.png",
-		"descriere": "Gogoși glazurate",
-		"luni": ["ianuarie", "noiembrie", "iunie", "martie", "aprilie"]
-	  },
-	  {
-		"fisier": "tort-scortisoara.png",
-		"descriere": "Tort cu scorțisoară",
-  
-		"luni": ["noiembrie", "aprilie"]
-	  },
-	  {
-		"fisier": "prajitura-ciocolata.png",
-		"descriere": "Prăjitură cu ciocolată"
-	  },
-	  {
-		"fisier": "tarta-afine.png",
-		"descriere": "Tartă cu afine"
-	  },
-	  {
-		"fisier": "tort-trandafiri.png",
-		"descriere": "Tort special"
-	  }
-	]
-  }
+  "cale_galerie": "Resurse/Imagini/galerie/",
+  "imagini": [
+    {
+      "fisier_imagine": "tastatura23.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura22.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura21.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "briose-frisca.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura19.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura18.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura17.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura16.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura15.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura14.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura13.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura12.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura11.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura10.jpeg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "luni",
+        "vineri"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura9.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura8.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura7.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura6.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura5.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura4.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura3.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura2.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura1.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura ergonomica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura24.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tort-scortisoara.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "tastatura mecanica",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tort-trandafiri.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "text descriere",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "tastatura25.jpg",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "text descriere",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    },
+    {
+      "fisier_imagine": "keyboard.png",
+      "nume_poza": "Tastatura",
+      "continut_alternativ": "text alternativ imagine",
+      "descriere_poza": "text descriere",
+      "intervale_zile": [
+        "sambata",
+        "duminica"
+      ]
+    }
+  ]
+}
