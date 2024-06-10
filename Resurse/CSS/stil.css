@@ -147,3 +147,13 @@ p {
     border: 1px solid black;
   }
   
+
+#accordion {
+    max-width: 500px;
+    margin: 0 auto; /* Center the accordion horizontally */
+}
+
+.imag-produs {
+    max-width: 500px; /* Set maximum width for the image */
+    margin: 0 auto; /* Center the image horizontally */
+}
