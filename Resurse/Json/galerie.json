@@ -2,7 +2,7 @@
   "cale_galerie": "Resurse/Imagini/galerie/",
   "imagini": [
     {
-      "fisier_imagine": "tastatura23.jpg",
+      "fisier_imagine": "tastatura38.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura22.jpg",
+      "fisier_imagine": "tastatura39.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura21.png",
+      "fisier_imagine": "tastatura40.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "fisier_imagine": "briose-frisca.png",
+      "fisier_imagine": "tastatura35.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura19.jpg",
+      "fisier_imagine": "tastatura37.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura18.jpg",
+      "fisier_imagine": "tastatura32.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura17.jpg",
+      "fisier_imagine": "tastatura38.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura16.png",
+      "fisier_imagine": "tastatura34.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura15.png",
+      "fisier_imagine": "tastatura40.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura14.png",
+      "fisier_imagine": "tastatura36.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura13.jpg",
+      "fisier_imagine": "tastatura31.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura12.jpg",
+      "fisier_imagine": "tastatura25.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura11.jpg",
+      "fisier_imagine": "tastatura29.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura10.jpeg",
+      "fisier_imagine": "tastatura28.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura9.jpg",
+      "fisier_imagine": "tastatura27.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura8.jpg",
+      "fisier_imagine": "tastatura26.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura7.jpg",
+      "fisier_imagine": "tastatura30.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura ergonomica",
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "fisier_imagine": "tort-scortisoara.png",
+      "fisier_imagine": "tastatura21.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "tastatura mecanica",
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "fisier_imagine": "tort-trandafiri.png",
+      "fisier_imagine": "tastatura16.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "text descriere",
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "fisier_imagine": "tastatura25.jpg",
+      "fisier_imagine": "tastatura25.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "text descriere",
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "fisier_imagine": "keyboard.png",
+      "fisier_imagine": "tastatura29.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
       "descriere_poza": "text descriere",

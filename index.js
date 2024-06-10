@@ -15,7 +15,7 @@ const QRCode= require('qrcode');
 const puppeteer=require('puppeteer');
 const xmljs=require('xml-js');
 const { MongoClient } = require("mongodb");
-``
+
 
 var client = new Client({
   database: "cti_2024",
@@ -984,6 +984,8 @@ fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
     }
   }
 });
+
+
 
 app.listen(8080);
 console.log("Serverul a pornit");
