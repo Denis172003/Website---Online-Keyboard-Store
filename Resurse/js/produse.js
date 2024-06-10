@@ -116,6 +116,47 @@ window.addEventListener("load", function () {
     }
   };
 
+// Function to find the cheapest product in each category
+function markCheapestProducts() {
+  const categories = new Set(); // Set to store unique categories
+  const cheapestProducts = {}; // Object to store cheapest product for each category
+
+  // Loop through each product to find the cheapest in each category
+  const products = document.getElementsByClassName("produs");
+  for (let product of products) {
+    const category = product.getElementsByClassName("val-categorie")[0].textContent.toLowerCase().trim();
+    const price = parseFloat(product.getElementsByClassName("val-pret")[0].textContent);
+
+    // If category is not in the set, add it and set the initial cheapest product
+    if (!categories.has(category)) {
+      categories.add(category);
+      cheapestProducts[category] = { price: price, element: product };
+    } else {
+      // If category already exists, check if the current product is cheaper
+      if (price < cheapestProducts[category].price) {
+        cheapestProducts[category] = { price: price, element: product };
+      }
+    }
+  }
+
+  // Mark the cheapest product in each category
+  for (let category in cheapestProducts) {
+    const cheapestProduct = cheapestProducts[category].element;
+    const priceElement = cheapestProduct.getElementsByClassName("val-pret")[0];
+    priceElement.style.color = "red"; // Example: Marking the price in red to draw attention
+
+    // Create and append a yellow text box on top of the "Cel mai ieftin produs" message
+    const yellowBox = document.createElement("div");
+    yellowBox.classList.add("yellow-box");
+    yellowBox.textContent = "Cel mai ieftin produs";
+    priceElement.appendChild(yellowBox);
+  }
+}
+
+// Call the function to mark the cheapest products once the page is loaded
+markCheapestProducts();
+
+
   // Apply the tip filter on page load
   document.getElementById("filtrare").click();
 });

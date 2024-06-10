@@ -140,3 +140,10 @@ p {
     line-height: 1.6;
 } */
 
+.yellow-box {
+    display: inline-block;
+    background-color: yellow;
+    padding: 5px;
+    border: 1px solid black;
+  }
+  
