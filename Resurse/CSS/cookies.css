@@ -19,6 +19,7 @@
     animation: slideIn 5s linear forwards;
 }
 
+
 @keyframes slideIn {
     0% {
         left: -100%;
