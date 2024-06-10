@@ -131,7 +131,61 @@ app.get(["/", "/home", "/index"], async function (req, res) {
   });
 });
 
+//======================= Seturi ==========================
 
+app.get("/seturi", function(req, res) {
+  client.query(`
+      SELECT s.id, s.nume_set, s.descriere_set, array_agg(p.nume) as produse, array_agg(p.pret) as preturi, array_agg(p.id) as produs_ids
+      FROM seturi s
+      JOIN asociere_set a ON s.id = a.id_set
+      JOIN tastaturi p ON a.id_produs = p.id
+      GROUP BY s.id
+  `, function(err, result) {
+      if (err) {
+          console.log(err);
+          afisareEroare(res, 2);
+      } else {
+          let seturi = result.rows.map(set => {
+              let pret_total = set.preturi.reduce((total, pret) => total + parseFloat(pret), 0);
+              let n = set.preturi.length;
+              let reducere = Math.min(5, n) * 5;
+              let pret_final = pret_total * (1 - reducere / 100);
+              return { ...set, pret_total, pret_final };
+          });
+          res.render("pagini/seturi", { seturi });
+      }
+  });
+});
+
+app.get("/seturi", function(req, res) {
+  client.query(`
+      SELECT s.id, s.nume_set, s.descriere_set, 
+             array_agg(p.nume) AS produse, 
+             array_agg(p.pret) AS preturi, 
+             array_agg(p.id) AS produs_ids
+      FROM seturi s
+      JOIN asociere_set a ON s.id = a.id_set
+      JOIN tastaturi p ON a.id_produs = p.id
+      GROUP BY s.id, s.nume_set, s.descriere_set
+  `, function(err, result) {
+      if (err) {
+          console.log(err);
+          afisareEroare(res, 2);
+      } else {
+          let seturi = result.rows.map(set => {
+              let pret_total = set.preturi.reduce((total, pret) => total + parseFloat(pret), 0);
+              let n = set.preturi.length;
+              let reducere = Math.min(5, n) * 5;
+              let pret_final = pret_total * (1 - reducere / 100);
+              return { ...set, pret_total, pret_final };
+          });
+          res.render("pagini/seturi", { seturi });
+      }
+  });
+});
+
+
+//======================= Produse ==========================
 
 app.get("/produse", function (req, res) {
   client.query("select * from tastaturi", function (err, rez) {
@@ -171,18 +225,52 @@ app.get("/produse", function (req, res) {
   );
 });
 
-app.get("/produs/:id", function (req, res) {
-  client.query(
-    `select * from tastaturi where id=${req.params.id}`,
-    function (err, rez) {
-      if (err) {
-        console.log(err);
-        afisareEroare(res, 2);
+
+
+app.get("/produs/:id", function(req, res) {
+  let produsId = req.params.id;
+  
+  // Interogarea pentru detaliile produsului
+  let queryProdus = `SELECT * FROM tastaturi WHERE id = $1`;
+  
+  // Interogarea pentru seturile care conțin produsul
+  let querySeturi = `
+      SELECT s.id, s.nume_set, s.descriere_set, 
+             array_agg(p.nume) AS produse, 
+             array_agg(p.id) AS produs_ids, 
+             array_agg(p.pret) AS preturi
+      FROM seturi s
+      JOIN asociere_set a ON s.id = a.id_set
+      JOIN tastaturi p ON a.id_produs = p.id
+      WHERE s.id IN (SELECT id_set FROM asociere_set WHERE id_produs = $1)
+      GROUP BY s.id, s.nume_set, s.descriere_set
+  `;
+  
+  client.query(queryProdus, [produsId], function(errProdus, resultProdus) {
+      if (errProdus || resultProdus.rows.length == 0) {
+          console.log(errProdus);
+          afisareEroare(res, 2);
       } else {
-        res.render("pagini/produs", { prod: rez.rows[0] });
+          let produs = resultProdus.rows[0];
+          
+          client.query(querySeturi, [produsId], function(errSeturi, resultSeturi) {
+              if (errSeturi) {
+                  console.log(errSeturi);
+                  afisareEroare(res, 2);
+              } else {
+                  let seturi = resultSeturi.rows.map(set => {
+                      let pret_total = set.preturi.reduce((total, pret) => total + parseFloat(pret), 0);
+                      let n = set.preturi.length;
+                      let reducere = Math.min(5, n) * 5;
+                      let pret_final = pret_total * (1 - reducere / 100);
+                      return { ...set, pret_total, pret_final };
+                  });
+
+                  res.render("pagini/produs", { prod: produs, seturi: seturi });
+              }
+          });
       }
-    }
-  );
+  });
 });
 
 
