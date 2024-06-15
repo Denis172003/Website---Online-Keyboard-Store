@@ -5,7 +5,7 @@
       "fisier_imagine": "tastatura38.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "tastatura mecanica",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "luni",
         "vineri"
@@ -85,7 +85,7 @@
       "fisier_imagine": "tastatura40.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "tastatura ergonomica",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "luni",
         "vineri"
@@ -125,7 +125,7 @@
       "fisier_imagine": "tastatura29.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "tastatura ergonomica",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "luni",
         "vineri"
@@ -175,7 +175,7 @@
       "fisier_imagine": "tastatura6.jpg",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "tastatura ergonomica",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "sambata",
         "sambata"
@@ -205,7 +205,7 @@
       "fisier_imagine": "tastatura3.jpg",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "tastatura mecanica",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "sambata",
         "sambata"
@@ -255,7 +255,7 @@
       "fisier_imagine": "tastatura16.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "text descriere",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "sambata",
         "sambata"
@@ -265,7 +265,7 @@
       "fisier_imagine": "tastatura25.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "text descriere",
+      "descriere_poza": "tastatura ergonomica",
       "intervale_zile": [
         "sambata",
         "sambata"
@@ -275,7 +275,7 @@
       "fisier_imagine": "tastatura29.png",
       "nume_poza": "Tastatura",
       "continut_alternativ": "text alternativ imagine",
-      "descriere_poza": "text descriere",
+      "descriere_poza": "tastatura office",
       "intervale_zile": [
         "sambata",
         "sambata"

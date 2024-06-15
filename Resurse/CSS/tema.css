@@ -1,36 +1,3 @@
-/* Enhanced slider styles */
-.slider {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    background-color: #ccc;
-    border-radius: 30px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: background-color 0.4s;
-}
-
-.slider:before {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #f2f2f2;
-    border-radius: 50%;
-    transition: transform 0.4s;
-}
-
-.toggle input[type="checkbox"]:checked + .slider:before {
-    transform: translateX(30px);
-}
-
-/* Adjusting slider background color for checked state */
-.toggle input[type="checkbox"]:checked + .slider {
-    background-color: var(--culoare1); /* Change background color for checked state */
-}
-
-
-
 /* General styles for all themes */
 body {
     transition: background-color 0.5s, color 0.5s;
@@ -60,6 +27,12 @@ body.blue {
     --text-color: #f2f2f2; /* Set text color to white */
     --nav-color: #1e90ff; /* Set nav color to blue */
     --hover-nav-color: #0d47a1; /* Set hover nav color to darker blue */
+}
+
+body.purple {
+    --bg-color: #1c1c2e; /* Set background color for dark purple theme */
+    --text-color: #d8bfd8; /* Light purple color for text */
+    --nav-color: #ffffff; /* White text for navbar */
 }
 
 /* Set body background and text color */
@@ -92,11 +65,11 @@ body.dark p,
 body.dark ul,
 body.dark li,
 body.dark a {
-    color: #f2f2f2; /* Set the text color to white for these elements */
+    color: #fafafa; /* Set the text color to light purple for these elements */
 }
 
 body.dark nav a {
-    color: rgb(255, 255, 255); /* Set link color to purple */
+    color: rgb(255, 255, 255); /* Set link color to white */
 }
 
 body.dark #grid-pagina {
@@ -221,8 +194,7 @@ body.blue .meniu {
 }
 
 body.blue #banner {
-    background-color
-    : #1e90ff; /* Blue background color */
+    background-color: #1e90ff; /* Blue background color */
     border-color: #1e90ff; /* Blue border color */
 }
 
@@ -262,4 +234,53 @@ body.blue a {
 body.blue .meniu li div,
 body.blue .meniu li a {
     color: #e3eeff; /* Dark blue color */
+}
+
+/* Purple theme specific styles */
+body.purple h1,
+body.purple p,
+body.purple ul,
+body.purple li,
+body.purple a {
+    color: #fafafa; /* Light purple color */
+}
+
+body.purple nav a {
+    color: #ffffff; /* White text for nav bar */
+}
+
+body.purple #grid-pagina {
+    background-color: #1c1c2e;
+    border: 2px solid #fafafa; /* Light purple border */
+}
+
+body.purple header,
+body.purple nav,
+body.purple main,
+body.purple footer {
+    background-color: #1c1c2e;
+    color: #fafafa;
+}
+
+body.purple table,
+body.purple th,
+body.purple td {
+    border: 1px solid #fafafa;
+}
+
+body.purple .table-container {
+    background-color: #1c1c2e;
+}
+
+body.purple .taburi-iframe a {
+    border: 2px solid #fafafa;
+    background-color: #1c1c2e;
+    color: #fafafa;
+}
+
+/* For the dark theme */
+body.dark h1,
+body.dark p,
+body.dark a {
+    color: #c913c9; /* Light purple color */
 }
