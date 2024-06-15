@@ -194,33 +194,50 @@
         <p>Descoperă ultimele noutăți din lumea tastaturilor, articole și recenzii despre cele mai recente modele și tehnologii. Fii la curent cu tot ce este nou în domeniul tastaturilor mecanice și personalizează-ți experiența de tastare!</p>
       </section>
     </div>
+
     <section id="galerie-statica">
       <h2>Galerie</h2>
       <div id="grid-galerie">
           <% 
+  
+          function convertToRoman(num) {
+              const romanNumerals = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii","xiii", "xiv", "xv"];
+              if (num >= 1 && num <= romanNumerals.length) {
+                  return romanNumerals[num - 1];
+              } else {
+                  return num.toString();
+              }
+          }
+  
           var zile_saptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
           var d = new Date();
           var zi_curenta = zile_saptamana[d.getDay()];
           var caleGalerie = "Resurse/Imagini/galerie/";
-    
+          var index = 1; // Index for small Roman numerals
+          
           for (let imag of locals.imagini) { 
               if (imag?.intervale_zile?.includes(zi_curenta)) { 
+                  var indexRoman = convertToRoman(index); // Convert index to small Roman numeral
           %>
               <figure>
                   <picture>
-                      <source srcset="<%= caleGalerie + imag.fisier_imagine_mediu %>" media="(max-width:1200px)" />
-                      <img src="<%= caleGalerie + imag.fisier_imagine %>" alt="<%= imag.continut_alternativ %>">
+                      <source srcset="<%= caleGalerie + imag.fisier_imagine_mic %>" media="(max-width: 768px)" />
+                      <source srcset="<%= caleGalerie + imag.fisier_imagine_mediu %>" media="(max-width: 1200px)" />
+                      <img src="<%= caleGalerie + imag.fisier_imagine %>" alt="<%= imag.continut_alternativ %>" title="<%= imag.descriere_poza %>">
                   </picture>
+  
                   <figcaption>
-                      <%= imag.descriere_poza %>
+                      <%= indexRoman + '. ' + imag.descriere_poza %>
                   </figcaption>
               </figure>
           <% 
+                  index++;
               } 
           } 
           %>
       </div>
-    </section>
+  </section>  
+  
     
     <section id="intrebari">
       <h2>Întrebări frecvente</h2>
@@ -292,6 +309,7 @@
     <p>Check out this video: <a href="https://www.instagram.com/holoboardofficial/" target="_blank" class="special-link">un_link_frumos</a></p>
     
     <%- include("../Fragmente/footer") %>
+
   </footer>
 </body>
 </html>
