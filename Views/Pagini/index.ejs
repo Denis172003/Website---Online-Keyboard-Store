@@ -1,315 +1,333 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-  <title>Holoboard</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="Tastaturi, Tastaturi mecanice, Tastaturi wireless, Tastaturi ergonomice,Lubrifiere tastaturi, Tastaturi București, Retur gratuit, Livrare la domiciliu, Retur gratuit. Keycaps, Artizane pentru tastaturi, Switch-uri, Key cap puller, Bluetooth tastaturi, Tastaturi cu fir, Tastaturi personalizate, Accesorii pentru tastaturi, Suporturi pentru tastaturi, Tastaturi RGB, Tastaturi compacte, Tastaturi de gaming, Tastaturi profesionale, Tastaturi cu iluminare, Tastaturi de birou, Tastaturi pentru laptop, Tastaturi multimedia, Tastaturi cu touchpad, Tastaturi de calitate, Tastaturi rezistente, Tastaturi de buget, Tastaturi premium, Tastaturi de lux, Tastaturi portabile, Tastaturi compacte, Tastaturi cu taste mecanice, Tastaturi pentru programatori, Tastaturi pentru editori, Tastaturi pentru scriitori, Tastaturi pentru design grafic, Tastaturi pentru gaming de e-sport, Tastaturi pentru utilizatori profesionisti, Tastaturi pentru entuziaști, Tastaturi pentru colecționari, Tastaturi cu switch-uri Cherry MX, Tastaturi cu switch-uri Kailh, Tastaturi cu switch-uri Gateron, Tastaturi cu switch-uri Romer-G, Tastaturi cu switch-uri Alps, Tastaturi compacte 60%, Tastaturi TKL (Tenkeyless), Tastaturi full-size, Tastaturi cu taste macro, Tastaturi cu taste multimedia, Tastaturi cu taste programabile, Tastaturi cu anti-ghosting, Tastaturi cu N-key rollover, Tastaturi cu key rollover, Tastaturi cu backlit, Tastaturi cu iluminare RGB, Tastaturi cu iluminare personalizată, Tastaturi cu profile de iluminare, Tastaturi cu iluminare pe taste">
-  <meta name="description" content="Magazin Holoboard. Fie că ești un gamer pasionat sau un profesionist în căutare de performanță și confort, găsești aici tastatura perfectă pentru tine. Livrare rapidă și retur gratuit!">
-  <%- include("../Fragmente/head") %>
-</head>
-<body>
-  <p id="watermark"></p>
-  <header>
-    <%- include("../Fragmente/header") %>
-  </header>
-  <main>
-    <%- include("../Fragmente/useri-online.ejs") %>
-    <div id="grid-pagina">
-      <section id="prezentare">
-        <h2>Prezentare</h2>
-        <div id="text">
-          Bine ați venit la Holoboard!
-          <div id="text-reflectat">
-            Bine ați venit la Holoboard!
-          </div>
-        </div><br>
-        <%- include("../Fragmente/locatie.ejs") %> <%- include("../Fragmente/formular-login.ejs", { utilizator: locals.utilizator, mesajLogin: locals.mesajLogin }) %>
-        <div class="container-calendar">
-          <%- include("../Fragmente/evenimente.ejs") %>
-        </div><%- include("../Fragmente/ora-server-client.ejs") %>
-        <p>Ip: <%- locals.ip %></p>
-        <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
-        <div class="intro-oferte">
-          <div>
-            Tastaturi mecanice
-          </div>
-          <div>
-            Seturi de taste
-          </div>
-          <div>
-            Switch-uri
-          </div>
-          <div>
-            Accesorii
-          </div>
-        </div>
-        <p class="anunt intro">Vă puteți îmbunătăți experiența de tastare atât la biroul nostru, cât și acasă, cu ajutorul serviciului nostru de livrare prin curier pentru toate produsele de tastaturi.</p>
-        <div id="dv-prezentare-1">
-          <div id="dv-prezentare">
-            <figure>
-              <picture><source srcset="./resurse/imagini/poster3.png" media="(max-width:700px)"> <source srcset="./resurse/imagini/poster2.png" media="(max-width:1200px)"> <img src="resurse/imagini/poster1.png" alt="Tastatură Mecanică" title="Tastaturi Mecanice" class="imagine"></picture>
-            </figure>
-          </div>
-        </div>
-      </section>
-      <section id="tabel">
-        <h2>Tabel</h2>
-        <div class="table-container">
-          <table id="stilizare-tabel">
-            <caption>
-              Tabel cu oferte
-            </caption>
-            <thead>
-              <tr>
-                <th>Nr. crt</th>
-                <th>Produs</th>
-                <th>Preț</th>
-                <th>Disponibilitate</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Keyboard</td>
-                <td>200 RON</td>
-                <td rowspan="2">În stoc</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Mouse</td>
-                <td>100 RON</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Headphones</td>
-                <td>150 RON</td>
-                <td>Stoc epuizat</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Monitor</td>
-                <td>500 RON</td>
-                <td>În stoc</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2">Total:</td>
-                <td colspan="2">950 RON</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </section>
-      <section id="calendar">
-        <!-- <h2>Calendar de evenimente</h2> -->
-        <table id="tab-orar">
-          <thead>
-                                    
-            <tr>
-                <th>Zi</th>
-                <th>Interval dimineata</th>
-                <th>Pauza de masa</th>
-                <th>Interval seara</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                
-                <td>Luni</td>
-                <td>inchis</td>
-                <td>-</td>
-                <td>14-19</td>
-            </tr>
-            <tr>
-                
-
-                <td>Marti</td>
-                <td>10-13</td>
-                <td>13-14</td>
-                <td>14-19</td>
-            </tr>
-            <tr>
-                
-
-                <td>Miercuri</td>
-                <td>10-13</td>
-                <td>13-14</td>
-                <td>14-19</td>
-            </tr>
-            <tr>
-                <td>Joi</td>
-                <td>10-13</td>
-                <td>13-14</td>
-                <td>14-19</td>
-            </tr>
-            <tr>
-                <td>Vineri</td>
-                <td>10-13</td>
-                <td>13-14</td>
-                <td>14-19</td>
-            </tr>
-            <tr>
-                <td>Sambata</td>
-                <td>10-12</td>
-                <td>12-13</td>
-                <td>13-16</td>
-            </tr>
-            <tr>
-                <td>Duminica</td>
-                <td>10-14</td>
-                <td>-</td>
-                <td>inchis</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="6">Comenzile pe site se pot realiza oricand. Acestea vor fi
-                    ridicate in
-                    orele
-                    de functionare a magazinului</td>
-                </tr>
-            </tfoot>
-        </table>
-      </section>
-      <section id="anunturi">
-        <h2>Anunțuri</h2>
-        <p>Descoperă cele mai noi oferte și promoții la tastaturi mecanice, seturi de taste și accesorii! Nu rata reducerile noastre exclusive și beneficiază de livrare gratuită pentru comenzile de peste 200 lei.</p>
-      </section>
-      <section id="utilizatori">
-        <h2>Utilizatori Online</h2>
-        <p>Alătură-te comunității noastre pasionate de tastaturi! Vezi cine este online acum și discută cu alți pasionați de tastaturi, schimbă experiențe și primește sfaturi de la experți.</p>
-      </section>
-      <section id="date">
-        <h2>Date despre utilizator și statistici</h2>
-        <p>Îți oferim date detaliate despre preferințele tale în materie de tastaturi, statistici despre produsele cele mai căutate și cele mai bine vândute. Află mai multe despre cum poți îmbunătăți experiența ta de tastare!</p>
-      </section>
-      <section id="date-server">
-        <h2>Date despre site și server</h2>
-        <p>Placeholder pentru informații despre site-ul și serverul nostru.</p>
-      </section>
-      <section id="diverse">
-        <h2>Conținut Divers</h2>
-        <p>Descoperă ultimele noutăți din lumea tastaturilor, articole și recenzii despre cele mai recente modele și tehnologii. Fii la curent cu tot ce este nou în domeniul tastaturilor mecanice și personalizează-ți experiența de tastare!</p>
-      </section>
-    </div>
-
-    <section id="galerie-statica">
-      <h2>Galerie</h2>
-      <div id="grid-galerie">
-          <% 
-  
-          function convertToRoman(num) {
-              const romanNumerals = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii","xiii", "xiv", "xv"];
-              if (num >= 1 && num <= romanNumerals.length) {
-                  return romanNumerals[num - 1];
-              } else {
-                  return num.toString();
-              }
-          }
-  
-          var zile_saptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
-          var d = new Date();
-          var zi_curenta = zile_saptamana[d.getDay()];
-          var caleGalerie = "Resurse/Imagini/galerie/";
-          var index = 1; // Index for small Roman numerals
-          
-          for (let imag of locals.imagini) { 
-              if (imag?.intervale_zile?.includes(zi_curenta)) { 
-                  var indexRoman = convertToRoman(index); // Convert index to small Roman numeral
-          %>
-              <figure>
+   <head>
+      <title>Holoboard</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="Tastaturi, Tastaturi mecanice, Tastaturi wireless, Tastaturi ergonomice,Lubrifiere tastaturi, Tastaturi București, Retur gratuit, Livrare la domiciliu, Retur gratuit. Keycaps, Artizane pentru tastaturi, Switch-uri, Key cap puller, Bluetooth tastaturi, Tastaturi cu fir, Tastaturi personalizate, Accesorii pentru tastaturi, Suporturi pentru tastaturi, Tastaturi RGB, Tastaturi compacte, Tastaturi de gaming, Tastaturi profesionale, Tastaturi cu iluminare, Tastaturi de birou, Tastaturi pentru laptop, Tastaturi multimedia, Tastaturi cu touchpad, Tastaturi de calitate, Tastaturi rezistente, Tastaturi de buget, Tastaturi premium, Tastaturi de lux, Tastaturi portabile, Tastaturi compacte, Tastaturi cu taste mecanice, Tastaturi pentru programatori, Tastaturi pentru editori, Tastaturi pentru scriitori, Tastaturi pentru design grafic, Tastaturi pentru gaming de e-sport, Tastaturi pentru utilizatori profesionisti, Tastaturi pentru entuziaști, Tastaturi pentru colecționari, Tastaturi cu switch-uri Cherry MX, Tastaturi cu switch-uri Kailh, Tastaturi cu switch-uri Gateron, Tastaturi cu switch-uri Romer-G, Tastaturi cu switch-uri Alps, Tastaturi compacte 60%, Tastaturi TKL (Tenkeyless), Tastaturi full-size, Tastaturi cu taste macro, Tastaturi cu taste multimedia, Tastaturi cu taste programabile, Tastaturi cu anti-ghosting, Tastaturi cu N-key rollover, Tastaturi cu key rollover, Tastaturi cu backlit, Tastaturi cu iluminare RGB, Tastaturi cu iluminare personalizată, Tastaturi cu profile de iluminare, Tastaturi cu iluminare pe taste">
+      <meta name="description" content="Magazin Holoboard. Fie că ești un gamer pasionat sau un profesionist în căutare de performanță și confort, găsești aici tastatura perfectă pentru tine. Livrare rapidă și retur gratuit!">
+      <%- include("../Fragmente/head") %>
+   </head>
+   <body>
+      <p id="watermark"></p>
+      <header>
+         <%- include("../Fragmente/header") %>
+      </header>
+      <main>
+         <%- include("../Fragmente/useri-online.ejs") %>
+         <div id="grid-pagina">
+            <section id="prezentare">
+               <h2>Prezentare</h2>
+               <div id="text">
+                  Bine ați venit la Holoboard!
+                  <div id="text-reflectat">
+                     Bine ați venit la Holoboard!
+                  </div>
+               </div>
+               <br>
+               <%- include("../Fragmente/locatie.ejs") %> <%- include("../Fragmente/formular-login.ejs", { utilizator: locals.utilizator, mesajLogin: locals.mesajLogin }) %>
+               <div class="container-calendar">
+                  <%- include("../Fragmente/evenimente.ejs") %>
+               </div>
+               <%- include("../Fragmente/ora-server-client.ejs") %>
+               <p>Ip: <%- locals.ip %></p>
+               <p class="intro">Vă mulțumim că ați vizitat site-ul nostru dedicat tastaturilor. Luați cu voi niște <b>tastaturi</b> virtuale. Bucurați-vă!</p>
+               <div class="intro-oferte">
+                  <div>
+                     Tastaturi mecanice
+                  </div>
+                  <div>
+                     Seturi de taste
+                  </div>
+                  <div>
+                     Switch-uri
+                  </div>
+                  <div>
+                     Accesorii
+                  </div>
+               </div>
+               <p class="anunt intro">Vă puteți îmbunătăți experiența de tastare atât la biroul nostru, cât și acasă, cu ajutorul serviciului nostru de livrare prin curier pentru toate produsele de tastaturi.</p>
+               <div id="dv-prezentare-1">
+                  <div id="dv-prezentare">
+                     <figure>
+                        <picture>
+                           <source srcset="./resurse/imagini/poster3.png" media="(max-width:700px)">
+                           <source srcset="./resurse/imagini/poster2.png" media="(max-width:1200px)">
+                           <img src="resurse/imagini/poster1.png" alt="Tastatură Mecanică" title="Tastaturi Mecanice" class="imagine">
+                        </picture>
+                     </figure>
+                  </div>
+               </div>
+            </section>
+            <section id="tabel">
+               <h2>Tabel</h2>
+               <div class="table-container">
+                  <table id="stilizare-tabel">
+                     <caption>
+                        Tabel cu oferte
+                     </caption>
+                     <thead>
+                        <tr>
+                           <th>Nr. crt</th>
+                           <th>Produs</th>
+                           <th>Preț</th>
+                           <th>Disponibilitate</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>1</td>
+                           <td>Keyboard</td>
+                           <td>200 RON</td>
+                           <td rowspan="2">În stoc</td>
+                        </tr>
+                        <tr>
+                           <td>2</td>
+                           <td>Mouse</td>
+                           <td>100 RON</td>
+                        </tr>
+                        <tr>
+                           <td>3</td>
+                           <td>Headphones</td>
+                           <td>150 RON</td>
+                           <td>Stoc epuizat</td>
+                        </tr>
+                        <tr>
+                           <td>4</td>
+                           <td>Monitor</td>
+                           <td>500 RON</td>
+                           <td>În stoc</td>
+                        </tr>
+                     </tbody>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Total:</td>
+                           <td colspan="2">950 RON</td>
+                        </tr>
+                     </tfoot>
+                  </table>
+               </div>
+            </section>
+            <section id="calendar">
+               <!-- <h2>Calendar de evenimente</h2> -->
+               <table id="tab-orar">
+                  <thead>
+                     <tr>
+                        <th>Zi</th>
+                        <th>Interval dimineata</th>
+                        <th>Pauza de masa</th>
+                        <th>Interval seara</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Luni</td>
+                        <td>inchis</td>
+                        <td>-</td>
+                        <td>14-19</td>
+                     </tr>
+                     <tr>
+                        <td>Marti</td>
+                        <td>10-13</td>
+                        <td>13-14</td>
+                        <td>14-19</td>
+                     </tr>
+                     <tr>
+                        <td>Miercuri</td>
+                        <td>10-13</td>
+                        <td>13-14</td>
+                        <td>14-19</td>
+                     </tr>
+                     <tr>
+                        <td>Joi</td>
+                        <td>10-13</td>
+                        <td>13-14</td>
+                        <td>14-19</td>
+                     </tr>
+                     <tr>
+                        <td>Vineri</td>
+                        <td>10-13</td>
+                        <td>13-14</td>
+                        <td>14-19</td>
+                     </tr>
+                     <tr>
+                        <td>Sambata</td>
+                        <td>10-12</td>
+                        <td>12-13</td>
+                        <td>13-16</td>
+                     </tr>
+                     <tr>
+                        <td>Duminica</td>
+                        <td>10-14</td>
+                        <td>-</td>
+                        <td>inchis</td>
+                     </tr>
+                  </tbody>
+                  <tfoot>
+                     <tr>
+                        <td colspan="6">Comenzile pe site se pot realiza oricand. Acestea vor fi
+                           ridicate in
+                           orele
+                           de functionare a magazinului
+                        </td>
+                     </tr>
+                  </tfoot>
+               </table>
+            </section>
+            <section id="anunturi">
+               <h2>Anunțuri</h2>
+               <p>Descoperă cele mai noi oferte și promoții la tastaturi mecanice, seturi de taste și accesorii! Nu rata reducerile noastre exclusive și beneficiază de livrare gratuită pentru comenzile de peste 200 lei.</p>
+            </section>
+            <section id="utilizatori">
+               <h2>Utilizatori Online</h2>
+               <p>Alătură-te comunității noastre pasionate de tastaturi! Vezi cine este online acum și discută cu alți pasionați de tastaturi, schimbă experiențe și primește sfaturi de la experți.</p>
+            </section>
+            <section id="date">
+               <h2>Date despre utilizator și statistici</h2>
+               <p>Îți oferim date detaliate despre preferințele tale în materie de tastaturi, statistici despre produsele cele mai căutate și cele mai bine vândute. Află mai multe despre cum poți îmbunătăți experiența ta de tastare!</p>
+            </section>
+            <section id="date-server">
+               <h2>Date despre site și server</h2>
+               <p>Placeholder pentru informații despre site-ul și serverul nostru.</p>
+            </section>
+            <section id="diverse">
+               <h2>Conținut Divers</h2>
+               <p>Descoperă ultimele noutăți din lumea tastaturilor, articole și recenzii despre cele mai recente modele și tehnologii. Fii la curent cu tot ce este nou în domeniul tastaturilor mecanice și personalizează-ți experiența de tastare!</p>
+            </section>
+         </div>
+         <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+               <% 
+                  function convertToRoman(num) {
+                      const romanNumerals = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii","xiii", "xiv", "xv"];
+                      if (num >= 1 && num <= romanNumerals.length) {
+                          return romanNumerals[num - 1];
+                      } else {
+                          return num.toString();
+                      }
+                  }
+                  
+                  var zile_saptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+                  var d = new Date();
+                  var zi_curenta = zile_saptamana[d.getDay()];
+                  var caleGalerie = "Resurse/Imagini/galerie/";
+                  var index = 1; // Index for small Roman numerals
+                  
+                  for (let imag of locals.imagini) { 
+                      if (imag?.intervale_zile?.includes(zi_curenta)) { 
+                          var indexRoman = convertToRoman(index); // Convert index to small Roman numeral
+                  %>
+               <figure>
                   <picture>
-                      <source srcset="<%= caleGalerie + imag.fisier_imagine_mic %>" media="(max-width: 768px)" />
-                      <source srcset="<%= caleGalerie + imag.fisier_imagine_mediu %>" media="(max-width: 1200px)" />
-                      <img src="<%= caleGalerie + imag.fisier_imagine %>" alt="<%= imag.continut_alternativ %>" title="<%= imag.descriere_poza %>">
+                     <source srcset="<%= caleGalerie + imag.fisier_imagine_mic %>" media="(max-width: 768px)" />
+                     <source srcset="<%= caleGalerie + imag.fisier_imagine_mediu %>" media="(max-width: 1200px)" />
+                     <img src="<%= caleGalerie + imag.fisier_imagine %>" alt="<%= imag.continut_alternativ %>" title="<%= imag.descriere_poza %>">
                   </picture>
-  
                   <figcaption>
-                      <%= indexRoman + '. ' + imag.descriere_poza %>
+                     <%= indexRoman + '. ' + imag.descriere_poza %>
                   </figcaption>
-              </figure>
-          <% 
+               </figure>
+               <% 
                   index++;
-              } 
-          } 
-          %>
-      </div>
-  </section>  
-  
-    
-    <section id="intrebari">
-      <h2>Întrebări frecvente</h2>
-      <details>
-        <summary>
-          Produsele sunt noi?
-        </summary>Da, toate produsele sunt noi și sigilate.
-      </details>
-      <details>
-        <summary>
-          Care sunt modalitățile de plată acceptate?
-        </summary>Acceptăm plata cu cardul, transfer bancar și numerar la livrare.
-      </details>
-      <details>
-        <summary>
-          Care sunt termenii și condițiile de retur?
-        </summary>Aveți dreptul la returnarea produselor în termen de 14 zile calendaristice de la primirea acestora, conform legislației în vigoare.
-      </details>
-      <details>
-        <summary>
-          Cum pot verifica starea comenzii mele?
-        </summary>Puteți verifica starea comenzii accesând contul dvs. de pe site-ul nostru sau contactându-ne direct prin telefon sau e-mail.
-      </details>
-      <details>
-        <summary>
-          Oferta specială: Tastatura mecanică RGB la preț redus!
-        </summary>Achiziționați acum tastatura mecanică RGB la un preț redus de doar 199 lei! Oferta valabilă în limita stocului disponibil.
-      </details><a href="#">Mergi sus</a>
-    </section>
+                  } 
+                  } 
+                  %>
+            </div>
+         </section>
+         
+         <section id="galerie-animata">
+            <h2>Galerie Animata</h2>
+            <div class="galerie-animata">
+               <% 
 
-    <section>
-      <h2>Video</h2>
-
-      <p>
-        Urmărește cele mai noi recenzii și tutoriale video despre tastaturi mecanice, 
-        seturi de taste și accesorii. Află cum poți personaliza tastatura ta și cum poți
-         îmbunătăți experiența de tastare cu ajutorul celor mai noi tehnologii și produse de pe piață.
-      </p>
-
-
-      <video controls width="640" height="360">
-        <source src="/Resurse/Video/Logitech_Video.mp4" type="video/mp4">
-        <source src="/Resurse/Video/Logitech_Wireless.mov" type="video/quicktime">
-        <track src="/Resurse/Video/my_captions.vtt" kind="captions" srclang="ro" label="Română" default>
-        <track src="/Resurse/Video/my_captions2.vtt" kind="captions" srclang="en" label="English">
-    </video>
-
-
-
-
-      <div class="iframe">
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/EIsaNBs4chk?si=TKo2Ec5WclRiXDEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <div class="taburi-iframe">
-
-            <a class="black" href="https://www.youtube.com/embed/2JHpcPHMdPg?si=ddYu2nN1ayQ0HSgu" target="ifr-video">Video 1</a>
-            <a class="black" href="https://www.youtube.com/embed/DsDi4x1LErQ?si=B6WiF7irju2mY5q9" target="ifr-video">Video 2</a>
-            <a class="black" href="https://www.youtube.com/embed/IpQ6PxBWK_Y?si=PpxhbtkYn_QkKMDE" target="ifr-video">Video 3</a>
-
-        </div>
-    </div>
-    <hr class="effect-css-stilizare-hr">
-    
-    </section>
-  </main>
-  <footer>
-
-    <div class="duotone-image-container"><img src="./resurse/Imagini/galerie/tastatura40.png" width="300" height="300" alt="Imagine"></div>
-    <p>Check out this video: <a href="https://www.instagram.com/holoboardofficial/" target="_blank" class="special-link">un_link_frumos</a></p>
-    
-    <%- include("../Fragmente/footer") %>
-
-  </footer>
-</body>
+                  
+                  var zile_saptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+                  var d = new Date();
+                  var zi_curenta = zile_saptamana[d.getDay()];
+                  var caleGalerie = "Resurse/Imagini/galerie/";
+                  var index = 1; // Index for small Roman numerals
+                  
+                  for (let imag of locals.imagini) { 
+                      if (imag?.intervale_zile?.includes(zi_curenta)) { 
+                          var indexRoman = convertToRoman(index); // Convert index to small Roman numeral
+                  %>
+               <figure>
+                  <picture>
+                     <source srcset="<%= caleGalerie + imag.fisier_imagine_mic %>" media="(max-width: 768px)" />
+                     <source srcset="<%= caleGalerie + imag.fisier_imagine_mediu %>" media="(max-width: 1200px)" />
+                     <img src="<%= caleGalerie + imag.fisier_imagine %>" alt="<%= imag.continut_alternativ %>" title="<%= imag.descriere_poza %>">
+                  </picture>
+               </figure>
+               <% 
+                  index++;
+                  } 
+                  } 
+                  %>
+            </div>
+         </section>
+         <section id="intrebari">
+            <h2>Întrebări frecvente</h2>
+            <details>
+               <summary>
+                  Produsele sunt noi?
+               </summary>
+               Da, toate produsele sunt noi și sigilate.
+            </details>
+            <details>
+               <summary>
+                  Care sunt modalitățile de plată acceptate?
+               </summary>
+               Acceptăm plata cu cardul, transfer bancar și numerar la livrare.
+            </details>
+            <details>
+               <summary>
+                  Care sunt termenii și condițiile de retur?
+               </summary>
+               Aveți dreptul la returnarea produselor în termen de 14 zile calendaristice de la primirea acestora, conform legislației în vigoare.
+            </details>
+            <details>
+               <summary>
+                  Cum pot verifica starea comenzii mele?
+               </summary>
+               Puteți verifica starea comenzii accesând contul dvs. de pe site-ul nostru sau contactându-ne direct prin telefon sau e-mail.
+            </details>
+            <details>
+               <summary>
+                  Oferta specială: Tastatura mecanică RGB la preț redus!
+               </summary>
+               Achiziționați acum tastatura mecanică RGB la un preț redus de doar 199 lei! Oferta valabilă în limita stocului disponibil.
+            </details>
+            <a href="#">Mergi sus</a>
+         </section>
+         <section>
+            <h2>Video</h2>
+            <p>
+               Urmărește cele mai noi recenzii și tutoriale video despre tastaturi mecanice, 
+               seturi de taste și accesorii. Află cum poți personaliza tastatura ta și cum poți
+               îmbunătăți experiența de tastare cu ajutorul celor mai noi tehnologii și produse de pe piață.
+            </p>
+            <video controls width="640" height="360">
+               <source src="/Resurse/Video/Logitech_Video.mp4" type="video/mp4">
+               <source src="/Resurse/Video/Logitech_Wireless.mov" type="video/quicktime">
+               <track src="/Resurse/Video/my_captions.vtt" kind="captions" srclang="ro" label="Română" default>
+               <track src="/Resurse/Video/my_captions2.vtt" kind="captions" srclang="en" label="English">
+            </video>
+            <div class="iframe">
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/EIsaNBs4chk?si=TKo2Ec5WclRiXDEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+               <div class="taburi-iframe">
+                  <a class="black" href="https://www.youtube.com/embed/2JHpcPHMdPg?si=ddYu2nN1ayQ0HSgu" target="ifr-video">Video 1</a>
+                  <a class="black" href="https://www.youtube.com/embed/DsDi4x1LErQ?si=B6WiF7irju2mY5q9" target="ifr-video">Video 2</a>
+                  <a class="black" href="https://www.youtube.com/embed/IpQ6PxBWK_Y?si=PpxhbtkYn_QkKMDE" target="ifr-video">Video 3</a>
+               </div>
+            </div>
+            <hr class="effect-css-stilizare-hr">
+         </section>
+      </main>
+      <footer>
+         <div class="duotone-image-container"><img src="./resurse/Imagini/galerie/tastatura40.png" width="300" height="300" alt="Imagine"></div>
+         <p>Follow us on instagram: <a href="https://www.instagram.com/holoboardofficial/" target="_blank" class="special-link">un_link_frumos</a></p>
+         <%- include("../Fragmente/footer") %>
+      </footer>
+   </body>
 </html>

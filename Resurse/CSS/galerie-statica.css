@@ -113,9 +113,6 @@
   grid-area: 7 / 3 / 7 / 4;
 }
 
-#grid-galerie figcaption::before {
-  content: counter(nrimag, lower-alpha) ". ";
-}
 
 /* Static gallery transition */
 #grid-galerie figure {

@@ -1,110 +1,104 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Holoboard oferă o gamă largă de tastaturi de înaltă calitate, proiectate pentru performanță și confort. Descoperiți cele mai recente modele de tastaturi mecanice, cu iluminare RGB personalizabilă și tehnologii avansate.">
-    <meta name="keywords" content="tastaturi, tastatura mecanica, iluminare RGB, gaming, tastatura ergonomică, tastatura wireless">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Resurse/SCSS/customizare_bootstrap.scss">
-    <link rel="stylesheet" href="/Resurse/js/produse-cos.js"/>
-    <title>Holoboard - home</title>
-    <%- include("../fragmente/head") %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="/Resurse/js/produse.js"></script>
-    <script type="text/javascript" src="/Resurse/js/produse-cos.js"></script>
-</head>
-<body>
-<%- include("../fragmente/header") %>
-<main>
-    <br>
-    <label class="form-label">Nume: <input type="text" id="inp-nume" class="form-control"></label>
-    <div> Tip tastatură:
-        <div class="form-check">
-            <input id="i_rad1" name="gr_rad" value="mecanice" type="radio" class="form-check-input"/>
-            <label for="i_rad1" class="form-check-label">Mecanice</label>
-        </div>
-        <div class="form-check">
-            <input id="i_rad2" name="gr_rad" value="membrană" type="radio" class="form-check-input"/>
-            <label for="i_rad2" class="form-check-label">Membrană</label>
-        </div>
-        <div class="form-check">
-            <input id="i_rad3" name="gr_rad" value="hibride" type="radio" class="form-check-input"/>
-            <label for="i_rad3" class="form-check-label">Hibride</label>
-        </div>
-        <div class="form-check">
-            <input id="i_rad4" checked name="gr_rad" value="toate" type="radio" class="form-check-input"/>
-            <label for="i_rad4" class="form-check-label">Toate</label>
-        </div>
-    </div>
-
-    <label class="form-label">Pret minim: 
-        <input type="range" id="inp-pret" value="0" min="0" max="340" class="form-range"> 
-        <span id="infoRange">(0)</span>
-    </label>
-    <label class="form-label">Select simplu: 
-        <select id="inp-categorie" class="form-select">
-            <option id="sel-toate" selected value="toate">Toate</option>
-            <option value="gaming">Gaming</option>
-            <option value="office">Office</option>
-            <option value="programare">Programare</option>
-            <option value="ergonomice">Ergonomice</option>
-        </select>
-    </label>        
-    <p>
-        <button id="filtrare" class="btn btn-primary">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Holoboard oferă o gamă largă de tastaturi de înaltă calitate, proiectate pentru performanță și confort. Descoperiți cele mai recente modele de tastaturi mecanice, cu iluminare RGB personalizabilă și tehnologii avansate.">
+      <meta name="keywords" content="tastaturi, tastatura mecanica, iluminare RGB, gaming, tastatura ergonomică, tastatura wireless">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="/Resurse/SCSS/customizare_bootstrap.scss">
+      <link rel="stylesheet" href="/Resurse/js/produse-cos.js"/>
+      <title>Holoboard - home</title>
+      <%- include("../fragmente/head") %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript" src="/Resurse/js/produse.js"></script>
+      <script type="text/javascript" src="/Resurse/js/produse-cos.js"></script>
+   </head>
+   <body>
+      <%- include("../fragmente/header") %>
+      <main>
+         <br>
+         <label class="form-label">Nume: <input type="text" id="inp-nume" class="form-control"></label>
+         <div>
+            Tip tastatură:
+            <div class="form-check">
+               <input id="i_rad1" name="gr_rad" value="mecanice" type="radio" class="form-check-input"/>
+               <label for="i_rad1" class="form-check-label">Mecanice</label>
+            </div>
+            <div class="form-check">
+               <input id="i_rad2" name="gr_rad" value="membrană" type="radio" class="form-check-input"/>
+               <label for="i_rad2" class="form-check-label">Membrană</label>
+            </div>
+            <div class="form-check">
+               <input id="i_rad3" name="gr_rad" value="hibride" type="radio" class="form-check-input"/>
+               <label for="i_rad3" class="form-check-label">Hibride</label>
+            </div>
+            <div class="form-check">
+               <input id="i_rad4" checked name="gr_rad" value="toate" type="radio" class="form-check-input"/>
+               <label for="i_rad4" class="form-check-label">Toate</label>
+            </div>
+         </div>
+         <label class="form-label">Pret minim: 
+         <input type="range" id="inp-pret" value="0" min="0" max="340" class="form-range"> 
+         <span id="infoRange">(0)</span>
+         </label>
+         <label class="form-label">
+            Select simplu: 
+            <select id="inp-categorie" class="form-select">
+               <option id="sel-toate" selected value="toate">Toate</option>
+               <option value="gaming">Gaming</option>
+               <option value="office">Office</option>
+               <option value="programare">Programare</option>
+               <option value="ergonomice">Ergonomice</option>
+            </select>
+         </label>
+         <p>
+            <button id="filtrare" class="btn btn-primary">
             <i class="bi bi-filter"></i> <span class="d-none d-sm-inline">Filtreaza</span>
-        </button>
-
-        <button id="resetare" class="btn btn-secondary">
+            </button>
+            <button id="resetare" class="btn btn-secondary">
             <i class="bi bi-arrow-clockwise"></i> <span class="d-none d-sm-inline">Reseteaza</span>
-        </button>
-        <br/>
-        <br>
-        <button id="sortCrescNume" class="btn btn-success">
+            </button>
+            <br/>
+            <br>
+            <button id="sortCrescNume" class="btn btn-success">
             <i class="bi bi-sort-numeric-up"></i> <span class="d-none d-sm-inline">Sorteaza crescator dupa pret si nume</span>
-        </button>
-        <button id="sortDescrescNume" class="btn btn-danger">
+            </button>
+            <button id="sortDescrescNume" class="btn btn-danger">
             <i class="bi bi-sort-numeric-down"></i> <span class="d-none d-sm-inline">Sorteaza descrescator dupa pret si nume</span>
-        </button>
-    </p>
-    <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
-    <section id="produse">
-        <h2>Produse</h2>
-        <div class="row">
-            <% for( let prod of locals.produse) { %>
-
-                <article class="col-md-4 mb-4 produs">
-                    <div class="card h-100">
-                      <div class="card-body">
+            </button>
+         </p>
+         <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+         <section id="produse">
+            <h2>Produse</h2>
+            <div class="row">
+               <% for( let prod of locals.produse) { %>
+               <article class="col-md-4 mb-4 produs">
+                  <div class="card h-100">
+                     <div class="card-body">
                         <h3 class="card-title">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume %></span></a></h3>
                         <p class="card-text">Pret: <span class="val-pret"><%- prod.pret %></span></p>
                         <p class="card-text">Conectivitate: <span class="val-conectivitate"><%- prod.conectivitate %></span></p>
                         <p class="card-text">Numar taste: <span class="val-numar-taste"><%- prod.numar_taste %></span></p>
                         <p class="card-text">Tip tastatura: <span class="val-tip-tastatura"><%- prod.tip_tastatura %></span></p>
                         <p class="card-text">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
-                      </div>
-                      <figure class="card-img-bottom">
+                     </div>
+                     <figure class="card-img-bottom">
                         <a href="/produs/<%-prod.id %>">
-                          <img src="/Resurse/Imagini/produse/<%- prod.imagine %>" class="img-fluid" alt="[imagine <%- prod.nume %>]"/>
+                        <img src="/Resurse/Imagini/produse/<%- prod.imagine %>" class="img-fluid" alt="[imagine <%- prod.nume %>]"/>
                         </a>
-                      </figure>
-                      <div class="card-footer">
+                     </figure>
+                     <div class="card-footer">
                         <label class="form-check-label">Selectează:
-                          <input type="checkbox" class="form-check-input select-cos" value="<%- prod.id %>" autocomplete="off">
+                        <input type="checkbox" class="form-check-input select-cos" value="<%- prod.id %>" autocomplete="off">
                         </label>
-                      </div>
-                    </div>
-
-                  </article>
-                        
-            <% } %>
-
-            
-        </div>
-    </section>
-</main>
-
-<%- include("../fragmente/footer") %>
-</body>
+                     </div>
+                  </div>
+               </article>
+               <% } %>
+            </div>
+         </section>
+      </main>
+      <%- include("../fragmente/footer") %>
+   </body>
 </html>

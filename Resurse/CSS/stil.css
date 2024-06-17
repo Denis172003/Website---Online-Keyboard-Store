@@ -150,10 +150,10 @@ p {
 
 #accordion {
     max-width: 500px;
-    margin: 0 auto; /* Center the accordion horizontally */
+    margin: 0 auto; 
 }
 
 .imag-produs {
-    max-width: 500px; /* Set maximum width for the image */
-    margin: 0 auto; /* Center the image horizontally */
+    max-width: 500px; 
+    margin: 0 auto; 
 }

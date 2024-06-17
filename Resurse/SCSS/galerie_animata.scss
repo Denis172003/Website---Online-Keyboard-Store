@@ -1,0 +1,87 @@
+$border_image_path: "../Imagini/galerie/tastatura40.png";
+$nr_imagini: 8; // Default value, will be updated by JavaScript
+
+.galerie-animata {
+  width: 400px;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid transparent;
+  box-sizing: border-box;
+  border-image: url(#{$border_image_path}) 10 round;
+
+  figure {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    animation-name: animatie_galerie;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-duration: #{10 * $nr_imagini}s; // Adjusted duration for animation
+    margin: 0;
+    padding: 0;
+
+    img {
+      display: block;
+      width: 400px; // Set to match the frame size
+      height: 320px; // Set to match the frame size
+      transform-origin: bottom left;
+    }
+  }
+
+  @for $i from 1 through $nr_imagini {
+    figure:nth-child(#{$i}) {
+      animation-delay: -#{$i * 10}s; // Adjust delay based on new duration
+      animation-play-state: running;
+    }
+
+    &:hover {
+      figure:nth-child(#{$i}) {
+        animation-play-state: paused;
+      }
+    }
+  }
+}
+
+@keyframes animatie_galerie {
+  0% {
+    z-index: 10;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1, 0.3);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(2, 0.3);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(2, 0.3);
+  }
+  85% {
+    z-index: -10; // Start to bring the next image forward
+    opacity: 1;
+    transform: translate(0, 0) rotate(-90deg) scale(2, 0.3);
+  }
+  100% {
+    z-index: -10;
+    opacity: 0;
+    transform: translate(-100%, 100%) rotate(-90deg) scale(2, 0.3); // Move out of the screen
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .galerie-animata {
+    display: none;
+  }
+
+@media only screen and (max-width: 800px) {
+  .galerie-animata {
+    display: none;
+  }
+}
+}
