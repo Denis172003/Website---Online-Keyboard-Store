@@ -16,9 +16,9 @@
   animation-name: animatie_galerie;
   animation-timing-function: linear;
   animation-direction: normal;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-duration: 80s;
+  animation-duration: 10s;
   margin: 0;
   padding: 0;
 }
@@ -29,57 +29,49 @@
   transform-origin: bottom left;
 }
 .galerie-animata figure:nth-child(1) {
-  animation-delay: -10s;
-  animation-play-state: running;
+  animation-delay: 0s;
 }
 .galerie-animata:hover figure:nth-child(1) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(2) {
-  animation-delay: -20s;
-  animation-play-state: running;
+  animation-delay: 10s;
 }
 .galerie-animata:hover figure:nth-child(2) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(3) {
-  animation-delay: -30s;
-  animation-play-state: running;
+  animation-delay: 20s;
 }
 .galerie-animata:hover figure:nth-child(3) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(4) {
-  animation-delay: -40s;
-  animation-play-state: running;
+  animation-delay: 30s;
 }
 .galerie-animata:hover figure:nth-child(4) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(5) {
-  animation-delay: -50s;
-  animation-play-state: running;
+  animation-delay: 40s;
 }
 .galerie-animata:hover figure:nth-child(5) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(6) {
-  animation-delay: -60s;
-  animation-play-state: running;
+  animation-delay: 50s;
 }
 .galerie-animata:hover figure:nth-child(6) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(7) {
-  animation-delay: -70s;
-  animation-play-state: running;
+  animation-delay: 60s;
 }
 .galerie-animata:hover figure:nth-child(7) {
   animation-play-state: paused;
 }
 .galerie-animata figure:nth-child(8) {
-  animation-delay: -80s;
-  animation-play-state: running;
+  animation-delay: 70s;
 }
 .galerie-animata:hover figure:nth-child(8) {
   animation-play-state: paused;
@@ -98,7 +90,7 @@
     transform: translate(-50%, -50%) scale(2, 0.3);
   }
   75% {
-    transform: translate(-50%, -50%) rotate(-45deg) scale(2, 0.3);
+    transform: translate(0, 0) rotate(-45deg) scale(2, 0.3);
   }
   85% {
     z-index: -10;
@@ -116,7 +108,7 @@
     display: none;
   }
 }
-@media only screen and (max-width: 1200px) and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   .galerie-animata {
     display: none;
   }

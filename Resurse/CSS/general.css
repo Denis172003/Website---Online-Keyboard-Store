@@ -188,17 +188,17 @@
 }
 
 hr {
-  height: 10px; /* Adjust the height as needed */
+  height: 10px; 
   transform: skewX(60deg);
   background: linear-gradient(
     to right, 
-    #007bff 0%,  /* Solid blue at the beginning (0%) with sharp edge */
+    #007bff 0%,  
     #007bff 20%, 
     #f2f2f2 10%,
-    #f2f2f2 20%, /* Solid blue until 20% (slightly shorter) */
+    #f2f2f2 20%,
     transparent,
-    #007bff 50%,  /* Blue gradient starts at 50% */
-    #007bff 70% /* Transparent section to fade out the blue (70%) */
+    #007bff 50%, 
+    #007bff 70% 
   );
 }
 

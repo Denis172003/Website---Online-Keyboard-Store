@@ -1,16 +1,16 @@
 /* Global styles */
 body {
-    --culoare1: #531064; /* Custom color 1 */
-    --culoare2: #ff29fb; /* Custom color 2 */
-    --spatiere: 10px; /* Custom spacing */
+    --culoare1: #531064; 
+    --culoare2: #ff29fb;
+    --spatiere: 10px; 
     padding-left: var(--spatiere);
     padding-right: var(--spatiere);
 }
 p {
-    color: var(--culoare1); /* Set paragraph text color */
+    color: var(--culoare1); 
 }
 h2 {
-    border: 2px solid var(--culoare1); /* Style h2 elements with border */
+    border: 2px solid var(--culoare1); 
 }
 * {
     margin: 0;
@@ -88,15 +88,13 @@ p {
 
 /* Link styles and effects */
 :root {
-    --link-visited-color: #8200ae; /* Color for visited links */
-    --external-link-hover-color: #121212; /* Color for hover effects */
-    --link-hover-background-color: #87CEFA; /* Color for the hover blob */
+    --link-visited-color: #8200ae; 
+    --external-link-hover-color: #121212;
+    --link-hover-background-color: #87CEFA;
 }
 
 
-  /* a:visited {
-    color: #8200ae;
-  } */
+
   
   a[href^=http]:not(.black)::before {
     content: "⮳";

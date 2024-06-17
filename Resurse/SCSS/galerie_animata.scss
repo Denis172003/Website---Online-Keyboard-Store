@@ -19,9 +19,9 @@ $nr_imagini: 8; // Default value, will be updated by JavaScript
     animation-name: animatie_galerie;
     animation-timing-function: linear;
     animation-direction: normal;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    animation-duration: #{10 * $nr_imagini}s; // Adjusted duration for animation
+    animation-duration: 10s; // Duration for each image animation
     margin: 0;
     padding: 0;
 
@@ -35,8 +35,7 @@ $nr_imagini: 8; // Default value, will be updated by JavaScript
 
   @for $i from 1 through $nr_imagini {
     figure:nth-child(#{$i}) {
-      animation-delay: -#{$i * 10}s; // Adjust delay based on new duration
-      animation-play-state: running;
+      animation-delay: #{($i - 1) * 10}s; // Delay each animation to start after the previous one finishes
     }
 
     &:hover {
@@ -60,7 +59,7 @@ $nr_imagini: 8; // Default value, will be updated by JavaScript
     transform: translate(-50%, -50%) scale(2, 0.3);
   }
   75% {
-    transform: translate(-50%, -50%) rotate(-45deg) scale(2, 0.3);
+    transform: translate(0, 0) rotate(-45deg) scale(2, 0.3);
   }
   85% {
     z-index: -10; // Start to bring the next image forward
@@ -78,10 +77,10 @@ $nr_imagini: 8; // Default value, will be updated by JavaScript
   .galerie-animata {
     display: none;
   }
+}
 
 @media only screen and (max-width: 800px) {
   .galerie-animata {
     display: none;
   }
-}
 }
