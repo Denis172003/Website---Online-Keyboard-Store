@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* Static gallery for large screens */
+
 #galerie-statica {
   padding-left: var(--padding-intern);
   padding-right: var(--padding-intern);
@@ -7,11 +7,11 @@
 
 .foto-frame {
   background-color: black;
-  padding: 2px; /* Adjust padding for a smaller frame */
+  padding: 2px; 
   border: none;
   display: flex;
   justify-content: center;
-  align-items: center; /* Optional: centers vertically too */
+  align-items: center; 
 }    
 
 
@@ -30,21 +30,21 @@
   border: none;
 }
 
-/* Gallery styles for large screens */
+
 @media screen and (min-width: 1000px) {
   #grid-galerie {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Gallery styles for medium screens */
+
 @media screen and (max-width: 1000px) and (min-width: 500px) {
   #grid-galerie {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Gallery styles for small screens */
+
 @media screen and (max-width: 500px) {
   #grid-galerie {
     display: block;
@@ -114,7 +114,7 @@
 }
 
 
-/* Static gallery transition */
+
 #grid-galerie figure {
   transition: transform 1.25s ease, border 0.5s ease, border-radius 0.5s ease;
   border-radius: 0;
@@ -135,7 +135,7 @@
   color: var(--culoare-meniu);
 }
 
-/* Static gallery for medium screens */
+
 @media screen and (max-width: 1000px) and (min-width: 500px) {
   #grid-galerie {
     grid-template-columns: repeat(2, 1fr);

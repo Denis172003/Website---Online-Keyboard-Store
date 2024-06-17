@@ -1,8 +1,4 @@
 
-/* Alte stilizări pentru secțiuni (să respecte principiile de design și ierarhia vizuală) */
-
-/* Adăugați stilurile tale CSS aici */
-
 #link-top {
   position: fixed;
   bottom: 0.3em;
@@ -203,7 +199,6 @@ hr {
 }
 
 
-
 #text-reflectat {
   position: absolute;
   left: 0;
@@ -224,16 +219,16 @@ hr {
     rgba(255, 255, 255, 1) 90%,
     rgba(0, 0, 0, 0) 100%
   );
-  mask-size: 100% 200%; /* You can experiment with this value */
+  mask-size: 100% 200%; 
   overflow: hidden;
 }
 
 @keyframes ripple {
   0% {
-    mask-position: 0 100%; /* Start at bottom */
+    mask-position: 0 100%; 
   }
   100% {
-    mask-position: 0 20px; /* Move to 20px from the top */
+    mask-position: 0 20px; 
   }
 }
 

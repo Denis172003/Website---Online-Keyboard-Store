@@ -1,5 +1,3 @@
-/* Duotone image styling */
-
 .duotone-image-container {
     position: relative;
     display: inline-block;
@@ -26,7 +24,6 @@
     mix-blend-mode: screen;
   }
   
-  /* Duotone image reveal animations */
   
   .duotone-image-container:hover::before {
     animation: revealBlueFilterFromLeft 1s forwards;
