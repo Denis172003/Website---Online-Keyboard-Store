@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('theme', 'blue');
     };
 
-    // Change the initial checked state based on the localStorage
     const initialTheme = localStorage.getItem('theme');
     switch (initialTheme) {
         case 'dark':
@@ -37,11 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             blueButtonFunc();
             break;
         default:
-            lightButton.checked = true; // Default to light theme
+            lightButton.checked = true; 
             lightButtonFunc();
     }
 
-    // Add event listeners to the buttons
     lightButton.addEventListener('click', lightButtonFunc);
     darkButton.addEventListener('click', darkButtonFunc);
     blueButton.addEventListener('click', blueButtonFunc);

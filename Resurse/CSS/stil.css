@@ -127,7 +127,7 @@ p {
   }
 
 
-/* Video caption styling video::cue {
+video::cue {
     background-image: linear-gradient(to bottom, #333333, #666666);
     color: transparent;
     -webkit-background-clip: text;
@@ -136,7 +136,7 @@ p {
     max-width: 100%;
     white-space: pre-wrap;
     line-height: 1.6;
-} */
+}
 
 .yellow-box {
     display: inline-block;
