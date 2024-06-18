@@ -234,6 +234,30 @@ window.addEventListener("load", function () {
 
     markCheapestProducts();
 
+    document.getElementById('calculeazaMedia').addEventListener('click', function() {
+        // Selectăm toate elementele cu clasa val-pret
+        const elements = document.getElementsByClassName('val-pret');
+    
+        let total = 0;
+        let count = 0;
+    
+        // Iterăm prin elementele selectate și adunăm prețurile
+        for (let i = 0; i < elements.length; i++) {
+            const pret = parseFloat(elements[i].innerText.trim()); // presupunând că textul conține prețul într-un format numeric
+            if (!isNaN(pret)) {
+                total += pret;
+                count++;
+            }
+        }
+    
+        // Calculăm media
+        const media = count > 0 ? total / count : 0;
+    
+        // Afisăm rezultatul (poți folosi console.log(media) pentru a verifica în consolă)
+        alert(`Media prețurilor selectate este: ${media.toFixed(2)}`); // afișăm media cu două zecimale
+    });
+    
+
     document.getElementById('resetare').addEventListener('click', function () {
         deleteCookie("filters");
         location.reload();
@@ -241,4 +265,3 @@ window.addEventListener("load", function () {
 
     document.getElementById("filtrare").click(); // Initial filter products on page load
 });
-

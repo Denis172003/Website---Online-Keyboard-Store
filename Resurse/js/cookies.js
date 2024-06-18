@@ -70,17 +70,17 @@ document.addEventListener("DOMContentLoaded", function () {
         saveFilters();
     });
 
-    // Încarcă filtrele salvate la încărcarea paginii, dacă sunt acceptate cookie-urile
-    setCookie("ultima_pagina_accesata", document.URL.split("/").pop(), 60); // Salvează ultima pagină accesată pentru o oră
+
+    setCookie("ultima_pagina_accesata", document.URL.split("/").pop(), 60); 
 
     var okCookiesButton = document.getElementById("ok_cookies");
     if (okCookiesButton) {
         okCookiesButton.onclick = function () {
-            setCookie("acceptat_banner", true, 60); // Acceptă banner-ul pentru o oră
+            setCookie("acceptat_banner", true, 60);
             var banner = document.getElementById("banner");
             if (banner) {
                 banner.style.display = "none";
-                loadFilters(); // Apelăm loadFilters() după acceptarea cookies-urilor
+                loadFilters(); 
             }
         };
     }
@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("ultima-pagina-accesata").innerHTML = getCookie("ultima_pagina_accesata");
 
     if (getCookie("acceptat_banner")) {
-        loadFilters(); // Restaurează filtrele dacă cookie-urile sunt acceptate
+        loadFilters(); 
     }
 
-    // Afișează banner-ul pentru cookie-uri, dacă nu sunt acceptate
+
     var banner = document.getElementById("banner");
     if (!getCookie("acceptat_banner")) {
         if (banner) {

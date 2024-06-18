@@ -144,6 +144,10 @@
             <button id="sortDescrescNume" class="btn btn-danger">
             <i class="bi bi-sort-numeric-down"></i> <span class="d-none d-sm-inline">Sorteaza descrescator dupa pret si nume</span>
             </button>
+
+            <button id="calculeazaMedia" class="btn btn-info">
+                <i class="bi bi-calculator"></i> <span class="d-none d-sm-inline">Calculează media prețurilor selectate</span>
+            </button>
         </p>
         
         <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
@@ -152,29 +156,35 @@
             <h2>Produse</h2>
             <div class="row">
                 <% for( let prod of locals.produse) { %>
-                <article class="col-md-4 mb-4 produs">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume %></span></a></h3>
-                            <p class="card-text">Pret: <span class="val-pret"><%- prod.pret %></span></p>
-                            <p class="card-text">Conectivitate: <span class="val-conectivitate"><%- prod.conectivitate %></span></p>
-                            <p class="card-text">Numar taste: <span class="val-numar-taste"><%- prod.numar_taste %></span></p>
-                            <p class="card-text">Tip tastatura: <span class="val-tip-tastatura"><%- prod.tip_tastatura %></span></p>
-                            <p class="card-text">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p> 
-                            <p class="card-text val-categorie d-none"><%- prod.categorie %></p>
-                            <p class="card-text val-tip-tastatura d-none"><%- prod.tip_tastatura %></p>
-                            <p class="card-text val-conectivitate d-none"><%- prod.conectivitate %></p>
-                            <p class="card-text val-descriere d-none"><%- prod.descriere %></p>
-                            <p class="card-text val-specificatii d-none"><%- prod.specificatii.join(", ") %></p>
-                            <p class="card-text val-servicii d-none"><%- prod.tip_serviciu %></p>
+                    <article class="col-md-4 mb-4 produs">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <label>
+                                        <input type="checkbox" class="select-produs">
+                                        Nume: <a href="/produs/<%-prod.id %>"><span class="val-nume"><%- prod.nume %></span></a>
+                                    </label>
+                                </h3>
+                                <p class="card-text">Pret: <span class="val-pret"><%- prod.pret %></span></p>
+                                <p class="card-text">Conectivitate: <span class="val-conectivitate"><%- prod.conectivitate %></span></p>
+                                <p class="card-text">Numar taste: <span class="val-numar-taste"><%- prod.numar_taste %></span></p>
+                                <p class="card-text">Tip tastatura: <span class="val-tip-tastatura"><%- prod.tip_tastatura %></span></p>
+                                <p class="card-text">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p> 
+                                <p class="card-text val-categorie d-none"><%- prod.categorie %></p>
+                                <p class="card-text val-tip-tastatura d-none"><%- prod.tip_tastatura %></p>
+                                <p class="card-text val-conectivitate d-none"><%- prod.conectivitate %></p>
+                                <p class="card-text val-descriere d-none"><%- prod.descriere %></p>
+                                <p class="card-text val-specificatii d-none"><%- prod.specificatii.join(", ") %></p>
+                                <p class="card-text val-servicii d-none"><%- prod.tip_serviciu %></p>
+                            </div>
+                            <figure class="card-img-bottom">
+                                <a href="/produs/<%-prod.id %>">
+                                <img src="/Resurse/Imagini/Produse/<%- prod.imagine %>" alt="<%- prod.imagine %>" class="img-fluid">
+                                </a>
+                            </figure>
                         </div>
-                        <figure class="card-img-bottom">
-                            <a href="/produs/<%-prod.id %>">
-                            <img src="/Resurse/Imagini/Produse/<%- prod.imagine %>" alt="<%- prod.imagine %>" class="img-fluid">
-                            </a>
-                        </figure>
-                    </div>
-                </article>
+                    </article>
+                    
                 <% } %>
             </div>
         </section>
