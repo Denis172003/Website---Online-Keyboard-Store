@@ -59,12 +59,34 @@
         <!-- Multiple Select Input -->
         <label class="form-label">Selectează Specificații:
             <select id="inp-specificatii" class="form-select" multiple>
-                <option value="Anti-Ghosting">Anti-Ghosting</option>
                 <option value="RGB">RGB</option>
                 <option value="Switch-uri Cherry MX">Switch-uri Cherry MX</option>
                 <option value="Tastaturi Programabile">Tastaturi Programabile</option>
             </select>
         </label>
+
+        <div>
+            Compatibilitate:
+            <div class="form-check">
+                <input type="checkbox" id="compatibilitate1" name="gr_compatibilitate" value="Windows" class="form-check-input"/>
+                <label for="compatibilitate1" class="form-check-label">Windows</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="compatibilitate2" name="gr_compatibilitate" value="Mac" class="form-check-input"/>
+                <label for="compatibilitate2" class="form-check-label">Mac</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="compatibilitate3" name="gr_compatibilitate" value="Linux" class="form-check-input"/>
+                <label for="compatibilitate3" class="form-check-label">Linux</label>
+            </div>
+        </div>
+    
+        <!-- Radio Group for "has" and "does not have" multiple compatibility -->
+        <div class="radio-group">
+            <label><input type="radio" name="compatibilitate_optiune" value="are" checked> Are Compatibilitate Multipla</label>
+            <label><input type="radio" name="compatibilitate_optiune" value="nu are"> Nu are Compatibilitate Multipla</label>
+        </div>
+    
 
         <div>
             Tip tastatură:

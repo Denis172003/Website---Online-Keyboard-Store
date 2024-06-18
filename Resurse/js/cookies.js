@@ -32,24 +32,66 @@ function deleteAllCookies() {
     }
 }
 
-window.addEventListener("load", function () {
-    setCookie("ultima_pagina_accesata", document.URL.split("/").pop(), 60);
+function saveFilters() {
+    let filters = {
+        nume: document.getElementById("inp-nume").value,
+        conectivitate: document.getElementById("inp-conectivitate").value,
+        compatibilitate: Array.from(document.querySelectorAll('input[name="gr_compatibilitate"]:checked')).map(cb => cb.value),
+        compatibilitate_optiune: document.querySelector('input[name="compatibilitate_optiune"]:checked').value,
+        tip_tastatura: document.querySelector('input[name="gr_rad"]:checked').value,
+        pret: document.getElementById("inp-pret").value,
+        categorie: document.getElementById("inp-categorie").value,
+        salveaza_filtrare: document.getElementById("salveaza-filtrare").checked
+    };
+    setCookie("filters", JSON.stringify(filters), 3600); // Salvează filtrele într-un cookie pentru o oră
+}
+
+function loadFilters() {
+    let filters = getCookie("filters");
+    if (filters) {
+        filters = JSON.parse(filters);
+        document.getElementById("inp-nume").value = filters.nume || "";
+        document.getElementById("inp-conectivitate").value = filters.conectivitate || "";
+        document.querySelectorAll('input[name="gr_compatibilitate"]').forEach(cb => {
+            cb.checked = filters.compatibilitate.includes(cb.value);
+        });
+        document.querySelector(`input[name="compatibilitate_optiune"][value="${filters.compatibilitate_optiune}"]`).checked = true;
+        document.querySelector(`input[name="gr_rad"][value="${filters.tip_tastatura}"]`).checked = true;
+        document.getElementById("inp-pret").value = filters.pret || 0;
+        document.getElementById("inp-categorie").value = filters.categorie || "toate";
+        document.getElementById("salveaza-filtrare").checked = filters.salveaza_filtrare || false; // Restaurează starea checkbox-ului Salvează filtrarea
+    }
+}
+
+// Așteaptă ca întregul document să fie încărcat complet
+document.addEventListener("DOMContentLoaded", function () {
+    // Salvează filtrele la aplicarea filtrării
+    document.getElementById("filtrare").addEventListener("click", function() {
+        saveFilters();
+    });
+
+    // Încarcă filtrele salvate la încărcarea paginii, dacă sunt acceptate cookie-urile
+    setCookie("ultima_pagina_accesata", document.URL.split("/").pop(), 60); // Salvează ultima pagină accesată pentru o oră
 
     var okCookiesButton = document.getElementById("ok_cookies");
     if (okCookiesButton) {
         okCookiesButton.onclick = function () {
-            setCookie("acceptat_banner", true, 60);
+            setCookie("acceptat_banner", true, 60); // Acceptă banner-ul pentru o oră
             var banner = document.getElementById("banner");
             if (banner) {
                 banner.style.display = "none";
+                loadFilters(); // Apelăm loadFilters() după acceptarea cookies-urilor
             }
         };
     }
 
     document.getElementById("ultima-pagina-accesata").innerHTML = getCookie("ultima_pagina_accesata");
-});
 
-window.addEventListener("DOMContentLoaded", function () {
+    if (getCookie("acceptat_banner")) {
+        loadFilters(); // Restaurează filtrele dacă cookie-urile sunt acceptate
+    }
+
+    // Afișează banner-ul pentru cookie-uri, dacă nu sunt acceptate
     var banner = document.getElementById("banner");
     if (!getCookie("acceptat_banner")) {
         if (banner) {

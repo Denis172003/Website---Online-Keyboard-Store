@@ -129,6 +129,7 @@ window.addEventListener("load", function () {
         v_produse.sort(function (a, b) {
             let pret_a = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
             let pret_b = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
+            
             if (pret_a === pret_b) {
                 let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
                 let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
@@ -141,6 +142,31 @@ window.addEventListener("load", function () {
             container.appendChild(prod);
         }
     }
+
+    document.getElementById('filtrare').addEventListener('click', function () {
+        const produse = document.querySelectorAll('.produs');
+        const compatibilitateOptiune = document.querySelector('input[name="compatibilitate_optiune"]:checked').value;
+        const selectedCompatibilitate = Array.from(document.querySelectorAll('input[name="gr_compatibilitate"]:checked')).map(cb => cb.value);
+
+        produse.forEach(produs => {
+            const prodCompatibilitateText = produs.querySelector('.val-specificatii').textContent;
+            const hasMultipleCompatibilitate = selectedCompatibilitate.every(opt => prodCompatibilitateText.includes(opt));
+
+            let shouldShow = false;
+            if (compatibilitateOptiune === 'are') {
+                shouldShow = hasMultipleCompatibilitate;
+            } else {
+                shouldShow = !hasMultipleCompatibilitate;
+            }
+
+            if (shouldShow) {
+                produs.classList.remove('d-none');
+            } else {
+                produs.classList.add('d-none');
+            }
+        });
+    });
+
 
     function areNumeApropiat(numeReal, numeIntrodus) {
         if (numeReal === numeIntrodus) {
@@ -207,6 +233,11 @@ window.addEventListener("load", function () {
     }
 
     markCheapestProducts();
+
+    document.getElementById('resetare').addEventListener('click', function () {
+        deleteCookie("filters");
+        location.reload();
+    });
 
     document.getElementById("filtrare").click(); // Initial filter products on page load
 });
