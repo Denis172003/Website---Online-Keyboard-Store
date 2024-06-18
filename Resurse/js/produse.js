@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
             for (let prod of produse) {
                 prod.style.display = "block";
             }
-            markCheapestProducts(); // Update cheapest products after resetting filters
+            markCheapestProducts(); 
         }
     };
 
@@ -36,6 +36,7 @@ window.addEventListener("load", function () {
             var suma = 0;
             var produse = document.getElementsByClassName("produs");
             for (let produs of produse) {
+                
                 var stil = getComputedStyle(produs);
                 if (stil.display != "none") {
                     suma += parseFloat(produs.getElementsByClassName("val-pret")[0].innerHTML);
@@ -68,21 +69,29 @@ window.addEventListener("load", function () {
                 break;
             }
         }
+  
+        let selectedServicii = [];
 
+        // Obține elementul select pentru servicii
+        let selectServicii = document.getElementById("select-servicii");
+    
+        // Obține opțiunile selectate din selectul multiplu pentru servicii
+        Array.from(selectServicii.selectedOptions).forEach(option => {
+            selectedServicii.push(option.value.toLowerCase().trim());
+        });
         let inpPret = parseFloat(document.getElementById("inp-pret").value);
 
         let inpCateg = document.getElementById("inp-categorie").value.toLowerCase().trim();
 
         let inpConectivitate = document.getElementById("inp-conectivitate").value.toLowerCase().trim();
 
-        let inpServicii = Array.from(document.querySelectorAll('input[name="gr_chk"]:checked')).map(checkbox => checkbox.value.toLowerCase().trim());
 
         let inpDescriere = document.getElementById("inp-descriere").value.toLowerCase().trim();
-
         let selectedOptions = Array.from(document.getElementById("inp-specificatii").selectedOptions).map(option => option.value.toLowerCase().trim());
 
         let produse = document.getElementsByClassName("produs");
         for (let produs of produse) {
+
             let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase().trim();
             let cond1 = areNumeApropiat(valNume, inpNume);
 
@@ -99,7 +108,7 @@ window.addEventListener("load", function () {
             let cond5 = inpConectivitate === "" || valConectivitate.includes(inpConectivitate);
 
             let valServicii = produs.getElementsByClassName("val-servicii")[0].innerHTML.toLowerCase().trim();
-            let cond6 = inpServicii.length === 0 || inpServicii.some(service => valServicii.includes(service));
+            let cond6 = selectedServicii.length === 0 || selectedServicii.some(service => valServicii.includes(service));
 
             let valDescriere = produs.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase().trim();
             let cond7 = inpDescriere === "" || valDescriere.includes(inpDescriere);
@@ -194,6 +203,7 @@ window.addEventListener("load", function () {
         // Iterate through each product to find the cheapest in each category
         const produse = document.getElementsByClassName("produs");
         for (let produs of produse) {
+            
             const categorie = produs.getElementsByClassName("val-categorie")[0].textContent.toLowerCase().trim();
             const pret = parseFloat(produs.getElementsByClassName("val-pret")[0].textContent);
 

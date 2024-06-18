@@ -31,25 +31,14 @@
         </label>
 
         <!-- Checkbox Group Input -->
-        <div>
-            Tip servicii:
-            <div class="form-check">
-                <input type="checkbox" id="i_chk1" name="gr_chk" value="lubrifiere" class="form-check-input"/>
-                <label for="i_chk1" class="form-check-label">Lubrifiere</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" id="i_chk2" name="gr_chk" value="curatare" class="form-check-input"/>
-                <label for="i_chk2" class="form-check-label">Curatare</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" id="i_chk3" name="gr_chk" value="reparatii" class="form-check-input"/>
-                <label for="i_chk3" class="form-check-label">Reparatii</label>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" id="i_chk4" name="gr_chk" value="personalizari" class="form-check-input"/>
-                <label for="i_chk4" class="form-check-label">Personalizari</label>
-            </div>
-        </div>
+        <label class="form-label">Selectează servicii:</label>
+        <select id="select-servicii" class="form-select" multiple>
+            <option value="lubrifiere">Lubrifiere</option>
+            <option value="curatare">Curatare</option>
+            <option value="reparatii">Reparatii</option>
+            <option value="personalizari">Personalizari</option>
+        </select>
+        
 
         <!-- Textarea Input -->
         <label class="form-label">Descriere: 
