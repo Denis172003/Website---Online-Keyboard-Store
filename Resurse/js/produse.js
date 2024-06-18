@@ -84,7 +84,7 @@ window.addEventListener("load", function () {
         let produse = document.getElementsByClassName("produs");
         for (let produs of produse) {
             let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase().trim();
-            let cond1 = valNume.startsWith(inpNume);
+            let cond1 = areNumeApropiat(valNume, inpNume);
 
             let valTipTastatura = produs.getElementsByClassName("val-tip-tastatura")[0].innerHTML.toLowerCase().trim();
             let cond2 = inpTipTastatura === "toate" || inpTipTastatura === valTipTastatura;
@@ -142,6 +142,25 @@ window.addEventListener("load", function () {
         }
     }
 
+    function areNumeApropiat(numeReal, numeIntrodus) {
+        if (numeReal === numeIntrodus) {
+            return true;
+        }
+        
+        // Verificăm similaritatea utilizând o metodă simplă de calcul a diferenței de caractere
+        let diffCount = 0;
+        const len = Math.min(numeReal.length, numeIntrodus.length);
+        for (let i = 0; i < len; i++) {
+            if (numeReal[i] !== numeIntrodus[i]) {
+                diffCount++;
+            }
+            if (diffCount > 2) {
+                return false;
+            }
+        }
+        return diffCount <= 2;
+    }
+
     function markCheapestProducts() {
         const categorii = new Set(); // Set to store unique categories
         const produseCeleMaiIeftine = {}; // Object to store cheapest product for each category
@@ -191,3 +210,4 @@ window.addEventListener("load", function () {
 
     document.getElementById("filtrare").click(); // Initial filter products on page load
 });
+
